@@ -13,6 +13,7 @@
 #include "I2C_Interface.h"
 #include "project.h"
 #include "stdio.h"
+#include "InterruptRoutines.h"
 
 /**
 *   \brief 7-bit I2C address of the slave device.
@@ -247,10 +248,40 @@ int main(void)
         }
     }
     
+    int16_t OutAccX;
+    int16_t OutAccY;
+    int16_t OutAccZ;
+    uint8_t header = 0xA0;
+    uint8_t footer = 0xC0;
+    uint8_t OutArray[8]; 
+    
+    OutArray[0] = header;
+    OutArray[7] = footer;
+    
+    Timer_Start();
+    isr_TIMER_StartEx(Custom_TIMER_ISR);
+    
+    PacketReadyFlag = 0;
     
     for(;;)
     {
-       
+  
+        if (PacketReadyFlag)
+        {
+        
+            OutAccX = ((int16)((AccData[0]) | ((AccData[1])<<8))>>6)*4;
+            OutAccY = ((int16)((AccData[2]) | ((AccData[3])<<8))>>6)*4;
+            OutAccZ = ((int16)((AccData[4]) | ((AccData[5])<<8))>>6)*4;
+            OutArray[1] = (uint8_t)(OutAccX & 0xFF); 
+            OutArray[2] = (uint8_t)(OutAccX >> 8);
+            OutArray[3] = (uint8_t)(OutAccY & 0xFF);
+            OutArray[4] = (uint8_t)(OutAccY >> 8);
+            OutArray[5] = (uint8_t)(OutAccZ & 0xFF);
+            OutArray[6] = (uint8_t)(OutAccZ >> 8);
+            UART_Debug_PutArray(OutArray, 8);
+            PacketReadyFlag = 0;
+            
+        }
     }
 }
 

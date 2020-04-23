@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
   31              		@ frame_needed = 0, uses_anonymous_args = 0
   32 0000 08B5     		push	{r3, lr}
   33              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 2
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 2
 
 
   34              		.cfi_offset 3, -8
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
   73              		.thumb
   74              		.thumb_func
   75              		.type	I2C_Peripheral_ReadRegister, %function
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 3
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 3
 
 
   76              	I2C_Peripheral_ReadRegister:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  115              	.LVL8:
   55:I2C_Interface.c ****                 if (error == I2C_Master_MSTR_NO_ERROR)
  116              		.loc 1 55 0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 4
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 4
 
 
  117 0024 0446     		mov	r4, r0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  152              		.cfi_def_cfa_offset 24
  153              		.cfi_offset 4, -24
  154              		.cfi_offset 5, -20
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 5
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 5
 
 
  155              		.cfi_offset 6, -16
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
   91:I2C_Interface.c ****                     {
   92:I2C_Interface.c ****                         data[register_count-counter] =
  193              		.loc 1 92 0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 6
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 6
 
 
  194 0030 C4EB0608 		rsb	r8, r4, r6
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  232 005a 18BF     		it	ne
  233 005c 0120     		movne	r0, #1
  234 005e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 7
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 7
 
 
  235              		.cfi_endproc
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  121:I2C_Interface.c ****                 error = I2C_Master_MasterWriteByte(data);
  275              		.loc 1 121 0
  276 001a 3046     		mov	r0, r6
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 8
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 8
 
 
  277              	.LVL34:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  135:I2C_Interface.c ****         // Send start condition
  136:I2C_Interface.c ****         uint8_t error = I2C_Master_MasterSendStart(device_address, I2C_Master_WRITE_XFER_MODE);
  318              		.loc 1 136 0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 9
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 9
 
 
  319 0008 0021     		movs	r1, #0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  354              	.L19:
  155:I2C_Interface.c ****                     }
  156:I2C_Interface.c ****                     counter--;
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 10
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 10
 
 
  355              		.loc 1 156 0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  395 0002 0021     		movs	r1, #0
  396 0004 FFF7FEFF 		bl	I2C_Master_MasterSendStart
  397              	.LVL53:
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 11
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 11
 
 
  398 0008 0446     		mov	r4, r0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  444 0032 1D       		.byte	0x1d
  445 0033 37000000 		.4byte	0x37
  446 0037 02       		.uleb128 0x2
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 12
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 12
 
 
  447 0038 01       		.byte	0x1
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  501 0098 37000000 		.4byte	0x37
  502 009c 04       		.byte	0x4
  503 009d 15       		.byte	0x15
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 13
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 13
 
 
  504 009e AF000000 		.4byte	0xaf
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  558 0119 00000000 		.4byte	.LFB2
  559 011d 3E000000 		.4byte	.LFE2-.LFB2
  560 0121 01       		.uleb128 0x1
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 14
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 14
 
 
  561 0122 9C       		.byte	0x9c
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  615 0191 24000000 		.4byte	.LVL8
  616 0195 A4040000 		.4byte	0x4a4
  617 0199 A9010000 		.4byte	0x1a9
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 15
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 15
 
 
  618 019d 0C       		.uleb128 0xc
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  672 0209 B5000000 		.4byte	.LLST5
  673 020d 09       		.uleb128 0x9
  674 020e 3F000000 		.4byte	.LASF26
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 16
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 16
 
 
  675 0212 01       		.byte	0x1
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  729 0287 00       		.sleb128 0
  730 0288 0C       		.uleb128 0xc
  731 0289 01       		.uleb128 0x1
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 17
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 17
 
 
  732 028a 51       		.byte	0x51
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  786 02f0 09       		.uleb128 0x9
  787 02f1 65010000 		.4byte	.LASF23
  788 02f5 01       		.byte	0x1
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 18
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 18
 
 
  789 02f6 6D       		.byte	0x6d
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  843 0368 82       		.byte	0x82
  844 0369 AF000000 		.4byte	0xaf
  845 036d 00000000 		.4byte	.LFB5
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 19
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 19
 
 
  846 0371 42000000 		.4byte	.LFE5-.LFB5
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  900 03fe 08040000 		.4byte	0x408
  901 0402 0C       		.uleb128 0xc
  902 0403 01       		.uleb128 0x1
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 20
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 20
 
 
  903 0404 51       		.byte	0x51
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  957 0473 BA040000 		.4byte	0x4ba
  958 0477 00       		.byte	0
  959 0478 12       		.uleb128 0x12
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 21
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 21
 
 
  960 0479 9B010000 		.4byte	.LASF32
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1014 0011 00       		.byte	0
  1015 0012 00       		.byte	0
  1016 0013 02       		.uleb128 0x2
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 22
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 22
 
 
  1017 0014 24       		.uleb128 0x24
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1071 004a 1C       		.uleb128 0x1c
  1072 004b 0B       		.uleb128 0xb
  1073 004c 00       		.byte	0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 23
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 23
 
 
  1074 004d 00       		.byte	0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1128 0086 00       		.byte	0
  1129 0087 03       		.uleb128 0x3
  1130 0088 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 24
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 24
 
 
  1131 0089 3A       		.uleb128 0x3a
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1185 00c6 13       		.uleb128 0x13
  1186 00c7 00       		.byte	0
  1187 00c8 00       		.byte	0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 25
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 25
 
 
  1188 00c9 10       		.uleb128 0x10
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1242 0015 F3       		.byte	0xf3
  1243 0016 01       		.uleb128 0x1
  1244 0017 50       		.byte	0x50
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 26
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 26
 
 
  1245 0018 9F       		.byte	0x9f
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1299 00a7 0400     		.2byte	0x4
  1300 00a9 F3       		.byte	0xf3
  1301 00aa 01       		.uleb128 0x1
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 27
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 27
 
 
  1302 00ab 50       		.byte	0x50
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1356 0121 53       		.byte	0x53
  1357 0122 11000000 		.4byte	.LVL14-1
  1358 0126 62000000 		.4byte	.LFE3
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 28
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 28
 
 
  1359 012a 0100     		.2byte	0x1
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1413 01b6 00000000 		.4byte	0
  1414 01ba 00000000 		.4byte	0
  1415              	.LLST11:
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 29
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 29
 
 
  1416 01be 00000000 		.4byte	.LVL29
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1470 0242 00000000 		.4byte	0
  1471 0246 00000000 		.4byte	0
  1472              	.LLST15:
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 30
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 30
 
 
  1473 024a 00000000 		.4byte	.LVL38
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1527 02d5 50       		.byte	0x50
  1528 02d6 36000000 		.4byte	.LVL50
  1529 02da 42000000 		.4byte	.LFE5
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 31
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 31
 
 
  1530 02de 0100     		.2byte	0x1
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1584              	.Ldebug_ranges0:
  1585 0000 30000000 		.4byte	.LBB2
  1586 0004 44000000 		.4byte	.LBE2
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 32
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 32
 
 
  1587 0008 46000000 		.4byte	.LBB3
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1621 005e 4572726F 		.ascii	"ErrorCode\000"
  1621      72436F64 
  1621      6500
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 33
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 33
 
 
  1622              	.LASF31:
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1641      65725F4D 
  1641      61737465 
  1641      7253656E 
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 34
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 34
 
 
  1642              	.LASF28:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1665 0250 73697A65 		.ascii	"sizetype\000"
  1665      74797065 
  1665      00
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 35
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 35
 
 
  1666              	.LASF27:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 1
  1686      00
  1687              	.LASF4:
  1688 0338 6C6F6E67 		.ascii	"long int\000"
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccqATn10.s 			page 36
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccQ9KIlH.s 			page 36
 
 
  1688      20696E74 
