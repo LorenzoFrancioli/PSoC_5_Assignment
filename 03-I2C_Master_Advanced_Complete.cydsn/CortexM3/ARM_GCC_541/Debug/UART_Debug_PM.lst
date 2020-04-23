@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
   28:Generated_Source\PSoC5/UART_Debug_PM.c **** };
   29:Generated_Source\PSoC5/UART_Debug_PM.c **** 
   30:Generated_Source\PSoC5/UART_Debug_PM.c **** 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 2
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 2
 
 
   31:Generated_Source\PSoC5/UART_Debug_PM.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
   68:Generated_Source\PSoC5/UART_Debug_PM.c **** *  Does not restore the FIFO which is a set of nonretention registers.
   69:Generated_Source\PSoC5/UART_Debug_PM.c **** *
   70:Generated_Source\PSoC5/UART_Debug_PM.c **** * Parameters:
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 3
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 3
 
 
   71:Generated_Source\PSoC5/UART_Debug_PM.c **** *  None.
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  108:Generated_Source\PSoC5/UART_Debug_PM.c **** *  None.
  109:Generated_Source\PSoC5/UART_Debug_PM.c **** *
  110:Generated_Source\PSoC5/UART_Debug_PM.c **** * Return:
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 4
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 4
 
 
  111:Generated_Source\PSoC5/UART_Debug_PM.c **** *  None.
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  140:Generated_Source\PSoC5/UART_Debug_PM.c ****     #endif /* End UART_Debug_RX_ENABLED || UART_Debug_HD_ENABLED*/
  141:Generated_Source\PSoC5/UART_Debug_PM.c **** 
  142:Generated_Source\PSoC5/UART_Debug_PM.c ****     UART_Debug_Stop();
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 5
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 5
 
 
   87              		.loc 1 142 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  110              		@ frame_needed = 0, uses_anonymous_args = 0
  111 0000 08B5     		push	{r3, lr}
  112              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 6
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 6
 
 
  113              		.cfi_offset 3, -8
@@ -357,8 +357,8 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  155 000c AB000000 		.4byte	.LASF25
  156 0010 0C       		.byte	0xc
  157 0011 00000000 		.4byte	.LASF26
- 158 0015 49020000 		.4byte	.LASF27
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 7
+ 158 0015 13020000 		.4byte	.LASF27
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 7
 
 
  159 0019 00000000 		.4byte	.Ldebug_ranges0+0
@@ -367,7 +367,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  162 0025 02       		.uleb128 0x2
  163 0026 01       		.byte	0x1
  164 0027 06       		.byte	0x6
- 165 0028 FE020000 		.4byte	.LASF0
+ 165 0028 AD020000 		.4byte	.LASF0
  166 002c 02       		.uleb128 0x2
  167 002d 01       		.byte	0x1
  168 002e 08       		.byte	0x8
@@ -375,7 +375,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  170 0033 02       		.uleb128 0x2
  171 0034 02       		.byte	0x2
  172 0035 05       		.byte	0x5
- 173 0036 18020000 		.4byte	.LASF2
+ 173 0036 70020000 		.4byte	.LASF2
  174 003a 02       		.uleb128 0x2
  175 003b 02       		.byte	0x2
  176 003c 07       		.byte	0x7
@@ -383,7 +383,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  178 0041 02       		.uleb128 0x2
  179 0042 04       		.byte	0x4
  180 0043 05       		.byte	0x5
- 181 0044 34020000 		.4byte	.LASF4
+ 181 0044 8C020000 		.4byte	.LASF4
  182 0048 02       		.uleb128 0x2
  183 0049 04       		.byte	0x4
  184 004a 07       		.byte	0x7
@@ -418,12 +418,12 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  213 0080 04       		.byte	0x4
  214 0081 88010000 		.4byte	.LASF10
  215 0085 02       		.uleb128 0x2
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 8
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 8
 
 
  216 0086 01       		.byte	0x1
  217 0087 08       		.byte	0x8
- 218 0088 13020000 		.4byte	.LASF11
+ 218 0088 6B020000 		.4byte	.LASF11
  219 008c 04       		.uleb128 0x4
  220 008d 39010000 		.4byte	.LASF13
  221 0091 02       		.byte	0x2
@@ -434,7 +434,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  226 009d 02       		.uleb128 0x2
  227 009e 08       		.byte	0x8
  228 009f 04       		.byte	0x4
- 229 00a0 F2020000 		.4byte	.LASF14
+ 229 00a0 A1020000 		.4byte	.LASF14
  230 00a4 02       		.uleb128 0x2
  231 00a5 04       		.byte	0x4
  232 00a6 07       		.byte	0x7
@@ -446,7 +446,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  238 00b2 45       		.byte	0x45
  239 00b3 C4000000 		.4byte	0xc4
  240 00b7 07       		.uleb128 0x7
- 241 00b8 3D020000 		.4byte	.LASF29
+ 241 00b8 95020000 		.4byte	.LASF29
  242 00bc 03       		.byte	0x3
  243 00bd 47       		.byte	0x47
  244 00be 6B000000 		.4byte	0x6b
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  270 00f6 01       		.byte	0x1
  271 00f7 78       		.byte	0x78
  272 00f8 00000000 		.4byte	.LFB2
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 9
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 9
 
 
  273 00fc 28000000 		.4byte	.LFE2-.LFB2
@@ -509,7 +509,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  298 013c 73010000 		.4byte	0x173
  299 0140 00       		.byte	0
  300 0141 0C       		.uleb128 0xc
- 301 0142 22020000 		.4byte	.LASF30
+ 301 0142 7A020000 		.4byte	.LASF30
  302 0146 01       		.byte	0x1
  303 0147 18       		.byte	0x18
  304 0148 C4000000 		.4byte	0xc4
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  327 017d 5A       		.byte	0x5a
  328 017e 00       		.byte	0
  329              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 10
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 10
 
 
  330              	.Ldebug_abbrev0:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  384 0035 00       		.byte	0
  385 0036 05       		.uleb128 0x5
  386 0037 35       		.uleb128 0x35
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 11
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 11
 
 
  387 0038 00       		.byte	0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  441 006e 0E       		.uleb128 0xe
  442 006f 3A       		.uleb128 0x3a
  443 0070 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 12
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 12
 
 
  444 0071 3B       		.uleb128 0x3b
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  498 00ab 0B       		.uleb128 0xb
  499 00ac 3B       		.uleb128 0x3b
  500 00ad 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 13
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 13
 
 
  501 00ae 49       		.uleb128 0x49
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  555              		.section	.debug_line,"",%progbits
  556              	.Ldebug_line0:
  557 0000 AA000000 		.section	.debug_str,"MS",%progbits,1
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 14
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 14
 
 
  557      02005A00 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  576 00de 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
  576      20726576 
  576      6973696F 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 15
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 15
 
 
  576      6E203233 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  597      6720756E 
  597      7369676E 
  597      65642069 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 16
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 16
 
 
  598              	.LASF21:
@@ -921,57 +921,47 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 1
  605      206C6F6E 
  605      6720696E 
  605      7400
- 606              	.LASF11:
- 607 0213 63686172 		.ascii	"char\000"
- 607      00
- 608              	.LASF2:
- 609 0218 73686F72 		.ascii	"short int\000"
- 609      7420696E 
- 609      7400
- 610              	.LASF30:
- 611 0222 55415254 		.ascii	"UART_Debug_backup\000"
- 611      5F446562 
- 611      75675F62 
- 611      61636B75 
- 611      7000
- 612              	.LASF4:
- 613 0234 6C6F6E67 		.ascii	"long int\000"
- 613      20696E74 
- 613      00
- 614              	.LASF29:
- 615 023d 656E6162 		.ascii	"enableState\000"
- 615      6C655374 
- 615      61746500 
- 616              	.LASF27:
- 617 0249 443A5C43 		.ascii	"D:\\Cloud\\OneDrive - Politecnico di Milano\\PhD\\M"
- 617      6C6F7564 
- 617      5C4F6E65 
- 617      44726976 
- 617      65202D20 
- 618 0278 61746572 		.ascii	"ateriale Esercitazioni\\LabCerveri1920\\SecondoSeme"
- 618      69616C65 
- 618      20457365 
- 618      72636974 
- 618      617A696F 
- 619 02a9 73747265 		.ascii	"stre\\Practical lessons\\I2C\\PSoC_03\\03-I2C_Maste"
- 619      5C507261 
- 619      63746963 
- 619      616C206C 
- 619      6573736F 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccfT6F4U.s 			page 17
+ 606              	.LASF27:
+ 607 0213 433A5C55 		.ascii	"C:\\Users\\Lorenzo\\Desktop\\PSoC_03_Complete\\PSoC"
+ 607      73657273 
+ 607      5C4C6F72 
+ 607      656E7A6F 
+ 607      5C446573 
+ 608 0241 5F30335C 		.ascii	"_03\\03-I2C_Master_Advanced_Complete.cydsn\000"
+ 608      30332D49 
+ 608      32435F4D 
+ 608      61737465 
+ 608      725F4164 
+ 609              	.LASF11:
+ 610 026b 63686172 		.ascii	"char\000"
+ 610      00
+ 611              	.LASF2:
+ 612 0270 73686F72 		.ascii	"short int\000"
+ 612      7420696E 
+ 612      7400
+ 613              	.LASF30:
+ 614 027a 55415254 		.ascii	"UART_Debug_backup\000"
+ 614      5F446562 
+ 614      75675F62 
+ 614      61636B75 
+ 614      7000
+ 615              	.LASF4:
+ 616 028c 6C6F6E67 		.ascii	"long int\000"
+ 616      20696E74 
+ 616      00
+ 617              	.LASF29:
+ 618 0295 656E6162 		.ascii	"enableState\000"
+ 618      6C655374 
+ 618      61746500 
+ 619              	.LASF14:
+ 620 02a1 6C6F6E67 		.ascii	"long double\000"
+ 620      20646F75 
+ 620      626C6500 
+ 621              	.LASF0:
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\cctYBitb.s 			page 17
 
 
- 620 02d8 725F4164 		.ascii	"r_Advanced_Complete.cydsn\000"
- 620      76616E63 
- 620      65645F43 
- 620      6F6D706C 
- 620      6574652E 
- 621              	.LASF14:
- 622 02f2 6C6F6E67 		.ascii	"long double\000"
- 622      20646F75 
- 622      626C6500 
- 623              	.LASF0:
- 624 02fe 7369676E 		.ascii	"signed char\000"
- 624      65642063 
- 624      68617200 
- 625              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 622 02ad 7369676E 		.ascii	"signed char\000"
+ 622      65642063 
+ 622      68617200 
+ 623              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
