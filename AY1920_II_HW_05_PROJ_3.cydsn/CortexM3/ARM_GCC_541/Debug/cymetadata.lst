@@ -1,0 +1,1398 @@
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cymetadata.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_metadata
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_meta_wonvl
+  22              		.global	cy_meta_custnvl
+  23              		.global	cy_meta_configecc
+  24              		.section	.cyconfigecc,"a",%progbits
+  25              		.align	2
+  26              		.type	cy_meta_configecc, %object
+  27              		.size	cy_meta_configecc, 864
+  28              	cy_meta_configecc:
+  29 0000 02       		.byte	2
+  30 0001 4F       		.byte	79
+  31 0002 00       		.byte	0
+  32 0003 40       		.byte	64
+  33 0004 03       		.byte	3
+  34 0005 65       		.byte	101
+  35 0006 00       		.byte	0
+  36 0007 40       		.byte	64
+  37 0008 04       		.byte	4
+  38 0009 04       		.byte	4
+  39 000a 01       		.byte	1
+  40 000b 40       		.byte	64
+  41 000c 02       		.byte	2
+  42 000d 05       		.byte	5
+  43 000e 01       		.byte	1
+  44 000f 40       		.byte	64
+  45 0010 03       		.byte	3
+  46 0011 15       		.byte	21
+  47 0012 01       		.byte	1
+  48 0013 40       		.byte	64
+  49 0014 01       		.byte	1
+  50 0015 17       		.byte	23
+  51 0016 01       		.byte	1
+  52 0017 40       		.byte	64
+  53 0018 0F       		.byte	15
+  54 0019 18       		.byte	24
+  55 001a 01       		.byte	1
+  56 001b 40       		.byte	64
+  57 001c 34       		.byte	52
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 2
+
+
+  58 001d 19       		.byte	25
+  59 001e 01       		.byte	1
+  60 001f 40       		.byte	64
+  61 0020 68       		.byte	104
+  62 0021 1A       		.byte	26
+  63 0022 01       		.byte	1
+  64 0023 40       		.byte	64
+  65 0024 50       		.byte	80
+  66 0025 1B       		.byte	27
+  67 0026 01       		.byte	1
+  68 0027 40       		.byte	64
+  69 0028 06       		.byte	6
+  70 0029 42       		.byte	66
+  71 002a 01       		.byte	1
+  72 002b 40       		.byte	64
+  73 002c 01       		.byte	1
+  74 002d 43       		.byte	67
+  75 002e 01       		.byte	1
+  76 002f 40       		.byte	64
+  77 0030 03       		.byte	3
+  78 0031 48       		.byte	72
+  79 0032 01       		.byte	1
+  80 0033 40       		.byte	64
+  81 0034 10       		.byte	16
+  82 0035 49       		.byte	73
+  83 0036 01       		.byte	1
+  84 0037 40       		.byte	64
+  85 0038 08       		.byte	8
+  86 0039 4C       		.byte	76
+  87 003a 01       		.byte	1
+  88 003b 40       		.byte	64
+  89 003c 0F       		.byte	15
+  90 003d 4D       		.byte	77
+  91 003e 01       		.byte	1
+  92 003f 40       		.byte	64
+  93 0040 02       		.byte	2
+  94 0041 50       		.byte	80
+  95 0042 01       		.byte	1
+  96 0043 40       		.byte	64
+  97 0044 01       		.byte	1
+  98 0045 51       		.byte	81
+  99 0046 01       		.byte	1
+ 100 0047 40       		.byte	64
+ 101 0048 01       		.byte	1
+ 102 0049 10       		.byte	16
+ 103 004a 0A       		.byte	10
+ 104 004b 4B       		.byte	75
+ 105 004c 88       		.byte	-120
+ 106 004d 72       		.byte	114
+ 107 004e 8A       		.byte	-118
+ 108 004f 0F       		.byte	15
+ 109 0050 8B       		.byte	-117
+ 110 0051 38       		.byte	56
+ 111 0052 39       		.byte	57
+ 112 0053 08       		.byte	8
+ 113 0054 3F       		.byte	63
+ 114 0055 04       		.byte	4
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 3
+
+
+ 115 0056 59       		.byte	89
+ 116 0057 04       		.byte	4
+ 117 0058 5F       		.byte	95
+ 118 0059 01       		.byte	1
+ 119 005a 23       		.byte	35
+ 120 005b 10       		.byte	16
+ 121 005c 87       		.byte	-121
+ 122 005d 10       		.byte	16
+ 123 005e E0       		.byte	-32
+ 124 005f 08       		.byte	8
+ 125 0060 E4       		.byte	-28
+ 126 0061 01       		.byte	1
+ 127 0062 EA       		.byte	-22
+ 128 0063 09       		.byte	9
+ 129 0064 E2       		.byte	-30
+ 130 0065 01       		.byte	1
+ 131 0066 80       		.byte	-128
+ 132 0067 02       		.byte	2
+ 133 0068 82       		.byte	-126
+ 134 0069 0C       		.byte	12
+ 135 006a 8C       		.byte	-116
+ 136 006b 04       		.byte	4
+ 137 006c 8E       		.byte	-114
+ 138 006d 02       		.byte	2
+ 139 006e 94       		.byte	-108
+ 140 006f 08       		.byte	8
+ 141 0070 96       		.byte	-106
+ 142 0071 02       		.byte	2
+ 143 0072 98       		.byte	-104
+ 144 0073 0F       		.byte	15
+ 145 0074 A8       		.byte	-88
+ 146 0075 0F       		.byte	15
+ 147 0076 AC       		.byte	-84
+ 148 0077 01       		.byte	1
+ 149 0078 B0       		.byte	-80
+ 150 0079 0E       		.byte	14
+ 151 007a B4       		.byte	-76
+ 152 007b 01       		.byte	1
+ 153 007c BB       		.byte	-69
+ 154 007d 80       		.byte	-128
+ 155 007e D8       		.byte	-40
+ 156 007f 04       		.byte	4
+ 157 0080 D9       		.byte	-39
+ 158 0081 04       		.byte	4
+ 159 0082 DF       		.byte	-33
+ 160 0083 01       		.byte	1
+ 161 0084 01       		.byte	1
+ 162 0085 42       		.byte	66
+ 163 0086 04       		.byte	4
+ 164 0087 11       		.byte	17
+ 165 0088 06       		.byte	6
+ 166 0089 41       		.byte	65
+ 167 008a 07       		.byte	7
+ 168 008b 10       		.byte	16
+ 169 008c 08       		.byte	8
+ 170 008d 08       		.byte	8
+ 171 008e 0A       		.byte	10
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 4
+
+
+ 172 008f 04       		.byte	4
+ 173 0090 0E       		.byte	14
+ 174 0091 48       		.byte	72
+ 175 0092 0F       		.byte	15
+ 176 0093 22       		.byte	34
+ 177 0094 10       		.byte	16
+ 178 0095 0A       		.byte	10
+ 179 0096 14       		.byte	20
+ 180 0097 08       		.byte	8
+ 181 0098 15       		.byte	21
+ 182 0099 40       		.byte	64
+ 183 009a 17       		.byte	23
+ 184 009b 04       		.byte	4
+ 185 009c 19       		.byte	25
+ 186 009d 02       		.byte	2
+ 187 009e 1B       		.byte	27
+ 188 009f 11       		.byte	17
+ 189 00a0 1C       		.byte	28
+ 190 00a1 14       		.byte	20
+ 191 00a2 1D       		.byte	29
+ 192 00a3 08       		.byte	8
+ 193 00a4 1E       		.byte	30
+ 194 00a5 42       		.byte	66
+ 195 00a6 1F       		.byte	31
+ 196 00a7 08       		.byte	8
+ 197 00a8 20       		.byte	32
+ 198 00a9 01       		.byte	1
+ 199 00aa 25       		.byte	37
+ 200 00ab 10       		.byte	16
+ 201 00ac 26       		.byte	38
+ 202 00ad 06       		.byte	6
+ 203 00ae 27       		.byte	39
+ 204 00af 01       		.byte	1
+ 205 00b0 2C       		.byte	44
+ 206 00b1 40       		.byte	64
+ 207 00b2 2D       		.byte	45
+ 208 00b3 40       		.byte	64
+ 209 00b4 2F       		.byte	47
+ 210 00b5 28       		.byte	40
+ 211 00b6 36       		.byte	54
+ 212 00b7 86       		.byte	-122
+ 213 00b8 37       		.byte	55
+ 214 00b9 10       		.byte	16
+ 215 00ba 3E       		.byte	62
+ 216 00bb 4A       		.byte	74
+ 217 00bc 3F       		.byte	63
+ 218 00bd 20       		.byte	32
+ 219 00be 44       		.byte	68
+ 220 00bf 40       		.byte	64
+ 221 00c0 45       		.byte	69
+ 222 00c1 08       		.byte	8
+ 223 00c2 46       		.byte	70
+ 224 00c3 40       		.byte	64
+ 225 00c4 47       		.byte	71
+ 226 00c5 40       		.byte	64
+ 227 00c6 4D       		.byte	77
+ 228 00c7 04       		.byte	4
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 5
+
+
+ 229 00c8 4E       		.byte	78
+ 230 00c9 02       		.byte	2
+ 231 00ca 4F       		.byte	79
+ 232 00cb 20       		.byte	32
+ 233 00cc 57       		.byte	87
+ 234 00cd 20       		.byte	32
+ 235 00ce 5C       		.byte	92
+ 236 00cf 04       		.byte	4
+ 237 00d0 6C       		.byte	108
+ 238 00d1 0A       		.byte	10
+ 239 00d2 6E       		.byte	110
+ 240 00d3 14       		.byte	20
+ 241 00d4 76       		.byte	118
+ 242 00d5 0B       		.byte	11
+ 243 00d6 77       		.byte	119
+ 244 00d7 14       		.byte	20
+ 245 00d8 C0       		.byte	-64
+ 246 00d9 F9       		.byte	-7
+ 247 00da C2       		.byte	-62
+ 248 00db F6       		.byte	-10
+ 249 00dc C4       		.byte	-60
+ 250 00dd E3       		.byte	-29
+ 251 00de CA       		.byte	-54
+ 252 00df F0       		.byte	-16
+ 253 00e0 CC       		.byte	-52
+ 254 00e1 F0       		.byte	-16
+ 255 00e2 CE       		.byte	-50
+ 256 00e3 F0       		.byte	-16
+ 257 00e4 D0       		.byte	-48
+ 258 00e5 D0       		.byte	-48
+ 259 00e6 D2       		.byte	-46
+ 260 00e7 30       		.byte	48
+ 261 00e8 D6       		.byte	-42
+ 262 00e9 40       		.byte	64
+ 263 00ea E2       		.byte	-30
+ 264 00eb 01       		.byte	1
+ 265 00ec 00       		.byte	0
+ 266 00ed 0C       		.byte	12
+ 267 00ee 02       		.byte	2
+ 268 00ef 71       		.byte	113
+ 269 00f0 04       		.byte	4
+ 270 00f1 14       		.byte	20
+ 271 00f2 05       		.byte	5
+ 272 00f3 03       		.byte	3
+ 273 00f4 07       		.byte	7
+ 274 00f5 14       		.byte	20
+ 275 00f6 0B       		.byte	11
+ 276 00f7 15       		.byte	21
+ 277 00f8 0C       		.byte	12
+ 278 00f9 10       		.byte	16
+ 279 00fa 0E       		.byte	14
+ 280 00fb AC       		.byte	-84
+ 281 00fc 0F       		.byte	15
+ 282 00fd 08       		.byte	8
+ 283 00fe 10       		.byte	16
+ 284 00ff 09       		.byte	9
+ 285 0100 11       		.byte	17
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 6
+
+
+ 286 0101 13       		.byte	19
+ 287 0102 12       		.byte	18
+ 288 0103 D0       		.byte	-48
+ 289 0104 13       		.byte	19
+ 290 0105 0C       		.byte	12
+ 291 0106 15       		.byte	21
+ 292 0107 0A       		.byte	10
+ 293 0108 16       		.byte	22
+ 294 0109 03       		.byte	3
+ 295 010a 17       		.byte	23
+ 296 010b 14       		.byte	20
+ 297 010c 18       		.byte	24
+ 298 010d DC       		.byte	-36
+ 299 010e 19       		.byte	25
+ 300 010f 20       		.byte	32
+ 301 0110 1A       		.byte	26
+ 302 0111 22       		.byte	34
+ 303 0112 1D       		.byte	29
+ 304 0113 40       		.byte	64
+ 305 0114 21       		.byte	33
+ 306 0115 13       		.byte	19
+ 307 0116 23       		.byte	35
+ 308 0117 04       		.byte	4
+ 309 0118 26       		.byte	38
+ 310 0119 20       		.byte	32
+ 311 011a 2C       		.byte	44
+ 312 011b 10       		.byte	16
+ 313 011c 2E       		.byte	46
+ 314 011d 40       		.byte	64
+ 315 011e 31       		.byte	49
+ 316 011f 0F       		.byte	15
+ 317 0120 32       		.byte	50
+ 318 0121 1F       		.byte	31
+ 319 0122 33       		.byte	51
+ 320 0123 40       		.byte	64
+ 321 0124 35       		.byte	53
+ 322 0125 10       		.byte	16
+ 323 0126 36       		.byte	54
+ 324 0127 E0       		.byte	-32
+ 325 0128 37       		.byte	55
+ 326 0129 20       		.byte	32
+ 327 012a 3A       		.byte	58
+ 328 012b 80       		.byte	-128
+ 329 012c 3B       		.byte	59
+ 330 012d 02       		.byte	2
+ 331 012e 3F       		.byte	63
+ 332 012f 54       		.byte	84
+ 333 0130 40       		.byte	64
+ 334 0131 52       		.byte	82
+ 335 0132 41       		.byte	65
+ 336 0133 01       		.byte	1
+ 337 0134 45       		.byte	69
+ 338 0135 EB       		.byte	-21
+ 339 0136 47       		.byte	71
+ 340 0137 0C       		.byte	12
+ 341 0138 48       		.byte	72
+ 342 0139 13       		.byte	19
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 7
+
+
+ 343 013a 49       		.byte	73
+ 344 013b FF       		.byte	-1
+ 345 013c 4A       		.byte	74
+ 346 013d FF       		.byte	-1
+ 347 013e 4B       		.byte	75
+ 348 013f FF       		.byte	-1
+ 349 0140 4E       		.byte	78
+ 350 0141 F0       		.byte	-16
+ 351 0142 4F       		.byte	79
+ 352 0143 44       		.byte	68
+ 353 0144 50       		.byte	80
+ 354 0145 0C       		.byte	12
+ 355 0146 54       		.byte	84
+ 356 0147 01       		.byte	1
+ 357 0148 58       		.byte	88
+ 358 0149 04       		.byte	4
+ 359 014a 59       		.byte	89
+ 360 014b 04       		.byte	4
+ 361 014c 5A       		.byte	90
+ 362 014d 04       		.byte	4
+ 363 014e 5B       		.byte	91
+ 364 014f 04       		.byte	4
+ 365 0150 5F       		.byte	95
+ 366 0151 01       		.byte	1
+ 367 0152 66       		.byte	102
+ 368 0153 C0       		.byte	-64
+ 369 0154 6A       		.byte	106
+ 370 0155 40       		.byte	64
+ 371 0156 6B       		.byte	107
+ 372 0157 02       		.byte	2
+ 373 0158 81       		.byte	-127
+ 374 0159 08       		.byte	8
+ 375 015a 82       		.byte	-126
+ 376 015b 08       		.byte	8
+ 377 015c 83       		.byte	-125
+ 378 015d 15       		.byte	21
+ 379 015e 84       		.byte	-124
+ 380 015f 2C       		.byte	44
+ 381 0160 85       		.byte	-123
+ 382 0161 18       		.byte	24
+ 383 0162 86       		.byte	-122
+ 384 0163 43       		.byte	67
+ 385 0164 89       		.byte	-119
+ 386 0165 18       		.byte	24
+ 387 0166 8C       		.byte	-116
+ 388 0167 71       		.byte	113
+ 389 0168 8E       		.byte	-114
+ 390 0169 0E       		.byte	14
+ 391 016a 92       		.byte	-110
+ 392 016b 0C       		.byte	12
+ 393 016c 93       		.byte	-109
+ 394 016d 20       		.byte	32
+ 395 016e 95       		.byte	-107
+ 396 016f 10       		.byte	16
+ 397 0170 97       		.byte	-105
+ 398 0171 0C       		.byte	12
+ 399 0172 A0       		.byte	-96
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 8
+
+
+ 400 0173 71       		.byte	113
+ 401 0174 A2       		.byte	-94
+ 402 0175 06       		.byte	6
+ 403 0176 A3       		.byte	-93
+ 404 0177 02       		.byte	2
+ 405 0178 A4       		.byte	-92
+ 406 0179 80       		.byte	-128
+ 407 017a A6       		.byte	-90
+ 408 017b 13       		.byte	19
+ 409 017c A7       		.byte	-89
+ 410 017d 20       		.byte	32
+ 411 017e B0       		.byte	-80
+ 412 017f C0       		.byte	-64
+ 413 0180 B1       		.byte	-79
+ 414 0181 06       		.byte	6
+ 415 0182 B2       		.byte	-78
+ 416 0183 0F       		.byte	15
+ 417 0184 B3       		.byte	-77
+ 418 0185 20       		.byte	32
+ 419 0186 B4       		.byte	-76
+ 420 0187 30       		.byte	48
+ 421 0188 B5       		.byte	-75
+ 422 0189 18       		.byte	24
+ 423 018a B7       		.byte	-73
+ 424 018b 01       		.byte	1
+ 425 018c B8       		.byte	-72
+ 426 018d 22       		.byte	34
+ 427 018e BA       		.byte	-70
+ 428 018f 08       		.byte	8
+ 429 0190 BE       		.byte	-66
+ 430 0191 10       		.byte	16
+ 431 0192 BF       		.byte	-65
+ 432 0193 05       		.byte	5
+ 433 0194 C0       		.byte	-64
+ 434 0195 02       		.byte	2
+ 435 0196 C6       		.byte	-58
+ 436 0197 04       		.byte	4
+ 437 0198 C9       		.byte	-55
+ 438 0199 FF       		.byte	-1
+ 439 019a CA       		.byte	-54
+ 440 019b 07       		.byte	7
+ 441 019c CB       		.byte	-53
+ 442 019d FF       		.byte	-1
+ 443 019e CC       		.byte	-52
+ 444 019f 40       		.byte	64
+ 445 01a0 CD       		.byte	-51
+ 446 01a1 20       		.byte	32
+ 447 01a2 CE       		.byte	-50
+ 448 01a3 F0       		.byte	-16
+ 449 01a4 CF       		.byte	-49
+ 450 01a5 05       		.byte	5
+ 451 01a6 D0       		.byte	-48
+ 452 01a7 08       		.byte	8
+ 453 01a8 D4       		.byte	-44
+ 454 01a9 18       		.byte	24
+ 455 01aa D8       		.byte	-40
+ 456 01ab 04       		.byte	4
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 9
+
+
+ 457 01ac D9       		.byte	-39
+ 458 01ad 04       		.byte	4
+ 459 01ae DA       		.byte	-38
+ 460 01af 04       		.byte	4
+ 461 01b0 DB       		.byte	-37
+ 462 01b1 04       		.byte	4
+ 463 01b2 DF       		.byte	-33
+ 464 01b3 01       		.byte	1
+ 465 01b4 E0       		.byte	-32
+ 466 01b5 40       		.byte	64
+ 467 01b6 E1       		.byte	-31
+ 468 01b7 A8       		.byte	-88
+ 469 01b8 E2       		.byte	-30
+ 470 01b9 40       		.byte	64
+ 471 01ba E3       		.byte	-29
+ 472 01bb 20       		.byte	32
+ 473 01bc 02       		.byte	2
+ 474 01bd 22       		.byte	34
+ 475 01be 03       		.byte	3
+ 476 01bf 80       		.byte	-128
+ 477 01c0 05       		.byte	5
+ 478 01c1 84       		.byte	-124
+ 479 01c2 06       		.byte	6
+ 480 01c3 80       		.byte	-128
+ 481 01c4 09       		.byte	9
+ 482 01c5 02       		.byte	2
+ 483 01c6 0A       		.byte	10
+ 484 01c7 20       		.byte	32
+ 485 01c8 0B       		.byte	11
+ 486 01c9 08       		.byte	8
+ 487 01ca 0D       		.byte	13
+ 488 01cb 02       		.byte	2
+ 489 01cc 11       		.byte	17
+ 490 01cd 80       		.byte	-128
+ 491 01ce 12       		.byte	18
+ 492 01cf 10       		.byte	16
+ 493 01d0 15       		.byte	21
+ 494 01d1 02       		.byte	2
+ 495 01d2 16       		.byte	22
+ 496 01d3 10       		.byte	16
+ 497 01d4 19       		.byte	25
+ 498 01d5 80       		.byte	-128
+ 499 01d6 1A       		.byte	26
+ 500 01d7 20       		.byte	32
+ 501 01d8 1B       		.byte	27
+ 502 01d9 80       		.byte	-128
+ 503 01da 1C       		.byte	28
+ 504 01db 40       		.byte	64
+ 505 01dc 1D       		.byte	29
+ 506 01dd 26       		.byte	38
+ 507 01de 1F       		.byte	31
+ 508 01df 04       		.byte	4
+ 509 01e0 20       		.byte	32
+ 510 01e1 04       		.byte	4
+ 511 01e2 21       		.byte	33
+ 512 01e3 41       		.byte	65
+ 513 01e4 22       		.byte	34
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 10
+
+
+ 514 01e5 06       		.byte	6
+ 515 01e6 25       		.byte	37
+ 516 01e7 08       		.byte	8
+ 517 01e8 26       		.byte	38
+ 518 01e9 80       		.byte	-128
+ 519 01ea 27       		.byte	39
+ 520 01eb 48       		.byte	72
+ 521 01ec 2B       		.byte	43
+ 522 01ed 80       		.byte	-128
+ 523 01ee 2D       		.byte	45
+ 524 01ef 06       		.byte	6
+ 525 01f0 30       		.byte	48
+ 526 01f1 80       		.byte	-128
+ 527 01f2 31       		.byte	49
+ 528 01f3 04       		.byte	4
+ 529 01f4 32       		.byte	50
+ 530 01f5 12       		.byte	18
+ 531 01f6 34       		.byte	52
+ 532 01f7 08       		.byte	8
+ 533 01f8 37       		.byte	55
+ 534 01f9 09       		.byte	9
+ 535 01fa 38       		.byte	56
+ 536 01fb 48       		.byte	72
+ 537 01fc 3A       		.byte	58
+ 538 01fd 10       		.byte	16
+ 539 01fe 3E       		.byte	62
+ 540 01ff 16       		.byte	22
+ 541 0200 43       		.byte	67
+ 542 0201 A0       		.byte	-96
+ 543 0202 45       		.byte	69
+ 544 0203 28       		.byte	40
+ 545 0204 46       		.byte	70
+ 546 0205 20       		.byte	32
+ 547 0206 48       		.byte	72
+ 548 0207 80       		.byte	-128
+ 549 0208 49       		.byte	73
+ 550 0209 01       		.byte	1
+ 551 020a 4A       		.byte	74
+ 552 020b 22       		.byte	34
+ 553 020c 50       		.byte	80
+ 554 020d 04       		.byte	4
+ 555 020e 55       		.byte	85
+ 556 020f 40       		.byte	64
+ 557 0210 56       		.byte	86
+ 558 0211 90       		.byte	-112
+ 559 0212 57       		.byte	87
+ 560 0213 20       		.byte	32
+ 561 0214 59       		.byte	89
+ 562 0215 21       		.byte	33
+ 563 0216 5A       		.byte	90
+ 564 0217 48       		.byte	72
+ 565 0218 5E       		.byte	94
+ 566 0219 02       		.byte	2
+ 567 021a 66       		.byte	102
+ 568 021b 20       		.byte	32
+ 569 021c 67       		.byte	103
+ 570 021d 01       		.byte	1
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 11
+
+
+ 571 021e 80       		.byte	-128
+ 572 021f 04       		.byte	4
+ 573 0220 81       		.byte	-127
+ 574 0221 40       		.byte	64
+ 575 0222 82       		.byte	-126
+ 576 0223 40       		.byte	64
+ 577 0224 8A       		.byte	-118
+ 578 0225 02       		.byte	2
+ 579 0226 8C       		.byte	-116
+ 580 0227 04       		.byte	4
+ 581 0228 8D       		.byte	-115
+ 582 0229 60       		.byte	96
+ 583 022a 91       		.byte	-111
+ 584 022b 04       		.byte	4
+ 585 022c 92       		.byte	-110
+ 586 022d 14       		.byte	20
+ 587 022e 93       		.byte	-109
+ 588 022f 01       		.byte	1
+ 589 0230 95       		.byte	-107
+ 590 0231 40       		.byte	64
+ 591 0232 99       		.byte	-103
+ 592 0233 02       		.byte	2
+ 593 0234 9B       		.byte	-101
+ 594 0235 01       		.byte	1
+ 595 0236 9C       		.byte	-100
+ 596 0237 08       		.byte	8
+ 597 0238 9F       		.byte	-97
+ 598 0239 40       		.byte	64
+ 599 023a A2       		.byte	-94
+ 600 023b 01       		.byte	1
+ 601 023c A6       		.byte	-90
+ 602 023d 80       		.byte	-128
+ 603 023e B5       		.byte	-75
+ 604 023f 10       		.byte	16
+ 605 0240 B7       		.byte	-73
+ 606 0241 01       		.byte	1
+ 607 0242 C0       		.byte	-64
+ 608 0243 BD       		.byte	-67
+ 609 0244 C2       		.byte	-62
+ 610 0245 1E       		.byte	30
+ 611 0246 C4       		.byte	-60
+ 612 0247 35       		.byte	53
+ 613 0248 CA       		.byte	-54
+ 614 0249 C1       		.byte	-63
+ 615 024a CC       		.byte	-52
+ 616 024b CF       		.byte	-49
+ 617 024c CE       		.byte	-50
+ 618 024d EE       		.byte	-18
+ 619 024e D0       		.byte	-48
+ 620 024f 2C       		.byte	44
+ 621 0250 D2       		.byte	-46
+ 622 0251 08       		.byte	8
+ 623 0252 D6       		.byte	-42
+ 624 0253 8F       		.byte	-113
+ 625 0254 D8       		.byte	-40
+ 626 0255 30       		.byte	48
+ 627 0256 E0       		.byte	-32
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 12
+
+
+ 628 0257 09       		.byte	9
+ 629 0258 E4       		.byte	-28
+ 630 0259 01       		.byte	1
+ 631 025a EA       		.byte	-22
+ 632 025b 09       		.byte	9
+ 633 025c 3E       		.byte	62
+ 634 025d 10       		.byte	16
+ 635 025e 5B       		.byte	91
+ 636 025f 08       		.byte	8
+ 637 0260 87       		.byte	-121
+ 638 0261 08       		.byte	8
+ 639 0262 CE       		.byte	-50
+ 640 0263 20       		.byte	32
+ 641 0264 D6       		.byte	-42
+ 642 0265 40       		.byte	64
+ 643 0266 E2       		.byte	-30
+ 644 0267 10       		.byte	16
+ 645 0268 96       		.byte	-106
+ 646 0269 10       		.byte	16
+ 647 026a 80       		.byte	-128
+ 648 026b 08       		.byte	8
+ 649 026c 96       		.byte	-106
+ 650 026d 10       		.byte	16
+ 651 026e E2       		.byte	-30
+ 652 026f 80       		.byte	-128
+ 653 0270 12       		.byte	18
+ 654 0271 20       		.byte	32
+ 655 0272 16       		.byte	22
+ 656 0273 40       		.byte	64
+ 657 0274 70       		.byte	112
+ 658 0275 08       		.byte	8
+ 659 0276 7F       		.byte	127
+ 660 0277 02       		.byte	2
+ 661 0278 82       		.byte	-126
+ 662 0279 20       		.byte	32
+ 663 027a 86       		.byte	-122
+ 664 027b 40       		.byte	64
+ 665 027c A0       		.byte	-96
+ 666 027d 08       		.byte	8
+ 667 027e A3       		.byte	-93
+ 668 027f 02       		.byte	2
+ 669 0280 AA       		.byte	-86
+ 670 0281 10       		.byte	16
+ 671 0282 AF       		.byte	-81
+ 672 0283 02       		.byte	2
+ 673 0284 C4       		.byte	-60
+ 674 0285 30       		.byte	48
+ 675 0286 DC       		.byte	-36
+ 676 0287 80       		.byte	-128
+ 677 0288 DE       		.byte	-34
+ 678 0289 20       		.byte	32
+ 679 028a E0       		.byte	-32
+ 680 028b 10       		.byte	16
+ 681 028c E4       		.byte	-28
+ 682 028d 80       		.byte	-128
+ 683 028e EA       		.byte	-22
+ 684 028f 90       		.byte	-112
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 13
+
+
+ 685 0290 10       		.byte	16
+ 686 0291 20       		.byte	32
+ 687 0292 13       		.byte	19
+ 688 0293 20       		.byte	32
+ 689 0294 15       		.byte	21
+ 690 0295 08       		.byte	8
+ 691 0296 7B       		.byte	123
+ 692 0297 10       		.byte	16
+ 693 0298 7F       		.byte	127
+ 694 0299 40       		.byte	64
+ 695 029a 80       		.byte	-128
+ 696 029b 20       		.byte	32
+ 697 029c C4       		.byte	-60
+ 698 029d 0E       		.byte	14
+ 699 029e DE       		.byte	-34
+ 700 029f 03       		.byte	3
+ 701 02a0 10       		.byte	16
+ 702 02a1 40       		.byte	64
+ 703 02a2 12       		.byte	18
+ 704 02a3 80       		.byte	-128
+ 705 02a4 71       		.byte	113
+ 706 02a5 02       		.byte	2
+ 707 02a6 81       		.byte	-127
+ 708 02a7 02       		.byte	2
+ 709 02a8 83       		.byte	-125
+ 710 02a9 10       		.byte	16
+ 711 02aa 87       		.byte	-121
+ 712 02ab 40       		.byte	64
+ 713 02ac 88       		.byte	-120
+ 714 02ad 40       		.byte	64
+ 715 02ae 8E       		.byte	-114
+ 716 02af 80       		.byte	-128
+ 717 02b0 97       		.byte	-105
+ 718 02b1 80       		.byte	-128
+ 719 02b2 A7       		.byte	-89
+ 720 02b3 10       		.byte	16
+ 721 02b4 AB       		.byte	-85
+ 722 02b5 20       		.byte	32
+ 723 02b6 AD       		.byte	-83
+ 724 02b7 04       		.byte	4
+ 725 02b8 C4       		.byte	-60
+ 726 02b9 08       		.byte	8
+ 727 02ba DC       		.byte	-36
+ 728 02bb 01       		.byte	1
+ 729 02bc E2       		.byte	-30
+ 730 02bd 03       		.byte	3
+ 731 02be 10       		.byte	16
+ 732 02bf 01       		.byte	1
+ 733 02c0 1C       		.byte	28
+ 734 02c1 01       		.byte	1
+ 735 02c2 03       		.byte	3
+ 736 02c3 C0       		.byte	-64
+ 737 02c4 02       		.byte	2
+ 738 02c5 80       		.byte	-128
+ 739 02c6 00       		.byte	0
+ 740 02c7 00       		.byte	0
+ 741 02c8 43       		.byte	67
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 14
+
+
+ 742 02c9 00       		.byte	0
+ 743 02ca 00       		.byte	0
+ 744 02cb 00       		.byte	0
+ 745 02cc FF       		.byte	-1
+ 746 02cd 10       		.byte	16
+ 747 02ce 00       		.byte	0
+ 748 02cf 00       		.byte	0
+ 749 02d0 0C       		.byte	12
+ 750 02d1 08       		.byte	8
+ 751 02d2 00       		.byte	0
+ 752 02d3 00       		.byte	0
+ 753 02d4 F3       		.byte	-13
+ 754 02d5 00       		.byte	0
+ 755 02d6 0C       		.byte	12
+ 756 02d7 23       		.byte	35
+ 757 02d8 08       		.byte	8
+ 758 02d9 1C       		.byte	28
+ 759 02da 00       		.byte	0
+ 760 02db 61       		.byte	97
+ 761 02dc 1F       		.byte	31
+ 762 02dd 00       		.byte	0
+ 763 02de E0       		.byte	-32
+ 764 02df 80       		.byte	-128
+ 765 02e0 00       		.byte	0
+ 766 02e1 3C       		.byte	60
+ 767 02e2 E3       		.byte	-29
+ 768 02e3 42       		.byte	66
+ 769 02e4 1C       		.byte	28
+ 770 02e5 18       		.byte	24
+ 771 02e6 E3       		.byte	-29
+ 772 02e7 00       		.byte	0
+ 773 02e8 C3       		.byte	-61
+ 774 02e9 00       		.byte	0
+ 775 02ea 00       		.byte	0
+ 776 02eb 04       		.byte	4
+ 777 02ec 00       		.byte	0
+ 778 02ed 7F       		.byte	127
+ 779 02ee 00       		.byte	0
+ 780 02ef 00       		.byte	0
+ 781 02f0 04       		.byte	4
+ 782 02f1 00       		.byte	0
+ 783 02f2 00       		.byte	0
+ 784 02f3 80       		.byte	-128
+ 785 02f4 82       		.byte	-126
+ 786 02f5 67       		.byte	103
+ 787 02f6 00       		.byte	0
+ 788 02f7 18       		.byte	24
+ 789 02f8 41       		.byte	65
+ 790 02f9 04       		.byte	4
+ 791 02fa 00       		.byte	0
+ 792 02fb 00       		.byte	0
+ 793 02fc 2C       		.byte	44
+ 794 02fd 38       		.byte	56
+ 795 02fe 0F       		.byte	15
+ 796 02ff 1F       		.byte	31
+ 797 0300 10       		.byte	16
+ 798 0301 80       		.byte	-128
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 15
+
+
+ 799 0302 C0       		.byte	-64
+ 800 0303 40       		.byte	64
+ 801 0304 00       		.byte	0
+ 802 0305 80       		.byte	-128
+ 803 0306 0A       		.byte	10
+ 804 0307 08       		.byte	8
+ 805 0308 00       		.byte	0
+ 806 0309 00       		.byte	0
+ 807 030a 10       		.byte	16
+ 808 030b 10       		.byte	16
+ 809 030c 36       		.byte	54
+ 810 030d 04       		.byte	4
+ 811 030e 05       		.byte	5
+ 812 030f 00       		.byte	0
+ 813 0310 01       		.byte	1
+ 814 0311 0E       		.byte	14
+ 815 0312 C0       		.byte	-64
+ 816 0313 00       		.byte	0
+ 817 0314 09       		.byte	9
+ 818 0315 FF       		.byte	-1
+ 819 0316 FF       		.byte	-1
+ 820 0317 FF       		.byte	-1
+ 821 0318 62       		.byte	98
+ 822 0319 A0       		.byte	-96
+ 823 031a F0       		.byte	-16
+ 824 031b 41       		.byte	65
+ 825 031c 0C       		.byte	12
+ 826 031d 00       		.byte	0
+ 827 031e 00       		.byte	0
+ 828 031f 00       		.byte	0
+ 829 0320 00       		.byte	0
+ 830 0321 00       		.byte	0
+ 831 0322 02       		.byte	2
+ 832 0323 12       		.byte	18
+ 833 0324 04       		.byte	4
+ 834 0325 04       		.byte	4
+ 835 0326 04       		.byte	4
+ 836 0327 04       		.byte	4
+ 837 0328 00       		.byte	0
+ 838 0329 00       		.byte	0
+ 839 032a 00       		.byte	0
+ 840 032b 01       		.byte	1
+ 841 032c 00       		.byte	0
+ 842 032d 00       		.byte	0
+ 843 032e 00       		.byte	0
+ 844 032f 00       		.byte	0
+ 845 0330 00       		.byte	0
+ 846 0331 00       		.byte	0
+ 847 0332 40       		.byte	64
+ 848 0333 02       		.byte	2
+ 849 0334 00       		.byte	0
+ 850 0335 10       		.byte	16
+ 851 0336 30       		.byte	48
+ 852 0337 10       		.byte	16
+ 853 0338 00       		.byte	0
+ 854 0339 10       		.byte	16
+ 855 033a 10       		.byte	16
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 16
+
+
+ 856 033b 12       		.byte	18
+ 857 033c 00       		.byte	0
+ 858 033d 00       		.byte	0
+ 859 033e 00       		.byte	0
+ 860 033f 00       		.byte	0
+ 861 0340 00       		.byte	0
+ 862 0341 00       		.byte	0
+ 863 0342 00       		.byte	0
+ 864 0343 00       		.byte	0
+ 865 0344 00       		.byte	0
+ 866 0345 00       		.byte	0
+ 867 0346 00       		.byte	0
+ 868 0347 00       		.byte	0
+ 869 0348 00       		.byte	0
+ 870 0349 00       		.byte	0
+ 871 034a 00       		.byte	0
+ 872 034b 00       		.byte	0
+ 873 034c 83       		.byte	-125
+ 874 034d 00       		.byte	0
+ 875 034e 40       		.byte	64
+ 876 034f 80       		.byte	-128
+ 877 0350 83       		.byte	-125
+ 878 0351 00       		.byte	0
+ 879 0352 83       		.byte	-125
+ 880 0353 00       		.byte	0
+ 881 0354 00       		.byte	0
+ 882 0355 00       		.byte	0
+ 883 0356 00       		.byte	0
+ 884 0357 00       		.byte	0
+ 885 0358 00       		.byte	0
+ 886 0359 0B       		.byte	11
+ 887 035a 0B       		.byte	11
+ 888 035b 00       		.byte	0
+ 889 035c 00       		.byte	0
+ 890 035d 00       		.byte	0
+ 891 035e 00       		.byte	0
+ 892 035f 00       		.byte	0
+ 893              		.section	.cywolatch,"a",%progbits
+ 894              		.align	2
+ 895              		.type	cy_meta_wonvl, %object
+ 896              		.size	cy_meta_wonvl, 4
+ 897              	cy_meta_wonvl:
+ 898 0000 BC       		.byte	-68
+ 899 0001 90       		.byte	-112
+ 900 0002 AC       		.byte	-84
+ 901 0003 AF       		.byte	-81
+ 902              		.section	.cycustnvl,"a",%progbits
+ 903              		.align	2
+ 904              		.type	cy_meta_custnvl, %object
+ 905              		.size	cy_meta_custnvl, 4
+ 906              	cy_meta_custnvl:
+ 907 0000 00       		.byte	0
+ 908 0001 00       		.byte	0
+ 909 0002 40       		.byte	64
+ 910 0003 05       		.byte	5
+ 911              		.section	.cymeta,"a",%progbits
+ 912              		.align	2
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 17
+
+
+ 913              		.type	cy_metadata, %object
+ 914              		.size	cy_metadata, 12
+ 915              	cy_metadata:
+ 916 0000 00       		.byte	0
+ 917 0001 01       		.byte	1
+ 918 0002 2E       		.byte	46
+ 919 0003 16       		.byte	22
+ 920 0004 10       		.byte	16
+ 921 0005 69       		.byte	105
+ 922 0006 00       		.byte	0
+ 923 0007 01       		.byte	1
+ 924 0008 00       		.byte	0
+ 925 0009 00       		.byte	0
+ 926 000a 00       		.byte	0
+ 927 000b 00       		.byte	0
+ 928              		.section	.cyflashprotect,"a",%progbits
+ 929              		.align	2
+ 930              		.type	cy_meta_flashprotect, %object
+ 931              		.size	cy_meta_flashprotect, 256
+ 932              	cy_meta_flashprotect:
+ 933 0000 00000000 		.space	256
+ 933      00000000 
+ 933      00000000 
+ 933      00000000 
+ 933      00000000 
+ 934              		.text
+ 935              	.Letext0:
+ 936              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 937              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 938              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
+ 939              		.section	.debug_info,"",%progbits
+ 940              	.Ldebug_info0:
+ 941 0000 31010000 		.4byte	0x131
+ 942 0004 0400     		.2byte	0x4
+ 943 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 944 000a 04       		.byte	0x4
+ 945 000b 01       		.uleb128 0x1
+ 946 000c 24000000 		.4byte	.LASF17
+ 947 0010 0C       		.byte	0xc
+ 948 0011 CD010000 		.4byte	.LASF18
+ 949 0015 7E010000 		.4byte	.LASF19
+ 950 0019 00000000 		.4byte	.Ldebug_line0
+ 951 001d 02       		.uleb128 0x2
+ 952 001e 01       		.byte	0x1
+ 953 001f 06       		.byte	0x6
+ 954 0020 72010000 		.4byte	.LASF0
+ 955 0024 03       		.uleb128 0x3
+ 956 0025 00000000 		.4byte	.LASF9
+ 957 0029 01       		.byte	0x1
+ 958 002a 1D       		.byte	0x1d
+ 959 002b 2F000000 		.4byte	0x2f
+ 960 002f 02       		.uleb128 0x2
+ 961 0030 01       		.byte	0x1
+ 962 0031 08       		.byte	0x8
+ 963 0032 16000000 		.4byte	.LASF1
+ 964 0036 02       		.uleb128 0x2
+ 965 0037 02       		.byte	0x2
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 18
+
+
+ 966 0038 05       		.byte	0x5
+ 967 0039 5F010000 		.4byte	.LASF2
+ 968 003d 02       		.uleb128 0x2
+ 969 003e 02       		.byte	0x2
+ 970 003f 07       		.byte	0x7
+ 971 0040 C4000000 		.4byte	.LASF3
+ 972 0044 02       		.uleb128 0x2
+ 973 0045 04       		.byte	0x4
+ 974 0046 05       		.byte	0x5
+ 975 0047 69010000 		.4byte	.LASF4
+ 976 004b 02       		.uleb128 0x2
+ 977 004c 04       		.byte	0x4
+ 978 004d 07       		.byte	0x7
+ 979 004e B2000000 		.4byte	.LASF5
+ 980 0052 02       		.uleb128 0x2
+ 981 0053 08       		.byte	0x8
+ 982 0054 05       		.byte	0x5
+ 983 0055 51010000 		.4byte	.LASF6
+ 984 0059 02       		.uleb128 0x2
+ 985 005a 08       		.byte	0x8
+ 986 005b 07       		.byte	0x7
+ 987 005c 06010000 		.4byte	.LASF7
+ 988 0060 04       		.uleb128 0x4
+ 989 0061 04       		.byte	0x4
+ 990 0062 05       		.byte	0x5
+ 991 0063 696E7400 		.ascii	"int\000"
+ 992 0067 02       		.uleb128 0x2
+ 993 0068 04       		.byte	0x4
+ 994 0069 07       		.byte	0x7
+ 995 006a F9000000 		.4byte	.LASF8
+ 996 006e 03       		.uleb128 0x3
+ 997 006f 1D010000 		.4byte	.LASF10
+ 998 0073 02       		.byte	0x2
+ 999 0074 18       		.byte	0x18
+ 1000 0075 24000000 		.4byte	0x24
+ 1001 0079 05       		.uleb128 0x5
+ 1002 007a 91000000 		.4byte	0x91
+ 1003 007e 8A000000 		.4byte	0x8a
+ 1004 0082 06       		.uleb128 0x6
+ 1005 0083 8A000000 		.4byte	0x8a
+ 1006 0087 5F03     		.2byte	0x35f
+ 1007 0089 00       		.byte	0
+ 1008 008a 02       		.uleb128 0x2
+ 1009 008b 04       		.byte	0x4
+ 1010 008c 07       		.byte	0x7
+ 1011 008d 48010000 		.4byte	.LASF11
+ 1012 0091 07       		.uleb128 0x7
+ 1013 0092 6E000000 		.4byte	0x6e
+ 1014 0096 08       		.uleb128 0x8
+ 1015 0097 E7000000 		.4byte	.LASF12
+ 1016 009b 03       		.byte	0x3
+ 1017 009c 1F       		.byte	0x1f
+ 1018 009d A7000000 		.4byte	0xa7
+ 1019 00a1 05       		.uleb128 0x5
+ 1020 00a2 03       		.byte	0x3
+ 1021 00a3 00000000 		.4byte	cy_meta_configecc
+ 1022 00a7 07       		.uleb128 0x7
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 19
+
+
+ 1023 00a8 79000000 		.4byte	0x79
+ 1024 00ac 05       		.uleb128 0x5
+ 1025 00ad 91000000 		.4byte	0x91
+ 1026 00b1 BC000000 		.4byte	0xbc
+ 1027 00b5 09       		.uleb128 0x9
+ 1028 00b6 8A000000 		.4byte	0x8a
+ 1029 00ba 03       		.byte	0x3
+ 1030 00bb 00       		.byte	0
+ 1031 00bc 08       		.uleb128 0x8
+ 1032 00bd D7000000 		.4byte	.LASF13
+ 1033 00c1 03       		.byte	0x3
+ 1034 00c2 98       		.byte	0x98
+ 1035 00c3 CD000000 		.4byte	0xcd
+ 1036 00c7 05       		.uleb128 0x5
+ 1037 00c8 03       		.byte	0x3
+ 1038 00c9 00000000 		.4byte	cy_meta_custnvl
+ 1039 00cd 07       		.uleb128 0x7
+ 1040 00ce AC000000 		.4byte	0xac
+ 1041 00d2 08       		.uleb128 0x8
+ 1042 00d3 3A010000 		.4byte	.LASF14
+ 1043 00d7 03       		.byte	0x3
+ 1044 00d8 A6       		.byte	0xa6
+ 1045 00d9 E3000000 		.4byte	0xe3
+ 1046 00dd 05       		.uleb128 0x5
+ 1047 00de 03       		.byte	0x3
+ 1048 00df 00000000 		.4byte	cy_meta_wonvl
+ 1049 00e3 07       		.uleb128 0x7
+ 1050 00e4 AC000000 		.4byte	0xac
+ 1051 00e8 05       		.uleb128 0x5
+ 1052 00e9 91000000 		.4byte	0x91
+ 1053 00ed F8000000 		.4byte	0xf8
+ 1054 00f1 09       		.uleb128 0x9
+ 1055 00f2 8A000000 		.4byte	0x8a
+ 1056 00f6 FF       		.byte	0xff
+ 1057 00f7 00       		.byte	0
+ 1058 00f8 08       		.uleb128 0x8
+ 1059 00f9 25010000 		.4byte	.LASF15
+ 1060 00fd 03       		.byte	0x3
+ 1061 00fe B4       		.byte	0xb4
+ 1062 00ff 09010000 		.4byte	0x109
+ 1063 0103 05       		.uleb128 0x5
+ 1064 0104 03       		.byte	0x3
+ 1065 0105 00000000 		.4byte	cy_meta_flashprotect
+ 1066 0109 07       		.uleb128 0x7
+ 1067 010a E8000000 		.4byte	0xe8
+ 1068 010e 05       		.uleb128 0x5
+ 1069 010f 91000000 		.4byte	0x91
+ 1070 0113 1E010000 		.4byte	0x11e
+ 1071 0117 09       		.uleb128 0x9
+ 1072 0118 8A000000 		.4byte	0x8a
+ 1073 011c 0B       		.byte	0xb
+ 1074 011d 00       		.byte	0
+ 1075 011e 08       		.uleb128 0x8
+ 1076 011f 0A000000 		.4byte	.LASF16
+ 1077 0123 03       		.byte	0x3
+ 1078 0124 E1       		.byte	0xe1
+ 1079 0125 2F010000 		.4byte	0x12f
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 20
+
+
+ 1080 0129 05       		.uleb128 0x5
+ 1081 012a 03       		.byte	0x3
+ 1082 012b 00000000 		.4byte	cy_metadata
+ 1083 012f 07       		.uleb128 0x7
+ 1084 0130 0E010000 		.4byte	0x10e
+ 1085 0134 00       		.byte	0
+ 1086              		.section	.debug_abbrev,"",%progbits
+ 1087              	.Ldebug_abbrev0:
+ 1088 0000 01       		.uleb128 0x1
+ 1089 0001 11       		.uleb128 0x11
+ 1090 0002 01       		.byte	0x1
+ 1091 0003 25       		.uleb128 0x25
+ 1092 0004 0E       		.uleb128 0xe
+ 1093 0005 13       		.uleb128 0x13
+ 1094 0006 0B       		.uleb128 0xb
+ 1095 0007 03       		.uleb128 0x3
+ 1096 0008 0E       		.uleb128 0xe
+ 1097 0009 1B       		.uleb128 0x1b
+ 1098 000a 0E       		.uleb128 0xe
+ 1099 000b 10       		.uleb128 0x10
+ 1100 000c 17       		.uleb128 0x17
+ 1101 000d 00       		.byte	0
+ 1102 000e 00       		.byte	0
+ 1103 000f 02       		.uleb128 0x2
+ 1104 0010 24       		.uleb128 0x24
+ 1105 0011 00       		.byte	0
+ 1106 0012 0B       		.uleb128 0xb
+ 1107 0013 0B       		.uleb128 0xb
+ 1108 0014 3E       		.uleb128 0x3e
+ 1109 0015 0B       		.uleb128 0xb
+ 1110 0016 03       		.uleb128 0x3
+ 1111 0017 0E       		.uleb128 0xe
+ 1112 0018 00       		.byte	0
+ 1113 0019 00       		.byte	0
+ 1114 001a 03       		.uleb128 0x3
+ 1115 001b 16       		.uleb128 0x16
+ 1116 001c 00       		.byte	0
+ 1117 001d 03       		.uleb128 0x3
+ 1118 001e 0E       		.uleb128 0xe
+ 1119 001f 3A       		.uleb128 0x3a
+ 1120 0020 0B       		.uleb128 0xb
+ 1121 0021 3B       		.uleb128 0x3b
+ 1122 0022 0B       		.uleb128 0xb
+ 1123 0023 49       		.uleb128 0x49
+ 1124 0024 13       		.uleb128 0x13
+ 1125 0025 00       		.byte	0
+ 1126 0026 00       		.byte	0
+ 1127 0027 04       		.uleb128 0x4
+ 1128 0028 24       		.uleb128 0x24
+ 1129 0029 00       		.byte	0
+ 1130 002a 0B       		.uleb128 0xb
+ 1131 002b 0B       		.uleb128 0xb
+ 1132 002c 3E       		.uleb128 0x3e
+ 1133 002d 0B       		.uleb128 0xb
+ 1134 002e 03       		.uleb128 0x3
+ 1135 002f 08       		.uleb128 0x8
+ 1136 0030 00       		.byte	0
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 21
+
+
+ 1137 0031 00       		.byte	0
+ 1138 0032 05       		.uleb128 0x5
+ 1139 0033 01       		.uleb128 0x1
+ 1140 0034 01       		.byte	0x1
+ 1141 0035 49       		.uleb128 0x49
+ 1142 0036 13       		.uleb128 0x13
+ 1143 0037 01       		.uleb128 0x1
+ 1144 0038 13       		.uleb128 0x13
+ 1145 0039 00       		.byte	0
+ 1146 003a 00       		.byte	0
+ 1147 003b 06       		.uleb128 0x6
+ 1148 003c 21       		.uleb128 0x21
+ 1149 003d 00       		.byte	0
+ 1150 003e 49       		.uleb128 0x49
+ 1151 003f 13       		.uleb128 0x13
+ 1152 0040 2F       		.uleb128 0x2f
+ 1153 0041 05       		.uleb128 0x5
+ 1154 0042 00       		.byte	0
+ 1155 0043 00       		.byte	0
+ 1156 0044 07       		.uleb128 0x7
+ 1157 0045 26       		.uleb128 0x26
+ 1158 0046 00       		.byte	0
+ 1159 0047 49       		.uleb128 0x49
+ 1160 0048 13       		.uleb128 0x13
+ 1161 0049 00       		.byte	0
+ 1162 004a 00       		.byte	0
+ 1163 004b 08       		.uleb128 0x8
+ 1164 004c 34       		.uleb128 0x34
+ 1165 004d 00       		.byte	0
+ 1166 004e 03       		.uleb128 0x3
+ 1167 004f 0E       		.uleb128 0xe
+ 1168 0050 3A       		.uleb128 0x3a
+ 1169 0051 0B       		.uleb128 0xb
+ 1170 0052 3B       		.uleb128 0x3b
+ 1171 0053 0B       		.uleb128 0xb
+ 1172 0054 49       		.uleb128 0x49
+ 1173 0055 13       		.uleb128 0x13
+ 1174 0056 3F       		.uleb128 0x3f
+ 1175 0057 19       		.uleb128 0x19
+ 1176 0058 02       		.uleb128 0x2
+ 1177 0059 18       		.uleb128 0x18
+ 1178 005a 00       		.byte	0
+ 1179 005b 00       		.byte	0
+ 1180 005c 09       		.uleb128 0x9
+ 1181 005d 21       		.uleb128 0x21
+ 1182 005e 00       		.byte	0
+ 1183 005f 49       		.uleb128 0x49
+ 1184 0060 13       		.uleb128 0x13
+ 1185 0061 2F       		.uleb128 0x2f
+ 1186 0062 0B       		.uleb128 0xb
+ 1187 0063 00       		.byte	0
+ 1188 0064 00       		.byte	0
+ 1189 0065 00       		.byte	0
+ 1190              		.section	.debug_aranges,"",%progbits
+ 1191 0000 14000000 		.4byte	0x14
+ 1192 0004 0200     		.2byte	0x2
+ 1193 0006 00000000 		.4byte	.Ldebug_info0
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 22
+
+
+ 1194 000a 04       		.byte	0x4
+ 1195 000b 00       		.byte	0
+ 1196 000c 0000     		.2byte	0
+ 1197 000e 0000     		.2byte	0
+ 1198 0010 00000000 		.4byte	0
+ 1199 0014 00000000 		.4byte	0
+ 1200              		.section	.debug_line,"",%progbits
+ 1201              	.Ldebug_line0:
+ 1202 0000 3D010000 		.section	.debug_str,"MS",%progbits,1
+ 1202      02003701 
+ 1202      00000201 
+ 1202      FB0E0D00 
+ 1202      01010101 
+ 1203              	.LASF9:
+ 1204 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1204      6E74385F 
+ 1204      7400
+ 1205              	.LASF16:
+ 1206 000a 63795F6D 		.ascii	"cy_metadata\000"
+ 1206      65746164 
+ 1206      61746100 
+ 1207              	.LASF1:
+ 1208 0016 756E7369 		.ascii	"unsigned char\000"
+ 1208      676E6564 
+ 1208      20636861 
+ 1208      7200
+ 1209              	.LASF17:
+ 1210 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1210      43313120 
+ 1210      352E342E 
+ 1210      31203230 
+ 1210      31363036 
+ 1211 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1211      20726576 
+ 1211      6973696F 
+ 1211      6E203233 
+ 1211      37373135 
+ 1212 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1212      66756E63 
+ 1212      74696F6E 
+ 1212      2D736563 
+ 1212      74696F6E 
+ 1213              	.LASF5:
+ 1214 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1214      20756E73 
+ 1214      69676E65 
+ 1214      6420696E 
+ 1214      7400
+ 1215              	.LASF3:
+ 1216 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 1216      7420756E 
+ 1216      7369676E 
+ 1216      65642069 
+ 1216      6E7400
+ 1217              	.LASF13:
+ 1218 00d7 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1218      6574615F 
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 23
+
+
+ 1218      63757374 
+ 1218      6E766C00 
+ 1219              	.LASF12:
+ 1220 00e7 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1220      6574615F 
+ 1220      636F6E66 
+ 1220      69676563 
+ 1220      6300
+ 1221              	.LASF8:
+ 1222 00f9 756E7369 		.ascii	"unsigned int\000"
+ 1222      676E6564 
+ 1222      20696E74 
+ 1222      00
+ 1223              	.LASF7:
+ 1224 0106 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1224      206C6F6E 
+ 1224      6720756E 
+ 1224      7369676E 
+ 1224      65642069 
+ 1225              	.LASF10:
+ 1226 011d 75696E74 		.ascii	"uint8_t\000"
+ 1226      385F7400 
+ 1227              	.LASF15:
+ 1228 0125 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 1228      6574615F 
+ 1228      666C6173 
+ 1228      6870726F 
+ 1228      74656374 
+ 1229              	.LASF14:
+ 1230 013a 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1230      6574615F 
+ 1230      776F6E76 
+ 1230      6C00
+ 1231              	.LASF11:
+ 1232 0148 73697A65 		.ascii	"sizetype\000"
+ 1232      74797065 
+ 1232      00
+ 1233              	.LASF6:
+ 1234 0151 6C6F6E67 		.ascii	"long long int\000"
+ 1234      206C6F6E 
+ 1234      6720696E 
+ 1234      7400
+ 1235              	.LASF2:
+ 1236 015f 73686F72 		.ascii	"short int\000"
+ 1236      7420696E 
+ 1236      7400
+ 1237              	.LASF4:
+ 1238 0169 6C6F6E67 		.ascii	"long int\000"
+ 1238      20696E74 
+ 1238      00
+ 1239              	.LASF0:
+ 1240 0172 7369676E 		.ascii	"signed char\000"
+ 1240      65642063 
+ 1240      68617200 
+ 1241              	.LASF19:
+ 1242 017e 433A5C55 		.ascii	"C:\\Users\\Lorenzo\\Desktop\\PSoC_03_Complete\\PSoC"
+ 1242      73657273 
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccRaRzgg.s 			page 24
+
+
+ 1242      5C4C6F72 
+ 1242      656E7A6F 
+ 1242      5C446573 
+ 1243 01ac 5F30335C 		.ascii	"_03\\AY1920_II_HW_05_PROJ_3.cydsn\000"
+ 1243      41593139 
+ 1243      32305F49 
+ 1243      495F4857 
+ 1243      5F30355F 
+ 1244              	.LASF18:
+ 1245 01cd 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 1245      72617465 
+ 1245      645F536F 
+ 1245      75726365 
+ 1245      5C50536F 
+ 1246              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,2859 @@
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_i2d
+  20              		.global	__aeabi_dmul
+  21              		.global	__aeabi_d2f
+  22              		.global	__aeabi_f2iz
+  23              		.section	.text.main,"ax",%progbits
+  24              		.align	2
+  25              		.global	main
+  26              		.thumb
+  27              		.thumb_func
+  28              		.type	main, %function
+  29              	main:
+  30              	.LFB64:
+  31              		.file 1 "main.c"
+   1:main.c        **** /**
+   2:main.c        **** * \brief Main source file for the I2C-Master project.
+   3:main.c        **** *
+   4:main.c        **** * In this project we set up a I2C master device with
+   5:main.c        **** * to understand the I2C protocol and communicate with a
+   6:main.c        **** * a I2C Slave device (LIS3DH Accelerometer).
+   7:main.c        **** *
+   8:main.c        **** * \author Gabriele Belotti
+   9:main.c        **** * \date , 2020
+  10:main.c        **** */
+  11:main.c        **** 
+  12:main.c        **** // Include required header files
+  13:main.c        **** #include "I2C_Interface.h"
+  14:main.c        **** #include "project.h"
+  15:main.c        **** #include "stdio.h"
+  16:main.c        **** #include "InterruptRoutines.h"
+  17:main.c        **** 
+  18:main.c        **** /**
+  19:main.c        **** *   \brief 7-bit I2C address of the slave device.
+  20:main.c        **** */
+  21:main.c        **** #define LIS3DH_DEVICE_ADDRESS 0x18
+  22:main.c        **** 
+  23:main.c        **** /**
+  24:main.c        **** *   \brief Address of the WHO AM I register
+  25:main.c        **** */
+  26:main.c        **** #define LIS3DH_WHO_AM_I_REG_ADDR 0x0F
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 2
+
+
+  27:main.c        **** 
+  28:main.c        **** /**
+  29:main.c        **** *   \brief Address of the Status register
+  30:main.c        **** */
+  31:main.c        **** #define LIS3DH_STATUS_REG 0x27
+  32:main.c        **** 
+  33:main.c        **** /**
+  34:main.c        **** *   \brief Address of the Control register 1
+  35:main.c        **** */
+  36:main.c        **** #define LIS3DH_CTRL_REG1 0x20
+  37:main.c        **** 
+  38:main.c        **** /**
+  39:main.c        **** *   \brief Hex value to set normal mode to the accelerator
+  40:main.c        **** */
+  41:main.c        **** #define LIS3DH_NORMAL_MODE_CTRL_REG1 0x47
+  42:main.c        **** 
+  43:main.c        **** /**
+  44:main.c        **** *   \brief  Address of the Temperature Sensor Configuration register
+  45:main.c        **** */
+  46:main.c        **** #define LIS3DH_TEMP_CFG_REG 0x1F
+  47:main.c        **** 
+  48:main.c        **** #define LIS3DH_TEMP_CFG_REG_ACTIVE 0xC0
+  49:main.c        **** 
+  50:main.c        **** /**
+  51:main.c        **** *   \brief Address of the Control register 4
+  52:main.c        **** */
+  53:main.c        **** #define LIS3DH_CTRL_REG4 0x23
+  54:main.c        **** 
+  55:main.c        **** #define LIS3DH_CTRL_REG4_BDU_ACTIVE 0x80
+  56:main.c        **** 
+  57:main.c        **** /**
+  58:main.c        **** *   \brief Address of the ADC output LSB register
+  59:main.c        **** */
+  60:main.c        **** #define LIS3DH_OUT_ADC_3L 0x0C
+  61:main.c        **** 
+  62:main.c        **** /**
+  63:main.c        **** *   \brief Address of the ADC output MSB register
+  64:main.c        **** */
+  65:main.c        **** #define LIS3DH_OUT_ADC_3H 0x0D
+  66:main.c        **** 
+  67:main.c        **** /*
+  68:main.c        ****     ADRESS register OUT_X_L
+  69:main.c        **** */
+  70:main.c        **** #define LIS3DH_OUT_X_L 0x28
+  71:main.c        **** 
+  72:main.c        **** /**
+  73:main.c        **** *   \brief Hex value to set normal mode to the accelerator
+  74:main.c        **** */
+  75:main.c        **** #define LIS3DH_HIGH_MODE_CTRL_REG1_ACC 0x57 //01010111 to set 100 Hz, high resolution mode and enab
+  76:main.c        **** 
+  77:main.c        **** #define LIS3DH_CTRL_REG4_HIGH_MODE_4G 0x18  //00011000 to set full scale range +-4g (with FS1 FS0),
+  78:main.c        **** 
+  79:main.c        **** int main(void)
+  80:main.c        **** {
+  32              		.loc 1 80 0
+  33              		.cfi_startproc
+  34              		@ args = 0, pretend = 0, frame = 72
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 3
+
+
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  37              		.cfi_def_cfa_offset 20
+  38              		.cfi_offset 4, -20
+  39              		.cfi_offset 5, -16
+  40              		.cfi_offset 6, -12
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 93B0     		sub	sp, sp, #76
+  44              		.cfi_def_cfa_offset 96
+  81:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  45              		.loc 1 81 0
+  46              		.syntax unified
+  47              	@ 81 "main.c" 1
+  48 0004 62B6     		CPSIE   i
+  49              	@ 0 "" 2
+  82:main.c        **** 
+  83:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  84:main.c        ****     I2C_Peripheral_Start();
+  50              		.loc 1 84 0
+  51              		.thumb
+  52              		.syntax unified
+  53 0006 FFF7FEFF 		bl	I2C_Peripheral_Start
+  54              	.LVL0:
+  85:main.c        ****     UART_Debug_Start();
+  55              		.loc 1 85 0
+  56 000a FFF7FEFF 		bl	UART_Debug_Start
+  57              	.LVL1:
+  86:main.c        ****     Timer_Start();
+  58              		.loc 1 86 0
+  59 000e FFF7FEFF 		bl	Timer_Start
+  60              	.LVL2:
+  87:main.c        ****     isr_TIMER_StartEx(Custom_TIMER_ISR);
+  61              		.loc 1 87 0
+  62 0012 A148     		ldr	r0, .L24+8
+  63 0014 FFF7FEFF 		bl	isr_TIMER_StartEx
+  64              	.LVL3:
+  88:main.c        ****     
+  89:main.c        ****     CyDelay(5); //"The boot procedure is complete about 5 milliseconds after device power-up."
+  65              		.loc 1 89 0
+  66 0018 0520     		movs	r0, #5
+  67 001a FFF7FEFF 		bl	CyDelay
+  68              	.LVL4:
+  69              	.LBB2:
+  90:main.c        ****     
+  91:main.c        ****     // String to print out messages on the UART
+  92:main.c        ****     char message[50];
+  93:main.c        **** 
+  94:main.c        ****     // Check which devices are present on the I2C bus
+  95:main.c        ****     for (int i = 0 ; i < 128; i++)
+  70              		.loc 1 95 0
+  71 001e 0024     		movs	r4, #0
+  72 0020 0CE0     		b	.L2
+  73              	.LVL5:
+  74              	.L4:
+  96:main.c        ****     {
+  97:main.c        ****         if (I2C_Peripheral_IsDeviceConnected(i))
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 4
+
+
+  75              		.loc 1 97 0
+  76 0022 E0B2     		uxtb	r0, r4
+  77 0024 FFF7FEFF 		bl	I2C_Peripheral_IsDeviceConnected
+  78              	.LVL6:
+  79 0028 38B1     		cbz	r0, .L3
+  98:main.c        ****         {
+  99:main.c        ****             // print out the address is hex format
+ 100:main.c        ****             sprintf(message, "Device 0x%02X is connected\r\n", i);
+  80              		.loc 1 100 0
+  81 002a 2246     		mov	r2, r4
+  82 002c 9B49     		ldr	r1, .L24+12
+  83 002e 05A8     		add	r0, sp, #20
+  84 0030 FFF7FEFF 		bl	sprintf
+  85              	.LVL7:
+ 101:main.c        ****             UART_Debug_PutString(message); 
+  86              		.loc 1 101 0
+  87 0034 05A8     		add	r0, sp, #20
+  88 0036 FFF7FEFF 		bl	UART_Debug_PutString
+  89              	.LVL8:
+  90              	.L3:
+  95:main.c        ****     {
+  91              		.loc 1 95 0 discriminator 2
+  92 003a 0134     		adds	r4, r4, #1
+  93              	.LVL9:
+  94              	.L2:
+  95:main.c        ****     {
+  95              		.loc 1 95 0 is_stmt 0 discriminator 1
+  96 003c 7F2C     		cmp	r4, #127
+  97 003e F0DD     		ble	.L4
+  98              	.LBE2:
+ 102:main.c        ****         }
+ 103:main.c        ****         
+ 104:main.c        ****     }
+ 105:main.c        ****     
+ 106:main.c        ****     /******************************************/
+ 107:main.c        ****     /*            I2C Reading                 */
+ 108:main.c        ****     /******************************************/
+ 109:main.c        ****     
+ 110:main.c        ****     /* Read WHO AM I REGISTER register */
+ 111:main.c        ****     uint8_t who_am_i_reg;
+ 112:main.c        ****     ErrorCode error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+  99              		.loc 1 112 0 is_stmt 1
+ 100 0040 0DF11302 		add	r2, sp, #19
+ 101 0044 0F21     		movs	r1, #15
+ 102 0046 1820     		movs	r0, #24
+ 103 0048 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 104              	.LVL10:
+ 113:main.c        ****                                                   LIS3DH_WHO_AM_I_REG_ADDR, 
+ 114:main.c        ****                                                   &who_am_i_reg);
+ 115:main.c        ****     if (error == NO_ERROR)
+ 105              		.loc 1 115 0
+ 106 004c 48B9     		cbnz	r0, .L5
+ 116:main.c        ****     {
+ 117:main.c        ****         sprintf(message, "WHO AM I REG: 0x%02X [Expected: 0x33]\r\n", who_am_i_reg);
+ 107              		.loc 1 117 0
+ 108 004e 9DF81320 		ldrb	r2, [sp, #19]	@ zero_extendqisi2
+ 109 0052 9349     		ldr	r1, .L24+16
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 5
+
+
+ 110 0054 05A8     		add	r0, sp, #20
+ 111              	.LVL11:
+ 112 0056 FFF7FEFF 		bl	sprintf
+ 113              	.LVL12:
+ 118:main.c        ****         UART_Debug_PutString(message); 
+ 114              		.loc 1 118 0
+ 115 005a 05A8     		add	r0, sp, #20
+ 116 005c FFF7FEFF 		bl	UART_Debug_PutString
+ 117              	.LVL13:
+ 118 0060 02E0     		b	.L6
+ 119              	.LVL14:
+ 120              	.L5:
+ 119:main.c        ****     }
+ 120:main.c        ****     else
+ 121:main.c        ****     {
+ 122:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm\r\n");   
+ 121              		.loc 1 122 0
+ 122 0062 9048     		ldr	r0, .L24+20
+ 123              	.LVL15:
+ 124 0064 FFF7FEFF 		bl	UART_Debug_PutString
+ 125              	.LVL16:
+ 126              	.L6:
+ 123:main.c        ****     }
+ 124:main.c        ****     
+ 125:main.c        ****     /*      I2C Reading Status Register       */
+ 126:main.c        ****     
+ 127:main.c        ****     uint8_t status_register; 
+ 128:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 127              		.loc 1 128 0
+ 128 0068 0DF11202 		add	r2, sp, #18
+ 129 006c 2721     		movs	r1, #39
+ 130 006e 1820     		movs	r0, #24
+ 131 0070 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 132              	.LVL17:
+ 129:main.c        ****                                         LIS3DH_STATUS_REG,
+ 130:main.c        ****                                         &status_register);
+ 131:main.c        ****     
+ 132:main.c        ****     if (error == NO_ERROR)
+ 133              		.loc 1 132 0
+ 134 0074 48B9     		cbnz	r0, .L7
+ 133:main.c        ****     {
+ 134:main.c        ****         sprintf(message, "STATUS REGISTER: 0x%02X\r\n", status_register);
+ 135              		.loc 1 134 0
+ 136 0076 9DF81220 		ldrb	r2, [sp, #18]	@ zero_extendqisi2
+ 137 007a 8B49     		ldr	r1, .L24+24
+ 138 007c 05A8     		add	r0, sp, #20
+ 139              	.LVL18:
+ 140 007e FFF7FEFF 		bl	sprintf
+ 141              	.LVL19:
+ 135:main.c        ****         UART_Debug_PutString(message); 
+ 142              		.loc 1 135 0
+ 143 0082 05A8     		add	r0, sp, #20
+ 144 0084 FFF7FEFF 		bl	UART_Debug_PutString
+ 145              	.LVL20:
+ 146 0088 02E0     		b	.L8
+ 147              	.LVL21:
+ 148              	.L7:
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 6
+
+
+ 136:main.c        ****     }
+ 137:main.c        ****     else
+ 138:main.c        ****     {
+ 139:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read status register\r\n");   
+ 149              		.loc 1 139 0
+ 150 008a 8848     		ldr	r0, .L24+28
+ 151              	.LVL22:
+ 152 008c FFF7FEFF 		bl	UART_Debug_PutString
+ 153              	.LVL23:
+ 154              	.L8:
+ 140:main.c        ****     }
+ 141:main.c        ****     
+ 142:main.c        ****     /******************************************/
+ 143:main.c        ****     /*        Read Control Register 1         */
+ 144:main.c        ****     /******************************************/
+ 145:main.c        ****     uint8_t ctrl_reg1; 
+ 146:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 155              		.loc 1 146 0
+ 156 0090 0DF11102 		add	r2, sp, #17
+ 157 0094 2021     		movs	r1, #32
+ 158 0096 1820     		movs	r0, #24
+ 159 0098 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 160              	.LVL24:
+ 147:main.c        ****                                         LIS3DH_CTRL_REG1,
+ 148:main.c        ****                                         &ctrl_reg1);
+ 149:main.c        ****     
+ 150:main.c        ****     if (error == NO_ERROR)
+ 161              		.loc 1 150 0
+ 162 009c 48B9     		cbnz	r0, .L9
+ 151:main.c        ****     {
+ 152:main.c        ****         sprintf(message, "CONTROL REGISTER 1: 0x%02X\r\n", ctrl_reg1);
+ 163              		.loc 1 152 0
+ 164 009e 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 165 00a2 8349     		ldr	r1, .L24+32
+ 166 00a4 05A8     		add	r0, sp, #20
+ 167              	.LVL25:
+ 168 00a6 FFF7FEFF 		bl	sprintf
+ 169              	.LVL26:
+ 153:main.c        ****         UART_Debug_PutString(message); 
+ 170              		.loc 1 153 0
+ 171 00aa 05A8     		add	r0, sp, #20
+ 172 00ac FFF7FEFF 		bl	UART_Debug_PutString
+ 173              	.LVL27:
+ 174 00b0 02E0     		b	.L10
+ 175              	.LVL28:
+ 176              	.L9:
+ 154:main.c        ****     }
+ 155:main.c        ****     else
+ 156:main.c        ****     {
+ 157:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
+ 177              		.loc 1 157 0
+ 178 00b2 8048     		ldr	r0, .L24+36
+ 179              	.LVL29:
+ 180 00b4 FFF7FEFF 		bl	UART_Debug_PutString
+ 181              	.LVL30:
+ 182              	.L10:
+ 158:main.c        ****     }
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 7
+
+
+ 159:main.c        ****     
+ 160:main.c        ****     /******************************************/
+ 161:main.c        ****     /*            I2C Writing                 */
+ 162:main.c        ****     /******************************************/
+ 163:main.c        ****     
+ 164:main.c        ****     
+ 165:main.c        ****     if (ctrl_reg1 != LIS3DH_HIGH_MODE_CTRL_REG1_ACC)
+ 183              		.loc 1 165 0
+ 184 00b8 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+ 185 00bc 572B     		cmp	r3, #87
+ 186 00be 28D0     		beq	.L11
+ 166:main.c        ****     {
+ 167:main.c        ****         ctrl_reg1 = LIS3DH_HIGH_MODE_CTRL_REG1_ACC;
+ 187              		.loc 1 167 0
+ 188 00c0 5722     		movs	r2, #87
+ 189 00c2 8DF81120 		strb	r2, [sp, #17]
+ 168:main.c        ****     
+ 169:main.c        ****         error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+ 190              		.loc 1 169 0
+ 191 00c6 2021     		movs	r1, #32
+ 192 00c8 1820     		movs	r0, #24
+ 193 00ca FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
+ 194              	.LVL31:
+ 170:main.c        ****                                              LIS3DH_CTRL_REG1,
+ 171:main.c        ****                                              ctrl_reg1);
+ 172:main.c        ****     
+ 173:main.c        ****         if (error == NO_ERROR)
+ 195              		.loc 1 173 0
+ 196 00ce 48B9     		cbnz	r0, .L12
+ 174:main.c        ****         {
+ 175:main.c        ****             sprintf(message, "CONTROL REGISTER 1 successfully written as: 0x%02X\r\n", ctrl_reg1);
+ 197              		.loc 1 175 0
+ 198 00d0 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 199 00d4 7849     		ldr	r1, .L24+40
+ 200 00d6 05A8     		add	r0, sp, #20
+ 201              	.LVL32:
+ 202 00d8 FFF7FEFF 		bl	sprintf
+ 203              	.LVL33:
+ 176:main.c        ****             UART_Debug_PutString(message); 
+ 204              		.loc 1 176 0
+ 205 00dc 05A8     		add	r0, sp, #20
+ 206 00de FFF7FEFF 		bl	UART_Debug_PutString
+ 207              	.LVL34:
+ 208 00e2 02E0     		b	.L13
+ 209              	.LVL35:
+ 210              	.L12:
+ 177:main.c        ****         }
+ 178:main.c        ****         else
+ 179:main.c        ****         {
+ 180:main.c        ****             UART_Debug_PutString("Error occurred during I2C comm to set control register 1\r\n");  
+ 211              		.loc 1 180 0
+ 212 00e4 7548     		ldr	r0, .L24+44
+ 213              	.LVL36:
+ 214 00e6 FFF7FEFF 		bl	UART_Debug_PutString
+ 215              	.LVL37:
+ 216              	.L13:
+ 181:main.c        ****         }
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 8
+
+
+ 182:main.c        ****         error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 217              		.loc 1 182 0
+ 218 00ea 0DF11102 		add	r2, sp, #17
+ 219 00ee 2021     		movs	r1, #32
+ 220 00f0 1820     		movs	r0, #24
+ 221 00f2 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 222              	.LVL38:
+ 183:main.c        ****                                         LIS3DH_CTRL_REG1,
+ 184:main.c        ****                                         &ctrl_reg1);
+ 185:main.c        ****     
+ 186:main.c        ****         if (error == NO_ERROR)
+ 223              		.loc 1 186 0
+ 224 00f6 48B9     		cbnz	r0, .L14
+ 187:main.c        ****         {
+ 188:main.c        ****             sprintf(message, "CONTROL REGISTER 1 after overwrite operation: 0x%02X\r\n", ctrl_reg1)
+ 225              		.loc 1 188 0
+ 226 00f8 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 227 00fc 7049     		ldr	r1, .L24+48
+ 228 00fe 05A8     		add	r0, sp, #20
+ 229              	.LVL39:
+ 230 0100 FFF7FEFF 		bl	sprintf
+ 231              	.LVL40:
+ 189:main.c        ****             UART_Debug_PutString(message); 
+ 232              		.loc 1 189 0
+ 233 0104 05A8     		add	r0, sp, #20
+ 234 0106 FFF7FEFF 		bl	UART_Debug_PutString
+ 235              	.LVL41:
+ 236 010a 02E0     		b	.L11
+ 237              	.LVL42:
+ 238              	.L14:
+ 190:main.c        ****         }
+ 191:main.c        ****         else
+ 192:main.c        ****         {
+ 193:main.c        ****             UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n"); 
+ 239              		.loc 1 193 0
+ 240 010c 6948     		ldr	r0, .L24+36
+ 241              	.LVL43:
+ 242 010e FFF7FEFF 		bl	UART_Debug_PutString
+ 243              	.LVL44:
+ 244              	.L11:
+ 194:main.c        ****         }
+ 195:main.c        ****     }
+ 196:main.c        ****     
+ 197:main.c        ****     
+ 198:main.c        ****     
+ 199:main.c        ****     
+ 200:main.c        ****      /******************************************/
+ 201:main.c        ****      /* I2C Reading Control register 4 */
+ 202:main.c        ****      /******************************************/
+ 203:main.c        **** 
+ 204:main.c        ****     
+ 205:main.c        ****     uint8_t ctrl_reg4;
+ 206:main.c        ****     
+ 207:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 245              		.loc 1 207 0
+ 246 0112 04AA     		add	r2, sp, #16
+ 247 0114 2321     		movs	r1, #35
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 9
+
+
+ 248 0116 1820     		movs	r0, #24
+ 249 0118 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 250              	.LVL45:
+ 208:main.c        ****                                         LIS3DH_CTRL_REG4,
+ 209:main.c        ****                                         &ctrl_reg4);
+ 210:main.c        ****     
+ 211:main.c        ****     if (error == NO_ERROR)
+ 251              		.loc 1 211 0
+ 252 011c 48B9     		cbnz	r0, .L15
+ 212:main.c        ****     {
+ 213:main.c        ****         sprintf(message, "CONTROL REGISTER 4: 0x%02X\r\n", ctrl_reg4);
+ 253              		.loc 1 213 0
+ 254 011e 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 255 0122 6849     		ldr	r1, .L24+52
+ 256 0124 05A8     		add	r0, sp, #20
+ 257              	.LVL46:
+ 258 0126 FFF7FEFF 		bl	sprintf
+ 259              	.LVL47:
+ 214:main.c        ****         UART_Debug_PutString(message); 
+ 260              		.loc 1 214 0
+ 261 012a 05A8     		add	r0, sp, #20
+ 262 012c FFF7FEFF 		bl	UART_Debug_PutString
+ 263              	.LVL48:
+ 264 0130 02E0     		b	.L16
+ 265              	.LVL49:
+ 266              	.L15:
+ 215:main.c        ****     }
+ 216:main.c        ****     else
+ 217:main.c        ****     {
+ 218:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
+ 267              		.loc 1 218 0
+ 268 0132 6548     		ldr	r0, .L24+56
+ 269              	.LVL50:
+ 270 0134 FFF7FEFF 		bl	UART_Debug_PutString
+ 271              	.LVL51:
+ 272              	.L16:
+ 219:main.c        ****     }
+ 220:main.c        ****     
+ 221:main.c        ****     if (ctrl_reg4 != LIS3DH_CTRL_REG4_HIGH_MODE_4G)
+ 273              		.loc 1 221 0
+ 274 0138 9DF81030 		ldrb	r3, [sp, #16]	@ zero_extendqisi2
+ 275 013c 182B     		cmp	r3, #24
+ 276 013e 27D0     		beq	.L17
+ 222:main.c        ****     {
+ 223:main.c        ****         ctrl_reg4 = LIS3DH_CTRL_REG4_HIGH_MODE_4G; // must be changed to the appropriate value
+ 277              		.loc 1 223 0
+ 278 0140 1820     		movs	r0, #24
+ 279 0142 8DF81000 		strb	r0, [sp, #16]
+ 224:main.c        ****         
+ 225:main.c        ****         error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+ 280              		.loc 1 225 0
+ 281 0146 0246     		mov	r2, r0
+ 282 0148 2321     		movs	r1, #35
+ 283 014a FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
+ 284              	.LVL52:
+ 226:main.c        ****                                              LIS3DH_CTRL_REG4,
+ 227:main.c        ****                                              ctrl_reg4); 
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 10
+
+
+ 228:main.c        ****          if (error == NO_ERROR)
+ 285              		.loc 1 228 0
+ 286 014e 48B9     		cbnz	r0, .L18
+ 229:main.c        ****         {
+ 230:main.c        ****             sprintf(message, "CONTROL REGISTER 4 successfully written as: 0x%02X\r\n", ctrl_reg4);
+ 287              		.loc 1 230 0
+ 288 0150 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 289 0154 5D49     		ldr	r1, .L24+60
+ 290 0156 05A8     		add	r0, sp, #20
+ 291              	.LVL53:
+ 292 0158 FFF7FEFF 		bl	sprintf
+ 293              	.LVL54:
+ 231:main.c        ****             UART_Debug_PutString(message); 
+ 294              		.loc 1 231 0
+ 295 015c 05A8     		add	r0, sp, #20
+ 296 015e FFF7FEFF 		bl	UART_Debug_PutString
+ 297              	.LVL55:
+ 298 0162 02E0     		b	.L19
+ 299              	.LVL56:
+ 300              	.L18:
+ 232:main.c        ****         }
+ 233:main.c        ****         else
+ 234:main.c        ****         {
+ 235:main.c        ****             UART_Debug_PutString("Error occurred during I2C comm to set control register 1\r\n");  
+ 301              		.loc 1 235 0
+ 302 0164 5548     		ldr	r0, .L24+44
+ 303              	.LVL57:
+ 304 0166 FFF7FEFF 		bl	UART_Debug_PutString
+ 305              	.LVL58:
+ 306              	.L19:
+ 236:main.c        ****         }
+ 237:main.c        ****         
+ 238:main.c        ****         error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 307              		.loc 1 238 0
+ 308 016a 04AA     		add	r2, sp, #16
+ 309 016c 2321     		movs	r1, #35
+ 310 016e 1820     		movs	r0, #24
+ 311 0170 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 312              	.LVL59:
+ 239:main.c        ****                                             LIS3DH_CTRL_REG4,
+ 240:main.c        ****                                             &ctrl_reg4);
+ 241:main.c        ****         
+ 242:main.c        ****         if (error == NO_ERROR)
+ 313              		.loc 1 242 0
+ 314 0174 48B9     		cbnz	r0, .L20
+ 243:main.c        ****         {
+ 244:main.c        ****             sprintf(message, "CONTROL REGISTER 4 after being updated: 0x%02X\r\n", ctrl_reg4);
+ 315              		.loc 1 244 0
+ 316 0176 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 317 017a 5549     		ldr	r1, .L24+64
+ 318 017c 05A8     		add	r0, sp, #20
+ 319              	.LVL60:
+ 320 017e FFF7FEFF 		bl	sprintf
+ 321              	.LVL61:
+ 245:main.c        ****             UART_Debug_PutString(message); 
+ 322              		.loc 1 245 0
+ 323 0182 05A8     		add	r0, sp, #20
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 11
+
+
+ 324 0184 FFF7FEFF 		bl	UART_Debug_PutString
+ 325              	.LVL62:
+ 326 0188 02E0     		b	.L17
+ 327              	.LVL63:
+ 328              	.L20:
+ 246:main.c        ****         }
+ 247:main.c        ****         else
+ 248:main.c        ****         {
+ 249:main.c        ****             UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");  
+ 329              		.loc 1 249 0
+ 330 018a 4F48     		ldr	r0, .L24+56
+ 331              	.LVL64:
+ 332 018c FFF7FEFF 		bl	UART_Debug_PutString
+ 333              	.LVL65:
+ 334              	.L17:
+ 250:main.c        ****         }
+ 251:main.c        ****     }
+ 252:main.c        ****     
+ 253:main.c        ****     int16_t OutAccX;
+ 254:main.c        ****     int16_t OutAccY;
+ 255:main.c        ****     int16_t OutAccZ;
+ 256:main.c        ****     uint8_t header = 0xA0;
+ 257:main.c        ****     uint8_t footer = 0xC0;
+ 258:main.c        ****     uint8_t OutArray[14]; 
+ 259:main.c        ****     float32 AccXms2f;
+ 260:main.c        ****     float32 AccYms2f;
+ 261:main.c        ****     float32 AccZms2f;
+ 262:main.c        ****     int32 AccXms2;
+ 263:main.c        ****     int32 AccYms2;
+ 264:main.c        ****     int32 AccZms2;
+ 265:main.c        ****     
+ 266:main.c        ****     OutArray[0] = header;
+ 335              		.loc 1 266 0
+ 336 0190 A023     		movs	r3, #160
+ 337 0192 8DF80030 		strb	r3, [sp]
+ 267:main.c        ****     OutArray[13] = footer;
+ 338              		.loc 1 267 0
+ 339 0196 C023     		movs	r3, #192
+ 340 0198 8DF80D30 		strb	r3, [sp, #13]
+ 268:main.c        **** 
+ 269:main.c        ****     PacketReadyFlag = 0;
+ 341              		.loc 1 269 0
+ 342 019c 0022     		movs	r2, #0
+ 343 019e 4D4B     		ldr	r3, .L24+68
+ 344 01a0 1A70     		strb	r2, [r3]
+ 345              	.LVL66:
+ 346              	.L21:
+ 270:main.c        ****     
+ 271:main.c        ****     for(;;)
+ 272:main.c        ****     {
+ 273:main.c        ****   
+ 274:main.c        ****         if (PacketReadyFlag == 1)
+ 347              		.loc 1 274 0
+ 348 01a2 4C4B     		ldr	r3, .L24+68
+ 349 01a4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 350 01a6 DBB2     		uxtb	r3, r3
+ 351 01a8 012B     		cmp	r3, #1
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 12
+
+
+ 352 01aa FAD1     		bne	.L21
+ 275:main.c        ****         {
+ 276:main.c        ****             PacketReadyFlag = 0;
+ 353              		.loc 1 276 0
+ 354 01ac 0022     		movs	r2, #0
+ 355 01ae 494B     		ldr	r3, .L24+68
+ 356 01b0 1A70     		strb	r2, [r3]
+ 277:main.c        ****             OutAccX = ((int16)((AccData[0]) | ((AccData[1])<<8))>>4)*2;
+ 357              		.loc 1 277 0
+ 358 01b2 494A     		ldr	r2, .L24+72
+ 359 01b4 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 360 01b6 5078     		ldrb	r0, [r2, #1]	@ zero_extendqisi2
+ 361 01b8 43EA0020 		orr	r0, r3, r0, lsl #8
+ 362 01bc 40F30B10 		sbfx	r0, r0, #4, #12
+ 363              	.LVL67:
+ 278:main.c        ****             OutAccY = ((int16)((AccData[2]) | ((AccData[3])<<8))>>4)*2;
+ 364              		.loc 1 278 0
+ 365 01c0 9378     		ldrb	r3, [r2, #2]	@ zero_extendqisi2
+ 366 01c2 D578     		ldrb	r5, [r2, #3]	@ zero_extendqisi2
+ 367 01c4 43EA0525 		orr	r5, r3, r5, lsl #8
+ 368 01c8 45F30B15 		sbfx	r5, r5, #4, #12
+ 369 01cc 6D00     		lsls	r5, r5, #1
+ 370              	.LVL68:
+ 279:main.c        ****             OutAccZ = ((int16)((AccData[4]) | ((AccData[5])<<8))>>4)*2;
+ 371              		.loc 1 279 0
+ 372 01ce 1379     		ldrb	r3, [r2, #4]	@ zero_extendqisi2
+ 373 01d0 5479     		ldrb	r4, [r2, #5]	@ zero_extendqisi2
+ 374 01d2 43EA0424 		orr	r4, r3, r4, lsl #8
+ 375 01d6 44F30B14 		sbfx	r4, r4, #4, #12
+ 376 01da 6400     		lsls	r4, r4, #1
+ 377              	.LVL69:
+ 280:main.c        ****             AccXms2f = (OutAccX)*9.81;
+ 378              		.loc 1 280 0
+ 379 01dc 4000     		lsls	r0, r0, #1
+ 380              	.LVL70:
+ 381 01de FFF7FEFF 		bl	__aeabi_i2d
+ 382              	.LVL71:
+ 383 01e2 2BA3     		adr	r3, .L24
+ 384 01e4 D3E90023 		ldrd	r2, [r3]
+ 385 01e8 FFF7FEFF 		bl	__aeabi_dmul
+ 386              	.LVL72:
+ 387 01ec FFF7FEFF 		bl	__aeabi_d2f
+ 388              	.LVL73:
+ 389 01f0 0746     		mov	r7, r0
+ 390              	.LVL74:
+ 281:main.c        ****             AccYms2f = (OutAccY)*9.81;
+ 391              		.loc 1 281 0
+ 392 01f2 2846     		mov	r0, r5
+ 393              	.LVL75:
+ 394 01f4 FFF7FEFF 		bl	__aeabi_i2d
+ 395              	.LVL76:
+ 396 01f8 25A3     		adr	r3, .L24
+ 397 01fa D3E90023 		ldrd	r2, [r3]
+ 398 01fe FFF7FEFF 		bl	__aeabi_dmul
+ 399              	.LVL77:
+ 400 0202 FFF7FEFF 		bl	__aeabi_d2f
+ 401              	.LVL78:
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 13
+
+
+ 402 0206 0546     		mov	r5, r0
+ 403              	.LVL79:
+ 282:main.c        ****             AccZms2f = (OutAccZ)*9.81;
+ 404              		.loc 1 282 0
+ 405 0208 2046     		mov	r0, r4
+ 406              	.LVL80:
+ 407 020a FFF7FEFF 		bl	__aeabi_i2d
+ 408              	.LVL81:
+ 409 020e 20A3     		adr	r3, .L24
+ 410 0210 D3E90023 		ldrd	r2, [r3]
+ 411 0214 FFF7FEFF 		bl	__aeabi_dmul
+ 412              	.LVL82:
+ 413 0218 FFF7FEFF 		bl	__aeabi_d2f
+ 414              	.LVL83:
+ 415 021c 0646     		mov	r6, r0
+ 416              	.LVL84:
+ 283:main.c        ****             AccXms2 = (int32) AccXms2f;
+ 417              		.loc 1 283 0
+ 418 021e 3846     		mov	r0, r7
+ 419              	.LVL85:
+ 420 0220 FFF7FEFF 		bl	__aeabi_f2iz
+ 421              	.LVL86:
+ 422 0224 0446     		mov	r4, r0
+ 423              	.LVL87:
+ 284:main.c        ****             AccYms2 = (int32) AccYms2f;
+ 424              		.loc 1 284 0
+ 425 0226 2846     		mov	r0, r5
+ 426              	.LVL88:
+ 427 0228 FFF7FEFF 		bl	__aeabi_f2iz
+ 428              	.LVL89:
+ 429 022c 0546     		mov	r5, r0
+ 430              	.LVL90:
+ 285:main.c        ****             AccZms2 = (int32) AccZms2f;
+ 431              		.loc 1 285 0
+ 432 022e 3046     		mov	r0, r6
+ 433              	.LVL91:
+ 434 0230 FFF7FEFF 		bl	__aeabi_f2iz
+ 435              	.LVL92:
+ 286:main.c        ****             OutArray[1] = (uint8_t)(AccXms2 & 0xFF); 
+ 436              		.loc 1 286 0
+ 437 0234 8DF80140 		strb	r4, [sp, #1]
+ 287:main.c        ****             OutArray[2] = (uint8_t)((AccXms2 >> 8) & 0xFF);
+ 438              		.loc 1 287 0
+ 439 0238 C4F30723 		ubfx	r3, r4, #8, #8
+ 440 023c 8DF80230 		strb	r3, [sp, #2]
+ 288:main.c        ****             OutArray[3] = (uint8_t)((AccXms2 >> 16) & 0xFF);
+ 441              		.loc 1 288 0
+ 442 0240 C4F30743 		ubfx	r3, r4, #16, #8
+ 443 0244 8DF80330 		strb	r3, [sp, #3]
+ 289:main.c        ****             OutArray[4] = (uint8_t)(AccXms2 >> 24);
+ 444              		.loc 1 289 0
+ 445 0248 240E     		lsrs	r4, r4, #24
+ 446              	.LVL93:
+ 447 024a 8DF80440 		strb	r4, [sp, #4]
+ 290:main.c        ****             OutArray[5] = (uint8_t)(AccYms2 & 0xFF); 
+ 448              		.loc 1 290 0
+ 449 024e 8DF80550 		strb	r5, [sp, #5]
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 14
+
+
+ 291:main.c        ****             OutArray[6] = (uint8_t)((AccYms2 >> 8) & 0xFF);
+ 450              		.loc 1 291 0
+ 451 0252 C5F30723 		ubfx	r3, r5, #8, #8
+ 452 0256 8DF80630 		strb	r3, [sp, #6]
+ 292:main.c        ****             OutArray[7] = (uint8_t)((AccYms2 >> 16) & 0xFF);
+ 453              		.loc 1 292 0
+ 454 025a C5F30743 		ubfx	r3, r5, #16, #8
+ 455 025e 8DF80730 		strb	r3, [sp, #7]
+ 293:main.c        ****             OutArray[8] = (uint8_t)(AccYms2 >> 24);
+ 456              		.loc 1 293 0
+ 457 0262 2B0E     		lsrs	r3, r5, #24
+ 458 0264 8DF80830 		strb	r3, [sp, #8]
+ 294:main.c        ****             OutArray[9] = (uint8_t)(AccZms2 & 0xFF); 
+ 459              		.loc 1 294 0
+ 460 0268 8DF80900 		strb	r0, [sp, #9]
+ 295:main.c        ****             OutArray[10] = (uint8_t)((AccZms2 >> 8) & 0xFF);
+ 461              		.loc 1 295 0
+ 462 026c C0F30723 		ubfx	r3, r0, #8, #8
+ 463 0270 8DF80A30 		strb	r3, [sp, #10]
+ 296:main.c        ****             OutArray[11] = (uint8_t)((AccZms2 >> 16) & 0xFF);
+ 464              		.loc 1 296 0
+ 465 0274 C0F30743 		ubfx	r3, r0, #16, #8
+ 466 0278 8DF80B30 		strb	r3, [sp, #11]
+ 297:main.c        ****             OutArray[12] = (uint8_t)((AccZms2 >> 24) & 0xFF);
+ 467              		.loc 1 297 0
+ 468 027c 000E     		lsrs	r0, r0, #24
+ 469              	.LVL94:
+ 470 027e 8DF80C00 		strb	r0, [sp, #12]
+ 298:main.c        ****             UART_Debug_PutArray(OutArray, 14);
+ 471              		.loc 1 298 0
+ 472 0282 0E21     		movs	r1, #14
+ 473 0284 6846     		mov	r0, sp
+ 474 0286 FFF7FEFF 		bl	UART_Debug_PutArray
+ 475              	.LVL95:
+ 476 028a 8AE7     		b	.L21
+ 477              	.L25:
+ 478 028c AFF30080 		.align	3
+ 479              	.L24:
+ 480 0290 1F85EB51 		.word	1374389535
+ 481 0294 B89E2340 		.word	1076076216
+ 482 0298 00000000 		.word	Custom_TIMER_ISR
+ 483 029c 00000000 		.word	.LC0
+ 484 02a0 20000000 		.word	.LC1
+ 485 02a4 48000000 		.word	.LC2
+ 486 02a8 6C000000 		.word	.LC3
+ 487 02ac 88000000 		.word	.LC4
+ 488 02b0 C4000000 		.word	.LC5
+ 489 02b4 E4000000 		.word	.LC6
+ 490 02b8 20010000 		.word	.LC7
+ 491 02bc 58010000 		.word	.LC8
+ 492 02c0 94010000 		.word	.LC9
+ 493 02c4 CC010000 		.word	.LC10
+ 494 02c8 EC010000 		.word	.LC11
+ 495 02cc 28020000 		.word	.LC12
+ 496 02d0 60020000 		.word	.LC13
+ 497 02d4 00000000 		.word	PacketReadyFlag
+ 498 02d8 00000000 		.word	AccData
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 15
+
+
+ 499              		.cfi_endproc
+ 500              	.LFE64:
+ 501              		.size	main, .-main
+ 502              		.comm	PacketReadyFlag,1,1
+ 503              		.comm	AccData,6,4
+ 504              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 505              		.align	2
+ 506              	.LC0:
+ 507 0000 44657669 		.ascii	"Device 0x%02X is connected\015\012\000"
+ 507      63652030 
+ 507      78253032 
+ 507      58206973 
+ 507      20636F6E 
+ 508 001d 000000   		.space	3
+ 509              	.LC1:
+ 510 0020 57484F20 		.ascii	"WHO AM I REG: 0x%02X [Expected: 0x33]\015\012\000"
+ 510      414D2049 
+ 510      20524547 
+ 510      3A203078 
+ 510      25303258 
+ 511              	.LC2:
+ 512 0048 4572726F 		.ascii	"Error occurred during I2C comm\015\012\000"
+ 512      72206F63 
+ 512      63757272 
+ 512      65642064 
+ 512      7572696E 
+ 513 0069 000000   		.space	3
+ 514              	.LC3:
+ 515 006c 53544154 		.ascii	"STATUS REGISTER: 0x%02X\015\012\000"
+ 515      55532052 
+ 515      45474953 
+ 515      5445523A 
+ 515      20307825 
+ 516 0086 0000     		.space	2
+ 517              	.LC4:
+ 518 0088 4572726F 		.ascii	"Error occurred during I2C comm to read status regis"
+ 518      72206F63 
+ 518      63757272 
+ 518      65642064 
+ 518      7572696E 
+ 519 00bb 7465720D 		.ascii	"ter\015\012\000"
+ 519      0A00
+ 520 00c1 000000   		.space	3
+ 521              	.LC5:
+ 522 00c4 434F4E54 		.ascii	"CONTROL REGISTER 1: 0x%02X\015\012\000"
+ 522      524F4C20 
+ 522      52454749 
+ 522      53544552 
+ 522      20313A20 
+ 523 00e1 000000   		.space	3
+ 524              	.LC6:
+ 525 00e4 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
+ 525      72206F63 
+ 525      63757272 
+ 525      65642064 
+ 525      7572696E 
+ 526 0117 73746572 		.ascii	"ster 1\015\012\000"
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 16
+
+
+ 526      20310D0A 
+ 526      00
+ 527              	.LC7:
+ 528 0120 434F4E54 		.ascii	"CONTROL REGISTER 1 successfully written as: 0x%02X\015"
+ 528      524F4C20 
+ 528      52454749 
+ 528      53544552 
+ 528      20312073 
+ 529 0153 0A00     		.ascii	"\012\000"
+ 530 0155 000000   		.space	3
+ 531              	.LC8:
+ 532 0158 4572726F 		.ascii	"Error occurred during I2C comm to set control regis"
+ 532      72206F63 
+ 532      63757272 
+ 532      65642064 
+ 532      7572696E 
+ 533 018b 74657220 		.ascii	"ter 1\015\012\000"
+ 533      310D0A00 
+ 534 0193 00       		.space	1
+ 535              	.LC9:
+ 536 0194 434F4E54 		.ascii	"CONTROL REGISTER 1 after overwrite operation: 0x%02"
+ 536      524F4C20 
+ 536      52454749 
+ 536      53544552 
+ 536      20312061 
+ 537 01c7 580D0A00 		.ascii	"X\015\012\000"
+ 538 01cb 00       		.space	1
+ 539              	.LC10:
+ 540 01cc 434F4E54 		.ascii	"CONTROL REGISTER 4: 0x%02X\015\012\000"
+ 540      524F4C20 
+ 540      52454749 
+ 540      53544552 
+ 540      20343A20 
+ 541 01e9 000000   		.space	3
+ 542              	.LC11:
+ 543 01ec 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
+ 543      72206F63 
+ 543      63757272 
+ 543      65642064 
+ 543      7572696E 
+ 544 021f 73746572 		.ascii	"ster4\015\012\000"
+ 544      340D0A00 
+ 545 0227 00       		.space	1
+ 546              	.LC12:
+ 547 0228 434F4E54 		.ascii	"CONTROL REGISTER 4 successfully written as: 0x%02X\015"
+ 547      524F4C20 
+ 547      52454749 
+ 547      53544552 
+ 547      20342073 
+ 548 025b 0A00     		.ascii	"\012\000"
+ 549 025d 000000   		.space	3
+ 550              	.LC13:
+ 551 0260 434F4E54 		.ascii	"CONTROL REGISTER 4 after being updated: 0x%02X\015\012"
+ 551      524F4C20 
+ 551      52454749 
+ 551      53544552 
+ 551      20342061 
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 17
+
+
+ 552 0290 00       		.ascii	"\000"
+ 553              		.text
+ 554              	.Letext0:
+ 555              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 556              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 557              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 558              		.file 5 "ErrorCodes.h"
+ 559              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 560              		.file 7 "InterruptRoutines.h"
+ 561              		.file 8 "I2C_Interface.h"
+ 562              		.file 9 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 563              		.file 10 "Generated_Source\\PSoC5/UART_Debug.h"
+ 564              		.file 11 "Generated_Source\\PSoC5/Timer.h"
+ 565              		.file 12 "Generated_Source\\PSoC5/isr_TIMER.h"
+ 566              		.file 13 "Generated_Source\\PSoC5/CyLib.h"
+ 567              		.section	.debug_info,"",%progbits
+ 568              	.Ldebug_info0:
+ 569 0000 2A070000 		.4byte	0x72a
+ 570 0004 0400     		.2byte	0x4
+ 571 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 572 000a 04       		.byte	0x4
+ 573 000b 01       		.uleb128 0x1
+ 574 000c FA020000 		.4byte	.LASF59
+ 575 0010 0C       		.byte	0xc
+ 576 0011 84020000 		.4byte	.LASF60
+ 577 0015 EA010000 		.4byte	.LASF61
+ 578 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 579 001d 00000000 		.4byte	0
+ 580 0021 00000000 		.4byte	.Ldebug_line0
+ 581 0025 02       		.uleb128 0x2
+ 582 0026 01       		.byte	0x1
+ 583 0027 06       		.byte	0x6
+ 584 0028 8B010000 		.4byte	.LASF0
+ 585 002c 03       		.uleb128 0x3
+ 586 002d 16010000 		.4byte	.LASF2
+ 587 0031 02       		.byte	0x2
+ 588 0032 1D       		.byte	0x1d
+ 589 0033 37000000 		.4byte	0x37
+ 590 0037 02       		.uleb128 0x2
+ 591 0038 01       		.byte	0x1
+ 592 0039 08       		.byte	0x8
+ 593 003a 75010000 		.4byte	.LASF1
+ 594 003e 03       		.uleb128 0x3
+ 595 003f 32000000 		.4byte	.LASF3
+ 596 0043 02       		.byte	0x2
+ 597 0044 29       		.byte	0x29
+ 598 0045 49000000 		.4byte	0x49
+ 599 0049 02       		.uleb128 0x2
+ 600 004a 02       		.byte	0x2
+ 601 004b 05       		.byte	0x5
+ 602 004c B8000000 		.4byte	.LASF4
+ 603 0050 02       		.uleb128 0x2
+ 604 0051 02       		.byte	0x2
+ 605 0052 07       		.byte	0x7
+ 606 0053 4E020000 		.4byte	.LASF5
+ 607 0057 03       		.uleb128 0x3
+ 608 0058 B0020000 		.4byte	.LASF6
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 18
+
+
+ 609 005c 02       		.byte	0x2
+ 610 005d 3F       		.byte	0x3f
+ 611 005e 62000000 		.4byte	0x62
+ 612 0062 02       		.uleb128 0x2
+ 613 0063 04       		.byte	0x4
+ 614 0064 05       		.byte	0x5
+ 615 0065 0D010000 		.4byte	.LASF7
+ 616 0069 02       		.uleb128 0x2
+ 617 006a 04       		.byte	0x4
+ 618 006b 07       		.byte	0x7
+ 619 006c D8010000 		.4byte	.LASF8
+ 620 0070 02       		.uleb128 0x2
+ 621 0071 08       		.byte	0x8
+ 622 0072 05       		.byte	0x5
+ 623 0073 F3000000 		.4byte	.LASF9
+ 624 0077 02       		.uleb128 0x2
+ 625 0078 08       		.byte	0x8
+ 626 0079 07       		.byte	0x7
+ 627 007a 97010000 		.4byte	.LASF10
+ 628 007e 04       		.uleb128 0x4
+ 629 007f 04       		.byte	0x4
+ 630 0080 05       		.byte	0x5
+ 631 0081 696E7400 		.ascii	"int\000"
+ 632 0085 02       		.uleb128 0x2
+ 633 0086 04       		.byte	0x4
+ 634 0087 07       		.byte	0x7
+ 635 0088 CB010000 		.4byte	.LASF11
+ 636 008c 03       		.uleb128 0x3
+ 637 008d C2000000 		.4byte	.LASF12
+ 638 0091 03       		.byte	0x3
+ 639 0092 18       		.byte	0x18
+ 640 0093 2C000000 		.4byte	0x2c
+ 641 0097 03       		.uleb128 0x3
+ 642 0098 76020000 		.4byte	.LASF13
+ 643 009c 03       		.byte	0x3
+ 644 009d 20       		.byte	0x20
+ 645 009e 3E000000 		.4byte	0x3e
+ 646 00a2 03       		.uleb128 0x3
+ 647 00a3 66020000 		.4byte	.LASF14
+ 648 00a7 03       		.byte	0x3
+ 649 00a8 2C       		.byte	0x2c
+ 650 00a9 57000000 		.4byte	0x57
+ 651 00ad 05       		.uleb128 0x5
+ 652 00ae 7E020000 		.4byte	.LASF15
+ 653 00b2 04       		.byte	0x4
+ 654 00b3 E401     		.2byte	0x1e4
+ 655 00b5 37000000 		.4byte	0x37
+ 656 00b9 05       		.uleb128 0x5
+ 657 00ba CA000000 		.4byte	.LASF16
+ 658 00be 04       		.byte	0x4
+ 659 00bf E801     		.2byte	0x1e8
+ 660 00c1 49000000 		.4byte	0x49
+ 661 00c5 05       		.uleb128 0x5
+ 662 00c6 93020000 		.4byte	.LASF17
+ 663 00ca 04       		.byte	0x4
+ 664 00cb E901     		.2byte	0x1e9
+ 665 00cd 62000000 		.4byte	0x62
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 19
+
+
+ 666 00d1 05       		.uleb128 0x5
+ 667 00d2 45000000 		.4byte	.LASF18
+ 668 00d6 04       		.byte	0x4
+ 669 00d7 EA01     		.2byte	0x1ea
+ 670 00d9 DD000000 		.4byte	0xdd
+ 671 00dd 02       		.uleb128 0x2
+ 672 00de 04       		.byte	0x4
+ 673 00df 04       		.byte	0x4
+ 674 00e0 ED000000 		.4byte	.LASF19
+ 675 00e4 02       		.uleb128 0x2
+ 676 00e5 08       		.byte	0x8
+ 677 00e6 04       		.byte	0x4
+ 678 00e7 99020000 		.4byte	.LASF20
+ 679 00eb 02       		.uleb128 0x2
+ 680 00ec 01       		.byte	0x1
+ 681 00ed 08       		.byte	0x8
+ 682 00ee 61020000 		.4byte	.LASF21
+ 683 00f2 06       		.uleb128 0x6
+ 684 00f3 AD000000 		.4byte	0xad
+ 685 00f7 07       		.uleb128 0x7
+ 686 00f8 01       		.byte	0x1
+ 687 00f9 37000000 		.4byte	0x37
+ 688 00fd 05       		.byte	0x5
+ 689 00fe 15       		.byte	0x15
+ 690 00ff 10010000 		.4byte	0x110
+ 691 0103 08       		.uleb128 0x8
+ 692 0104 3C000000 		.4byte	.LASF22
+ 693 0108 00       		.byte	0
+ 694 0109 08       		.uleb128 0x8
+ 695 010a 32010000 		.4byte	.LASF23
+ 696 010e 01       		.byte	0x1
+ 697 010f 00       		.byte	0
+ 698 0110 03       		.uleb128 0x3
+ 699 0111 90030000 		.4byte	.LASF24
+ 700 0115 05       		.byte	0x5
+ 701 0116 18       		.byte	0x18
+ 702 0117 F7000000 		.4byte	0xf7
+ 703 011b 02       		.uleb128 0x2
+ 704 011c 08       		.byte	0x8
+ 705 011d 04       		.byte	0x4
+ 706 011e 69010000 		.4byte	.LASF25
+ 707 0122 02       		.uleb128 0x2
+ 708 0123 04       		.byte	0x4
+ 709 0124 07       		.byte	0x7
+ 710 0125 7A000000 		.4byte	.LASF26
+ 711 0129 09       		.uleb128 0x9
+ 712 012a A4000000 		.4byte	.LASF62
+ 713 012e 01       		.byte	0x1
+ 714 012f 4F       		.byte	0x4f
+ 715 0130 7E000000 		.4byte	0x7e
+ 716 0134 00000000 		.4byte	.LFB64
+ 717 0138 DC020000 		.4byte	.LFE64-.LFB64
+ 718 013c 01       		.uleb128 0x1
+ 719 013d 9C       		.byte	0x9c
+ 720 013e 51060000 		.4byte	0x651
+ 721 0142 0A       		.uleb128 0xa
+ 722 0143 8B020000 		.4byte	.LASF27
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 20
+
+
+ 723 0147 01       		.byte	0x1
+ 724 0148 5C       		.byte	0x5c
+ 725 0149 51060000 		.4byte	0x651
+ 726 014d 03       		.uleb128 0x3
+ 727 014e 91       		.byte	0x91
+ 728 014f B47F     		.sleb128 -76
+ 729 0151 0A       		.uleb128 0xa
+ 730 0152 D0000000 		.4byte	.LASF28
+ 731 0156 01       		.byte	0x1
+ 732 0157 6F       		.byte	0x6f
+ 733 0158 8C000000 		.4byte	0x8c
+ 734 015c 03       		.uleb128 0x3
+ 735 015d 91       		.byte	0x91
+ 736 015e B37F     		.sleb128 -77
+ 737 0160 0B       		.uleb128 0xb
+ 738 0161 D3020000 		.4byte	.LASF29
+ 739 0165 01       		.byte	0x1
+ 740 0166 70       		.byte	0x70
+ 741 0167 10010000 		.4byte	0x110
+ 742 016b 00000000 		.4byte	.LLST0
+ 743 016f 0A       		.uleb128 0xa
+ 744 0170 DD000000 		.4byte	.LASF30
+ 745 0174 01       		.byte	0x1
+ 746 0175 7F       		.byte	0x7f
+ 747 0176 8C000000 		.4byte	0x8c
+ 748 017a 03       		.uleb128 0x3
+ 749 017b 91       		.byte	0x91
+ 750 017c B27F     		.sleb128 -78
+ 751 017e 0A       		.uleb128 0xa
+ 752 017f 00000000 		.4byte	.LASF31
+ 753 0183 01       		.byte	0x1
+ 754 0184 91       		.byte	0x91
+ 755 0185 8C000000 		.4byte	0x8c
+ 756 0189 03       		.uleb128 0x3
+ 757 018a 91       		.byte	0x91
+ 758 018b B17F     		.sleb128 -79
+ 759 018d 0A       		.uleb128 0xa
+ 760 018e 1F000000 		.4byte	.LASF32
+ 761 0192 01       		.byte	0x1
+ 762 0193 CD       		.byte	0xcd
+ 763 0194 8C000000 		.4byte	0x8c
+ 764 0198 03       		.uleb128 0x3
+ 765 0199 91       		.byte	0x91
+ 766 019a B07F     		.sleb128 -80
+ 767 019c 0B       		.uleb128 0xb
+ 768 019d 38010000 		.4byte	.LASF33
+ 769 01a1 01       		.byte	0x1
+ 770 01a2 FD       		.byte	0xfd
+ 771 01a3 97000000 		.4byte	0x97
+ 772 01a7 B8000000 		.4byte	.LLST1
+ 773 01ab 0B       		.uleb128 0xb
+ 774 01ac 40010000 		.4byte	.LASF34
+ 775 01b0 01       		.byte	0x1
+ 776 01b1 FE       		.byte	0xfe
+ 777 01b2 97000000 		.4byte	0x97
+ 778 01b6 F9000000 		.4byte	.LLST2
+ 779 01ba 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 21
+
+
+ 780 01bb 48010000 		.4byte	.LASF35
+ 781 01bf 01       		.byte	0x1
+ 782 01c0 FF       		.byte	0xff
+ 783 01c1 97000000 		.4byte	0x97
+ 784 01c5 0C010000 		.4byte	.LLST3
+ 785 01c9 0C       		.uleb128 0xc
+ 786 01ca B1000000 		.4byte	.LASF36
+ 787 01ce 01       		.byte	0x1
+ 788 01cf 0001     		.2byte	0x100
+ 789 01d1 8C000000 		.4byte	0x8c
+ 790 01d5 A07F     		.sleb128 -96
+ 791 01d7 0C       		.uleb128 0xc
+ 792 01d8 A9020000 		.4byte	.LASF37
+ 793 01dc 01       		.byte	0x1
+ 794 01dd 0101     		.2byte	0x101
+ 795 01df 8C000000 		.4byte	0x8c
+ 796 01e3 40       		.sleb128 -64
+ 797 01e4 0D       		.uleb128 0xd
+ 798 01e5 29000000 		.4byte	.LASF38
+ 799 01e9 01       		.byte	0x1
+ 800 01ea 0201     		.2byte	0x102
+ 801 01ec 61060000 		.4byte	0x661
+ 802 01f0 03       		.uleb128 0x3
+ 803 01f1 91       		.byte	0x91
+ 804 01f2 A07F     		.sleb128 -96
+ 805 01f4 0E       		.uleb128 0xe
+ 806 01f5 55000000 		.4byte	.LASF39
+ 807 01f9 01       		.byte	0x1
+ 808 01fa 0301     		.2byte	0x103
+ 809 01fc D1000000 		.4byte	0xd1
+ 810 0200 1F010000 		.4byte	.LLST4
+ 811 0204 0E       		.uleb128 0xe
+ 812 0205 60010000 		.4byte	.LASF40
+ 813 0209 01       		.byte	0x1
+ 814 020a 0401     		.2byte	0x104
+ 815 020c D1000000 		.4byte	0xd1
+ 816 0210 3D010000 		.4byte	.LLST5
+ 817 0214 0E       		.uleb128 0xe
+ 818 0215 A0020000 		.4byte	.LASF41
+ 819 0219 01       		.byte	0x1
+ 820 021a 0501     		.2byte	0x105
+ 821 021c D1000000 		.4byte	0xd1
+ 822 0220 5B010000 		.4byte	.LLST6
+ 823 0224 0E       		.uleb128 0xe
+ 824 0225 CB020000 		.4byte	.LASF42
+ 825 0229 01       		.byte	0x1
+ 826 022a 0601     		.2byte	0x106
+ 827 022c C5000000 		.4byte	0xc5
+ 828 0230 79010000 		.4byte	.LLST7
+ 829 0234 0E       		.uleb128 0xe
+ 830 0235 6E020000 		.4byte	.LASF43
+ 831 0239 01       		.byte	0x1
+ 832 023a 0701     		.2byte	0x107
+ 833 023c C5000000 		.4byte	0xc5
+ 834 0240 97010000 		.4byte	.LLST8
+ 835 0244 0E       		.uleb128 0xe
+ 836 0245 A9000000 		.4byte	.LASF44
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 22
+
+
+ 837 0249 01       		.byte	0x1
+ 838 024a 0801     		.2byte	0x108
+ 839 024c C5000000 		.4byte	0xc5
+ 840 0250 B5010000 		.4byte	.LLST9
+ 841 0254 0F       		.uleb128 0xf
+ 842 0255 1E000000 		.4byte	.LBB2
+ 843 0259 22000000 		.4byte	.LBE2-.LBB2
+ 844 025d B8020000 		.4byte	0x2b8
+ 845 0261 10       		.uleb128 0x10
+ 846 0262 6900     		.ascii	"i\000"
+ 847 0264 01       		.byte	0x1
+ 848 0265 5F       		.byte	0x5f
+ 849 0266 7E000000 		.4byte	0x7e
+ 850 026a C8010000 		.4byte	.LLST10
+ 851 026e 11       		.uleb128 0x11
+ 852 026f 28000000 		.4byte	.LVL6
+ 853 0273 B4060000 		.4byte	0x6b4
+ 854 0277 82020000 		.4byte	0x282
+ 855 027b 12       		.uleb128 0x12
+ 856 027c 01       		.uleb128 0x1
+ 857 027d 50       		.byte	0x50
+ 858 027e 02       		.uleb128 0x2
+ 859 027f 74       		.byte	0x74
+ 860 0280 00       		.sleb128 0
+ 861 0281 00       		.byte	0
+ 862 0282 11       		.uleb128 0x11
+ 863 0283 34000000 		.4byte	.LVL7
+ 864 0287 BF060000 		.4byte	0x6bf
+ 865 028b A6020000 		.4byte	0x2a6
+ 866 028f 12       		.uleb128 0x12
+ 867 0290 01       		.uleb128 0x1
+ 868 0291 50       		.byte	0x50
+ 869 0292 03       		.uleb128 0x3
+ 870 0293 91       		.byte	0x91
+ 871 0294 B47F     		.sleb128 -76
+ 872 0296 12       		.uleb128 0x12
+ 873 0297 01       		.uleb128 0x1
+ 874 0298 51       		.byte	0x51
+ 875 0299 05       		.uleb128 0x5
+ 876 029a 03       		.byte	0x3
+ 877 029b 00000000 		.4byte	.LC0
+ 878 029f 12       		.uleb128 0x12
+ 879 02a0 01       		.uleb128 0x1
+ 880 02a1 52       		.byte	0x52
+ 881 02a2 02       		.uleb128 0x2
+ 882 02a3 74       		.byte	0x74
+ 883 02a4 00       		.sleb128 0
+ 884 02a5 00       		.byte	0
+ 885 02a6 13       		.uleb128 0x13
+ 886 02a7 3A000000 		.4byte	.LVL8
+ 887 02ab CA060000 		.4byte	0x6ca
+ 888 02af 12       		.uleb128 0x12
+ 889 02b0 01       		.uleb128 0x1
+ 890 02b1 50       		.byte	0x50
+ 891 02b2 03       		.uleb128 0x3
+ 892 02b3 91       		.byte	0x91
+ 893 02b4 B47F     		.sleb128 -76
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 23
+
+
+ 894 02b6 00       		.byte	0
+ 895 02b7 00       		.byte	0
+ 896 02b8 14       		.uleb128 0x14
+ 897 02b9 0A000000 		.4byte	.LVL0
+ 898 02bd D5060000 		.4byte	0x6d5
+ 899 02c1 14       		.uleb128 0x14
+ 900 02c2 0E000000 		.4byte	.LVL1
+ 901 02c6 E0060000 		.4byte	0x6e0
+ 902 02ca 14       		.uleb128 0x14
+ 903 02cb 12000000 		.4byte	.LVL2
+ 904 02cf EB060000 		.4byte	0x6eb
+ 905 02d3 14       		.uleb128 0x14
+ 906 02d4 18000000 		.4byte	.LVL3
+ 907 02d8 F6060000 		.4byte	0x6f6
+ 908 02dc 11       		.uleb128 0x11
+ 909 02dd 1E000000 		.4byte	.LVL4
+ 910 02e1 01070000 		.4byte	0x701
+ 911 02e5 EF020000 		.4byte	0x2ef
+ 912 02e9 12       		.uleb128 0x12
+ 913 02ea 01       		.uleb128 0x1
+ 914 02eb 50       		.byte	0x50
+ 915 02ec 01       		.uleb128 0x1
+ 916 02ed 35       		.byte	0x35
+ 917 02ee 00       		.byte	0
+ 918 02ef 11       		.uleb128 0x11
+ 919 02f0 4C000000 		.4byte	.LVL10
+ 920 02f4 0C070000 		.4byte	0x70c
+ 921 02f8 0E030000 		.4byte	0x30e
+ 922 02fc 12       		.uleb128 0x12
+ 923 02fd 01       		.uleb128 0x1
+ 924 02fe 50       		.byte	0x50
+ 925 02ff 01       		.uleb128 0x1
+ 926 0300 48       		.byte	0x48
+ 927 0301 12       		.uleb128 0x12
+ 928 0302 01       		.uleb128 0x1
+ 929 0303 51       		.byte	0x51
+ 930 0304 01       		.uleb128 0x1
+ 931 0305 3F       		.byte	0x3f
+ 932 0306 12       		.uleb128 0x12
+ 933 0307 01       		.uleb128 0x1
+ 934 0308 52       		.byte	0x52
+ 935 0309 03       		.uleb128 0x3
+ 936 030a 91       		.byte	0x91
+ 937 030b B37F     		.sleb128 -77
+ 938 030d 00       		.byte	0
+ 939 030e 11       		.uleb128 0x11
+ 940 030f 5A000000 		.4byte	.LVL12
+ 941 0313 BF060000 		.4byte	0x6bf
+ 942 0317 2C030000 		.4byte	0x32c
+ 943 031b 12       		.uleb128 0x12
+ 944 031c 01       		.uleb128 0x1
+ 945 031d 50       		.byte	0x50
+ 946 031e 03       		.uleb128 0x3
+ 947 031f 91       		.byte	0x91
+ 948 0320 B47F     		.sleb128 -76
+ 949 0322 12       		.uleb128 0x12
+ 950 0323 01       		.uleb128 0x1
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 24
+
+
+ 951 0324 51       		.byte	0x51
+ 952 0325 05       		.uleb128 0x5
+ 953 0326 03       		.byte	0x3
+ 954 0327 20000000 		.4byte	.LC1
+ 955 032b 00       		.byte	0
+ 956 032c 11       		.uleb128 0x11
+ 957 032d 60000000 		.4byte	.LVL13
+ 958 0331 CA060000 		.4byte	0x6ca
+ 959 0335 41030000 		.4byte	0x341
+ 960 0339 12       		.uleb128 0x12
+ 961 033a 01       		.uleb128 0x1
+ 962 033b 50       		.byte	0x50
+ 963 033c 03       		.uleb128 0x3
+ 964 033d 91       		.byte	0x91
+ 965 033e B47F     		.sleb128 -76
+ 966 0340 00       		.byte	0
+ 967 0341 11       		.uleb128 0x11
+ 968 0342 68000000 		.4byte	.LVL16
+ 969 0346 CA060000 		.4byte	0x6ca
+ 970 034a 58030000 		.4byte	0x358
+ 971 034e 12       		.uleb128 0x12
+ 972 034f 01       		.uleb128 0x1
+ 973 0350 50       		.byte	0x50
+ 974 0351 05       		.uleb128 0x5
+ 975 0352 03       		.byte	0x3
+ 976 0353 48000000 		.4byte	.LC2
+ 977 0357 00       		.byte	0
+ 978 0358 11       		.uleb128 0x11
+ 979 0359 74000000 		.4byte	.LVL17
+ 980 035d 0C070000 		.4byte	0x70c
+ 981 0361 78030000 		.4byte	0x378
+ 982 0365 12       		.uleb128 0x12
+ 983 0366 01       		.uleb128 0x1
+ 984 0367 50       		.byte	0x50
+ 985 0368 01       		.uleb128 0x1
+ 986 0369 48       		.byte	0x48
+ 987 036a 12       		.uleb128 0x12
+ 988 036b 01       		.uleb128 0x1
+ 989 036c 51       		.byte	0x51
+ 990 036d 02       		.uleb128 0x2
+ 991 036e 08       		.byte	0x8
+ 992 036f 27       		.byte	0x27
+ 993 0370 12       		.uleb128 0x12
+ 994 0371 01       		.uleb128 0x1
+ 995 0372 52       		.byte	0x52
+ 996 0373 03       		.uleb128 0x3
+ 997 0374 91       		.byte	0x91
+ 998 0375 B27F     		.sleb128 -78
+ 999 0377 00       		.byte	0
+ 1000 0378 11       		.uleb128 0x11
+ 1001 0379 82000000 		.4byte	.LVL19
+ 1002 037d BF060000 		.4byte	0x6bf
+ 1003 0381 96030000 		.4byte	0x396
+ 1004 0385 12       		.uleb128 0x12
+ 1005 0386 01       		.uleb128 0x1
+ 1006 0387 50       		.byte	0x50
+ 1007 0388 03       		.uleb128 0x3
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 25
+
+
+ 1008 0389 91       		.byte	0x91
+ 1009 038a B47F     		.sleb128 -76
+ 1010 038c 12       		.uleb128 0x12
+ 1011 038d 01       		.uleb128 0x1
+ 1012 038e 51       		.byte	0x51
+ 1013 038f 05       		.uleb128 0x5
+ 1014 0390 03       		.byte	0x3
+ 1015 0391 6C000000 		.4byte	.LC3
+ 1016 0395 00       		.byte	0
+ 1017 0396 11       		.uleb128 0x11
+ 1018 0397 88000000 		.4byte	.LVL20
+ 1019 039b CA060000 		.4byte	0x6ca
+ 1020 039f AB030000 		.4byte	0x3ab
+ 1021 03a3 12       		.uleb128 0x12
+ 1022 03a4 01       		.uleb128 0x1
+ 1023 03a5 50       		.byte	0x50
+ 1024 03a6 03       		.uleb128 0x3
+ 1025 03a7 91       		.byte	0x91
+ 1026 03a8 B47F     		.sleb128 -76
+ 1027 03aa 00       		.byte	0
+ 1028 03ab 11       		.uleb128 0x11
+ 1029 03ac 90000000 		.4byte	.LVL23
+ 1030 03b0 CA060000 		.4byte	0x6ca
+ 1031 03b4 C2030000 		.4byte	0x3c2
+ 1032 03b8 12       		.uleb128 0x12
+ 1033 03b9 01       		.uleb128 0x1
+ 1034 03ba 50       		.byte	0x50
+ 1035 03bb 05       		.uleb128 0x5
+ 1036 03bc 03       		.byte	0x3
+ 1037 03bd 88000000 		.4byte	.LC4
+ 1038 03c1 00       		.byte	0
+ 1039 03c2 11       		.uleb128 0x11
+ 1040 03c3 9C000000 		.4byte	.LVL24
+ 1041 03c7 0C070000 		.4byte	0x70c
+ 1042 03cb E2030000 		.4byte	0x3e2
+ 1043 03cf 12       		.uleb128 0x12
+ 1044 03d0 01       		.uleb128 0x1
+ 1045 03d1 50       		.byte	0x50
+ 1046 03d2 01       		.uleb128 0x1
+ 1047 03d3 48       		.byte	0x48
+ 1048 03d4 12       		.uleb128 0x12
+ 1049 03d5 01       		.uleb128 0x1
+ 1050 03d6 51       		.byte	0x51
+ 1051 03d7 02       		.uleb128 0x2
+ 1052 03d8 08       		.byte	0x8
+ 1053 03d9 20       		.byte	0x20
+ 1054 03da 12       		.uleb128 0x12
+ 1055 03db 01       		.uleb128 0x1
+ 1056 03dc 52       		.byte	0x52
+ 1057 03dd 03       		.uleb128 0x3
+ 1058 03de 91       		.byte	0x91
+ 1059 03df B17F     		.sleb128 -79
+ 1060 03e1 00       		.byte	0
+ 1061 03e2 11       		.uleb128 0x11
+ 1062 03e3 AA000000 		.4byte	.LVL26
+ 1063 03e7 BF060000 		.4byte	0x6bf
+ 1064 03eb 00040000 		.4byte	0x400
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 26
+
+
+ 1065 03ef 12       		.uleb128 0x12
+ 1066 03f0 01       		.uleb128 0x1
+ 1067 03f1 50       		.byte	0x50
+ 1068 03f2 03       		.uleb128 0x3
+ 1069 03f3 91       		.byte	0x91
+ 1070 03f4 B47F     		.sleb128 -76
+ 1071 03f6 12       		.uleb128 0x12
+ 1072 03f7 01       		.uleb128 0x1
+ 1073 03f8 51       		.byte	0x51
+ 1074 03f9 05       		.uleb128 0x5
+ 1075 03fa 03       		.byte	0x3
+ 1076 03fb C4000000 		.4byte	.LC5
+ 1077 03ff 00       		.byte	0
+ 1078 0400 11       		.uleb128 0x11
+ 1079 0401 B0000000 		.4byte	.LVL27
+ 1080 0405 CA060000 		.4byte	0x6ca
+ 1081 0409 15040000 		.4byte	0x415
+ 1082 040d 12       		.uleb128 0x12
+ 1083 040e 01       		.uleb128 0x1
+ 1084 040f 50       		.byte	0x50
+ 1085 0410 03       		.uleb128 0x3
+ 1086 0411 91       		.byte	0x91
+ 1087 0412 B47F     		.sleb128 -76
+ 1088 0414 00       		.byte	0
+ 1089 0415 11       		.uleb128 0x11
+ 1090 0416 B8000000 		.4byte	.LVL30
+ 1091 041a CA060000 		.4byte	0x6ca
+ 1092 041e 2C040000 		.4byte	0x42c
+ 1093 0422 12       		.uleb128 0x12
+ 1094 0423 01       		.uleb128 0x1
+ 1095 0424 50       		.byte	0x50
+ 1096 0425 05       		.uleb128 0x5
+ 1097 0426 03       		.byte	0x3
+ 1098 0427 E4000000 		.4byte	.LC6
+ 1099 042b 00       		.byte	0
+ 1100 042c 11       		.uleb128 0x11
+ 1101 042d CE000000 		.4byte	.LVL31
+ 1102 0431 17070000 		.4byte	0x717
+ 1103 0435 4B040000 		.4byte	0x44b
+ 1104 0439 12       		.uleb128 0x12
+ 1105 043a 01       		.uleb128 0x1
+ 1106 043b 50       		.byte	0x50
+ 1107 043c 01       		.uleb128 0x1
+ 1108 043d 48       		.byte	0x48
+ 1109 043e 12       		.uleb128 0x12
+ 1110 043f 01       		.uleb128 0x1
+ 1111 0440 51       		.byte	0x51
+ 1112 0441 02       		.uleb128 0x2
+ 1113 0442 08       		.byte	0x8
+ 1114 0443 20       		.byte	0x20
+ 1115 0444 12       		.uleb128 0x12
+ 1116 0445 01       		.uleb128 0x1
+ 1117 0446 52       		.byte	0x52
+ 1118 0447 02       		.uleb128 0x2
+ 1119 0448 08       		.byte	0x8
+ 1120 0449 57       		.byte	0x57
+ 1121 044a 00       		.byte	0
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 27
+
+
+ 1122 044b 11       		.uleb128 0x11
+ 1123 044c DC000000 		.4byte	.LVL33
+ 1124 0450 BF060000 		.4byte	0x6bf
+ 1125 0454 69040000 		.4byte	0x469
+ 1126 0458 12       		.uleb128 0x12
+ 1127 0459 01       		.uleb128 0x1
+ 1128 045a 50       		.byte	0x50
+ 1129 045b 03       		.uleb128 0x3
+ 1130 045c 91       		.byte	0x91
+ 1131 045d B47F     		.sleb128 -76
+ 1132 045f 12       		.uleb128 0x12
+ 1133 0460 01       		.uleb128 0x1
+ 1134 0461 51       		.byte	0x51
+ 1135 0462 05       		.uleb128 0x5
+ 1136 0463 03       		.byte	0x3
+ 1137 0464 20010000 		.4byte	.LC7
+ 1138 0468 00       		.byte	0
+ 1139 0469 11       		.uleb128 0x11
+ 1140 046a E2000000 		.4byte	.LVL34
+ 1141 046e CA060000 		.4byte	0x6ca
+ 1142 0472 7E040000 		.4byte	0x47e
+ 1143 0476 12       		.uleb128 0x12
+ 1144 0477 01       		.uleb128 0x1
+ 1145 0478 50       		.byte	0x50
+ 1146 0479 03       		.uleb128 0x3
+ 1147 047a 91       		.byte	0x91
+ 1148 047b B47F     		.sleb128 -76
+ 1149 047d 00       		.byte	0
+ 1150 047e 11       		.uleb128 0x11
+ 1151 047f EA000000 		.4byte	.LVL37
+ 1152 0483 CA060000 		.4byte	0x6ca
+ 1153 0487 95040000 		.4byte	0x495
+ 1154 048b 12       		.uleb128 0x12
+ 1155 048c 01       		.uleb128 0x1
+ 1156 048d 50       		.byte	0x50
+ 1157 048e 05       		.uleb128 0x5
+ 1158 048f 03       		.byte	0x3
+ 1159 0490 58010000 		.4byte	.LC8
+ 1160 0494 00       		.byte	0
+ 1161 0495 11       		.uleb128 0x11
+ 1162 0496 F6000000 		.4byte	.LVL38
+ 1163 049a 0C070000 		.4byte	0x70c
+ 1164 049e B5040000 		.4byte	0x4b5
+ 1165 04a2 12       		.uleb128 0x12
+ 1166 04a3 01       		.uleb128 0x1
+ 1167 04a4 50       		.byte	0x50
+ 1168 04a5 01       		.uleb128 0x1
+ 1169 04a6 48       		.byte	0x48
+ 1170 04a7 12       		.uleb128 0x12
+ 1171 04a8 01       		.uleb128 0x1
+ 1172 04a9 51       		.byte	0x51
+ 1173 04aa 02       		.uleb128 0x2
+ 1174 04ab 08       		.byte	0x8
+ 1175 04ac 20       		.byte	0x20
+ 1176 04ad 12       		.uleb128 0x12
+ 1177 04ae 01       		.uleb128 0x1
+ 1178 04af 52       		.byte	0x52
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 28
+
+
+ 1179 04b0 03       		.uleb128 0x3
+ 1180 04b1 91       		.byte	0x91
+ 1181 04b2 B17F     		.sleb128 -79
+ 1182 04b4 00       		.byte	0
+ 1183 04b5 11       		.uleb128 0x11
+ 1184 04b6 04010000 		.4byte	.LVL40
+ 1185 04ba BF060000 		.4byte	0x6bf
+ 1186 04be D3040000 		.4byte	0x4d3
+ 1187 04c2 12       		.uleb128 0x12
+ 1188 04c3 01       		.uleb128 0x1
+ 1189 04c4 50       		.byte	0x50
+ 1190 04c5 03       		.uleb128 0x3
+ 1191 04c6 91       		.byte	0x91
+ 1192 04c7 B47F     		.sleb128 -76
+ 1193 04c9 12       		.uleb128 0x12
+ 1194 04ca 01       		.uleb128 0x1
+ 1195 04cb 51       		.byte	0x51
+ 1196 04cc 05       		.uleb128 0x5
+ 1197 04cd 03       		.byte	0x3
+ 1198 04ce 94010000 		.4byte	.LC9
+ 1199 04d2 00       		.byte	0
+ 1200 04d3 11       		.uleb128 0x11
+ 1201 04d4 0A010000 		.4byte	.LVL41
+ 1202 04d8 CA060000 		.4byte	0x6ca
+ 1203 04dc E8040000 		.4byte	0x4e8
+ 1204 04e0 12       		.uleb128 0x12
+ 1205 04e1 01       		.uleb128 0x1
+ 1206 04e2 50       		.byte	0x50
+ 1207 04e3 03       		.uleb128 0x3
+ 1208 04e4 91       		.byte	0x91
+ 1209 04e5 B47F     		.sleb128 -76
+ 1210 04e7 00       		.byte	0
+ 1211 04e8 11       		.uleb128 0x11
+ 1212 04e9 12010000 		.4byte	.LVL44
+ 1213 04ed CA060000 		.4byte	0x6ca
+ 1214 04f1 FF040000 		.4byte	0x4ff
+ 1215 04f5 12       		.uleb128 0x12
+ 1216 04f6 01       		.uleb128 0x1
+ 1217 04f7 50       		.byte	0x50
+ 1218 04f8 05       		.uleb128 0x5
+ 1219 04f9 03       		.byte	0x3
+ 1220 04fa E4000000 		.4byte	.LC6
+ 1221 04fe 00       		.byte	0
+ 1222 04ff 11       		.uleb128 0x11
+ 1223 0500 1C010000 		.4byte	.LVL45
+ 1224 0504 0C070000 		.4byte	0x70c
+ 1225 0508 1F050000 		.4byte	0x51f
+ 1226 050c 12       		.uleb128 0x12
+ 1227 050d 01       		.uleb128 0x1
+ 1228 050e 50       		.byte	0x50
+ 1229 050f 01       		.uleb128 0x1
+ 1230 0510 48       		.byte	0x48
+ 1231 0511 12       		.uleb128 0x12
+ 1232 0512 01       		.uleb128 0x1
+ 1233 0513 51       		.byte	0x51
+ 1234 0514 02       		.uleb128 0x2
+ 1235 0515 08       		.byte	0x8
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 29
+
+
+ 1236 0516 23       		.byte	0x23
+ 1237 0517 12       		.uleb128 0x12
+ 1238 0518 01       		.uleb128 0x1
+ 1239 0519 52       		.byte	0x52
+ 1240 051a 03       		.uleb128 0x3
+ 1241 051b 91       		.byte	0x91
+ 1242 051c B07F     		.sleb128 -80
+ 1243 051e 00       		.byte	0
+ 1244 051f 11       		.uleb128 0x11
+ 1245 0520 2A010000 		.4byte	.LVL47
+ 1246 0524 BF060000 		.4byte	0x6bf
+ 1247 0528 3D050000 		.4byte	0x53d
+ 1248 052c 12       		.uleb128 0x12
+ 1249 052d 01       		.uleb128 0x1
+ 1250 052e 50       		.byte	0x50
+ 1251 052f 03       		.uleb128 0x3
+ 1252 0530 91       		.byte	0x91
+ 1253 0531 B47F     		.sleb128 -76
+ 1254 0533 12       		.uleb128 0x12
+ 1255 0534 01       		.uleb128 0x1
+ 1256 0535 51       		.byte	0x51
+ 1257 0536 05       		.uleb128 0x5
+ 1258 0537 03       		.byte	0x3
+ 1259 0538 CC010000 		.4byte	.LC10
+ 1260 053c 00       		.byte	0
+ 1261 053d 11       		.uleb128 0x11
+ 1262 053e 30010000 		.4byte	.LVL48
+ 1263 0542 CA060000 		.4byte	0x6ca
+ 1264 0546 52050000 		.4byte	0x552
+ 1265 054a 12       		.uleb128 0x12
+ 1266 054b 01       		.uleb128 0x1
+ 1267 054c 50       		.byte	0x50
+ 1268 054d 03       		.uleb128 0x3
+ 1269 054e 91       		.byte	0x91
+ 1270 054f B47F     		.sleb128 -76
+ 1271 0551 00       		.byte	0
+ 1272 0552 11       		.uleb128 0x11
+ 1273 0553 38010000 		.4byte	.LVL51
+ 1274 0557 CA060000 		.4byte	0x6ca
+ 1275 055b 69050000 		.4byte	0x569
+ 1276 055f 12       		.uleb128 0x12
+ 1277 0560 01       		.uleb128 0x1
+ 1278 0561 50       		.byte	0x50
+ 1279 0562 05       		.uleb128 0x5
+ 1280 0563 03       		.byte	0x3
+ 1281 0564 EC010000 		.4byte	.LC11
+ 1282 0568 00       		.byte	0
+ 1283 0569 11       		.uleb128 0x11
+ 1284 056a 4E010000 		.4byte	.LVL52
+ 1285 056e 17070000 		.4byte	0x717
+ 1286 0572 87050000 		.4byte	0x587
+ 1287 0576 12       		.uleb128 0x12
+ 1288 0577 01       		.uleb128 0x1
+ 1289 0578 50       		.byte	0x50
+ 1290 0579 01       		.uleb128 0x1
+ 1291 057a 48       		.byte	0x48
+ 1292 057b 12       		.uleb128 0x12
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 30
+
+
+ 1293 057c 01       		.uleb128 0x1
+ 1294 057d 51       		.byte	0x51
+ 1295 057e 02       		.uleb128 0x2
+ 1296 057f 08       		.byte	0x8
+ 1297 0580 23       		.byte	0x23
+ 1298 0581 12       		.uleb128 0x12
+ 1299 0582 01       		.uleb128 0x1
+ 1300 0583 52       		.byte	0x52
+ 1301 0584 01       		.uleb128 0x1
+ 1302 0585 48       		.byte	0x48
+ 1303 0586 00       		.byte	0
+ 1304 0587 11       		.uleb128 0x11
+ 1305 0588 5C010000 		.4byte	.LVL54
+ 1306 058c BF060000 		.4byte	0x6bf
+ 1307 0590 A5050000 		.4byte	0x5a5
+ 1308 0594 12       		.uleb128 0x12
+ 1309 0595 01       		.uleb128 0x1
+ 1310 0596 50       		.byte	0x50
+ 1311 0597 03       		.uleb128 0x3
+ 1312 0598 91       		.byte	0x91
+ 1313 0599 B47F     		.sleb128 -76
+ 1314 059b 12       		.uleb128 0x12
+ 1315 059c 01       		.uleb128 0x1
+ 1316 059d 51       		.byte	0x51
+ 1317 059e 05       		.uleb128 0x5
+ 1318 059f 03       		.byte	0x3
+ 1319 05a0 28020000 		.4byte	.LC12
+ 1320 05a4 00       		.byte	0
+ 1321 05a5 11       		.uleb128 0x11
+ 1322 05a6 62010000 		.4byte	.LVL55
+ 1323 05aa CA060000 		.4byte	0x6ca
+ 1324 05ae BA050000 		.4byte	0x5ba
+ 1325 05b2 12       		.uleb128 0x12
+ 1326 05b3 01       		.uleb128 0x1
+ 1327 05b4 50       		.byte	0x50
+ 1328 05b5 03       		.uleb128 0x3
+ 1329 05b6 91       		.byte	0x91
+ 1330 05b7 B47F     		.sleb128 -76
+ 1331 05b9 00       		.byte	0
+ 1332 05ba 11       		.uleb128 0x11
+ 1333 05bb 6A010000 		.4byte	.LVL58
+ 1334 05bf CA060000 		.4byte	0x6ca
+ 1335 05c3 D1050000 		.4byte	0x5d1
+ 1336 05c7 12       		.uleb128 0x12
+ 1337 05c8 01       		.uleb128 0x1
+ 1338 05c9 50       		.byte	0x50
+ 1339 05ca 05       		.uleb128 0x5
+ 1340 05cb 03       		.byte	0x3
+ 1341 05cc 58010000 		.4byte	.LC8
+ 1342 05d0 00       		.byte	0
+ 1343 05d1 11       		.uleb128 0x11
+ 1344 05d2 74010000 		.4byte	.LVL59
+ 1345 05d6 0C070000 		.4byte	0x70c
+ 1346 05da F1050000 		.4byte	0x5f1
+ 1347 05de 12       		.uleb128 0x12
+ 1348 05df 01       		.uleb128 0x1
+ 1349 05e0 50       		.byte	0x50
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 31
+
+
+ 1350 05e1 01       		.uleb128 0x1
+ 1351 05e2 48       		.byte	0x48
+ 1352 05e3 12       		.uleb128 0x12
+ 1353 05e4 01       		.uleb128 0x1
+ 1354 05e5 51       		.byte	0x51
+ 1355 05e6 02       		.uleb128 0x2
+ 1356 05e7 08       		.byte	0x8
+ 1357 05e8 23       		.byte	0x23
+ 1358 05e9 12       		.uleb128 0x12
+ 1359 05ea 01       		.uleb128 0x1
+ 1360 05eb 52       		.byte	0x52
+ 1361 05ec 03       		.uleb128 0x3
+ 1362 05ed 91       		.byte	0x91
+ 1363 05ee B07F     		.sleb128 -80
+ 1364 05f0 00       		.byte	0
+ 1365 05f1 11       		.uleb128 0x11
+ 1366 05f2 82010000 		.4byte	.LVL61
+ 1367 05f6 BF060000 		.4byte	0x6bf
+ 1368 05fa 0F060000 		.4byte	0x60f
+ 1369 05fe 12       		.uleb128 0x12
+ 1370 05ff 01       		.uleb128 0x1
+ 1371 0600 50       		.byte	0x50
+ 1372 0601 03       		.uleb128 0x3
+ 1373 0602 91       		.byte	0x91
+ 1374 0603 B47F     		.sleb128 -76
+ 1375 0605 12       		.uleb128 0x12
+ 1376 0606 01       		.uleb128 0x1
+ 1377 0607 51       		.byte	0x51
+ 1378 0608 05       		.uleb128 0x5
+ 1379 0609 03       		.byte	0x3
+ 1380 060a 60020000 		.4byte	.LC13
+ 1381 060e 00       		.byte	0
+ 1382 060f 11       		.uleb128 0x11
+ 1383 0610 88010000 		.4byte	.LVL62
+ 1384 0614 CA060000 		.4byte	0x6ca
+ 1385 0618 24060000 		.4byte	0x624
+ 1386 061c 12       		.uleb128 0x12
+ 1387 061d 01       		.uleb128 0x1
+ 1388 061e 50       		.byte	0x50
+ 1389 061f 03       		.uleb128 0x3
+ 1390 0620 91       		.byte	0x91
+ 1391 0621 B47F     		.sleb128 -76
+ 1392 0623 00       		.byte	0
+ 1393 0624 11       		.uleb128 0x11
+ 1394 0625 90010000 		.4byte	.LVL65
+ 1395 0629 CA060000 		.4byte	0x6ca
+ 1396 062d 3B060000 		.4byte	0x63b
+ 1397 0631 12       		.uleb128 0x12
+ 1398 0632 01       		.uleb128 0x1
+ 1399 0633 50       		.byte	0x50
+ 1400 0634 05       		.uleb128 0x5
+ 1401 0635 03       		.byte	0x3
+ 1402 0636 EC010000 		.4byte	.LC11
+ 1403 063a 00       		.byte	0
+ 1404 063b 13       		.uleb128 0x13
+ 1405 063c 8A020000 		.4byte	.LVL95
+ 1406 0640 22070000 		.4byte	0x722
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 32
+
+
+ 1407 0644 12       		.uleb128 0x12
+ 1408 0645 01       		.uleb128 0x1
+ 1409 0646 50       		.byte	0x50
+ 1410 0647 02       		.uleb128 0x2
+ 1411 0648 7D       		.byte	0x7d
+ 1412 0649 00       		.sleb128 0
+ 1413 064a 12       		.uleb128 0x12
+ 1414 064b 01       		.uleb128 0x1
+ 1415 064c 51       		.byte	0x51
+ 1416 064d 01       		.uleb128 0x1
+ 1417 064e 3E       		.byte	0x3e
+ 1418 064f 00       		.byte	0
+ 1419 0650 00       		.byte	0
+ 1420 0651 15       		.uleb128 0x15
+ 1421 0652 EB000000 		.4byte	0xeb
+ 1422 0656 61060000 		.4byte	0x661
+ 1423 065a 16       		.uleb128 0x16
+ 1424 065b 22010000 		.4byte	0x122
+ 1425 065f 31       		.byte	0x31
+ 1426 0660 00       		.byte	0
+ 1427 0661 15       		.uleb128 0x15
+ 1428 0662 8C000000 		.4byte	0x8c
+ 1429 0666 71060000 		.4byte	0x671
+ 1430 066a 16       		.uleb128 0x16
+ 1431 066b 22010000 		.4byte	0x122
+ 1432 066f 0D       		.byte	0xd
+ 1433 0670 00       		.byte	0
+ 1434 0671 17       		.uleb128 0x17
+ 1435 0672 ED020000 		.4byte	.LASF45
+ 1436 0676 06       		.byte	0x6
+ 1437 0677 1207     		.2byte	0x712
+ 1438 0679 7D060000 		.4byte	0x67d
+ 1439 067d 06       		.uleb128 0x6
+ 1440 067e A2000000 		.4byte	0xa2
+ 1441 0682 15       		.uleb128 0x15
+ 1442 0683 8C000000 		.4byte	0x8c
+ 1443 0687 92060000 		.4byte	0x692
+ 1444 068b 16       		.uleb128 0x16
+ 1445 068c 22010000 		.4byte	0x122
+ 1446 0690 05       		.byte	0x5
+ 1447 0691 00       		.byte	0
+ 1448 0692 18       		.uleb128 0x18
+ 1449 0693 4D000000 		.4byte	.LASF46
+ 1450 0697 07       		.byte	0x7
+ 1451 0698 13       		.byte	0x13
+ 1452 0699 82060000 		.4byte	0x682
+ 1453 069d 05       		.uleb128 0x5
+ 1454 069e 03       		.byte	0x3
+ 1455 069f 00000000 		.4byte	AccData
+ 1456 06a3 18       		.uleb128 0x18
+ 1457 06a4 50010000 		.4byte	.LASF47
+ 1458 06a8 07       		.byte	0x7
+ 1459 06a9 14       		.byte	0x14
+ 1460 06aa F2000000 		.4byte	0xf2
+ 1461 06ae 05       		.uleb128 0x5
+ 1462 06af 03       		.byte	0x3
+ 1463 06b0 00000000 		.4byte	PacketReadyFlag
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 33
+
+
+ 1464 06b4 19       		.uleb128 0x19
+ 1465 06b5 83000000 		.4byte	.LASF48
+ 1466 06b9 83000000 		.4byte	.LASF48
+ 1467 06bd 08       		.byte	0x8
+ 1468 06be 5D       		.byte	0x5d
+ 1469 06bf 19       		.uleb128 0x19
+ 1470 06c0 83010000 		.4byte	.LASF49
+ 1471 06c4 83010000 		.4byte	.LASF49
+ 1472 06c8 09       		.byte	0x9
+ 1473 06c9 E7       		.byte	0xe7
+ 1474 06ca 19       		.uleb128 0x19
+ 1475 06cb 0A000000 		.4byte	.LASF50
+ 1476 06cf 0A000000 		.4byte	.LASF50
+ 1477 06d3 0A       		.byte	0xa
+ 1478 06d4 8B       		.byte	0x8b
+ 1479 06d5 19       		.uleb128 0x19
+ 1480 06d6 39020000 		.4byte	.LASF51
+ 1481 06da 39020000 		.4byte	.LASF51
+ 1482 06de 08       		.byte	0x8
+ 1483 06df 17       		.byte	0x17
+ 1484 06e0 19       		.uleb128 0x19
+ 1485 06e1 BA020000 		.4byte	.LASF52
+ 1486 06e5 BA020000 		.4byte	.LASF52
+ 1487 06e9 0A       		.byte	0xa
+ 1488 06ea 54       		.byte	0x54
+ 1489 06eb 19       		.uleb128 0x19
+ 1490 06ec 01010000 		.4byte	.LASF53
+ 1491 06f0 01010000 		.4byte	.LASF53
+ 1492 06f4 0B       		.byte	0xb
+ 1493 06f5 5A       		.byte	0x5a
+ 1494 06f6 19       		.uleb128 0x19
+ 1495 06f7 20010000 		.4byte	.LASF54
+ 1496 06fb 20010000 		.4byte	.LASF54
+ 1497 06ff 0C       		.byte	0xc
+ 1498 0700 18       		.byte	0x18
+ 1499 0701 19       		.uleb128 0x19
+ 1500 0702 88030000 		.4byte	.LASF55
+ 1501 0706 88030000 		.4byte	.LASF55
+ 1502 070a 0D       		.byte	0xd
+ 1503 070b 76       		.byte	0x76
+ 1504 070c 19       		.uleb128 0x19
+ 1505 070d 5E000000 		.4byte	.LASF56
+ 1506 0711 5E000000 		.4byte	.LASF56
+ 1507 0715 08       		.byte	0x8
+ 1508 0716 28       		.byte	0x28
+ 1509 0717 19       		.uleb128 0x19
+ 1510 0718 AE010000 		.4byte	.LASF57
+ 1511 071c AE010000 		.4byte	.LASF57
+ 1512 0720 08       		.byte	0x8
+ 1513 0721 43       		.byte	0x43
+ 1514 0722 19       		.uleb128 0x19
+ 1515 0723 D9020000 		.4byte	.LASF58
+ 1516 0727 D9020000 		.4byte	.LASF58
+ 1517 072b 0A       		.byte	0xa
+ 1518 072c 8C       		.byte	0x8c
+ 1519 072d 00       		.byte	0
+ 1520              		.section	.debug_abbrev,"",%progbits
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 34
+
+
+ 1521              	.Ldebug_abbrev0:
+ 1522 0000 01       		.uleb128 0x1
+ 1523 0001 11       		.uleb128 0x11
+ 1524 0002 01       		.byte	0x1
+ 1525 0003 25       		.uleb128 0x25
+ 1526 0004 0E       		.uleb128 0xe
+ 1527 0005 13       		.uleb128 0x13
+ 1528 0006 0B       		.uleb128 0xb
+ 1529 0007 03       		.uleb128 0x3
+ 1530 0008 0E       		.uleb128 0xe
+ 1531 0009 1B       		.uleb128 0x1b
+ 1532 000a 0E       		.uleb128 0xe
+ 1533 000b 55       		.uleb128 0x55
+ 1534 000c 17       		.uleb128 0x17
+ 1535 000d 11       		.uleb128 0x11
+ 1536 000e 01       		.uleb128 0x1
+ 1537 000f 10       		.uleb128 0x10
+ 1538 0010 17       		.uleb128 0x17
+ 1539 0011 00       		.byte	0
+ 1540 0012 00       		.byte	0
+ 1541 0013 02       		.uleb128 0x2
+ 1542 0014 24       		.uleb128 0x24
+ 1543 0015 00       		.byte	0
+ 1544 0016 0B       		.uleb128 0xb
+ 1545 0017 0B       		.uleb128 0xb
+ 1546 0018 3E       		.uleb128 0x3e
+ 1547 0019 0B       		.uleb128 0xb
+ 1548 001a 03       		.uleb128 0x3
+ 1549 001b 0E       		.uleb128 0xe
+ 1550 001c 00       		.byte	0
+ 1551 001d 00       		.byte	0
+ 1552 001e 03       		.uleb128 0x3
+ 1553 001f 16       		.uleb128 0x16
+ 1554 0020 00       		.byte	0
+ 1555 0021 03       		.uleb128 0x3
+ 1556 0022 0E       		.uleb128 0xe
+ 1557 0023 3A       		.uleb128 0x3a
+ 1558 0024 0B       		.uleb128 0xb
+ 1559 0025 3B       		.uleb128 0x3b
+ 1560 0026 0B       		.uleb128 0xb
+ 1561 0027 49       		.uleb128 0x49
+ 1562 0028 13       		.uleb128 0x13
+ 1563 0029 00       		.byte	0
+ 1564 002a 00       		.byte	0
+ 1565 002b 04       		.uleb128 0x4
+ 1566 002c 24       		.uleb128 0x24
+ 1567 002d 00       		.byte	0
+ 1568 002e 0B       		.uleb128 0xb
+ 1569 002f 0B       		.uleb128 0xb
+ 1570 0030 3E       		.uleb128 0x3e
+ 1571 0031 0B       		.uleb128 0xb
+ 1572 0032 03       		.uleb128 0x3
+ 1573 0033 08       		.uleb128 0x8
+ 1574 0034 00       		.byte	0
+ 1575 0035 00       		.byte	0
+ 1576 0036 05       		.uleb128 0x5
+ 1577 0037 16       		.uleb128 0x16
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 35
+
+
+ 1578 0038 00       		.byte	0
+ 1579 0039 03       		.uleb128 0x3
+ 1580 003a 0E       		.uleb128 0xe
+ 1581 003b 3A       		.uleb128 0x3a
+ 1582 003c 0B       		.uleb128 0xb
+ 1583 003d 3B       		.uleb128 0x3b
+ 1584 003e 05       		.uleb128 0x5
+ 1585 003f 49       		.uleb128 0x49
+ 1586 0040 13       		.uleb128 0x13
+ 1587 0041 00       		.byte	0
+ 1588 0042 00       		.byte	0
+ 1589 0043 06       		.uleb128 0x6
+ 1590 0044 35       		.uleb128 0x35
+ 1591 0045 00       		.byte	0
+ 1592 0046 49       		.uleb128 0x49
+ 1593 0047 13       		.uleb128 0x13
+ 1594 0048 00       		.byte	0
+ 1595 0049 00       		.byte	0
+ 1596 004a 07       		.uleb128 0x7
+ 1597 004b 04       		.uleb128 0x4
+ 1598 004c 01       		.byte	0x1
+ 1599 004d 0B       		.uleb128 0xb
+ 1600 004e 0B       		.uleb128 0xb
+ 1601 004f 49       		.uleb128 0x49
+ 1602 0050 13       		.uleb128 0x13
+ 1603 0051 3A       		.uleb128 0x3a
+ 1604 0052 0B       		.uleb128 0xb
+ 1605 0053 3B       		.uleb128 0x3b
+ 1606 0054 0B       		.uleb128 0xb
+ 1607 0055 01       		.uleb128 0x1
+ 1608 0056 13       		.uleb128 0x13
+ 1609 0057 00       		.byte	0
+ 1610 0058 00       		.byte	0
+ 1611 0059 08       		.uleb128 0x8
+ 1612 005a 28       		.uleb128 0x28
+ 1613 005b 00       		.byte	0
+ 1614 005c 03       		.uleb128 0x3
+ 1615 005d 0E       		.uleb128 0xe
+ 1616 005e 1C       		.uleb128 0x1c
+ 1617 005f 0B       		.uleb128 0xb
+ 1618 0060 00       		.byte	0
+ 1619 0061 00       		.byte	0
+ 1620 0062 09       		.uleb128 0x9
+ 1621 0063 2E       		.uleb128 0x2e
+ 1622 0064 01       		.byte	0x1
+ 1623 0065 3F       		.uleb128 0x3f
+ 1624 0066 19       		.uleb128 0x19
+ 1625 0067 03       		.uleb128 0x3
+ 1626 0068 0E       		.uleb128 0xe
+ 1627 0069 3A       		.uleb128 0x3a
+ 1628 006a 0B       		.uleb128 0xb
+ 1629 006b 3B       		.uleb128 0x3b
+ 1630 006c 0B       		.uleb128 0xb
+ 1631 006d 27       		.uleb128 0x27
+ 1632 006e 19       		.uleb128 0x19
+ 1633 006f 49       		.uleb128 0x49
+ 1634 0070 13       		.uleb128 0x13
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 36
+
+
+ 1635 0071 8701     		.uleb128 0x87
+ 1636 0073 19       		.uleb128 0x19
+ 1637 0074 11       		.uleb128 0x11
+ 1638 0075 01       		.uleb128 0x1
+ 1639 0076 12       		.uleb128 0x12
+ 1640 0077 06       		.uleb128 0x6
+ 1641 0078 40       		.uleb128 0x40
+ 1642 0079 18       		.uleb128 0x18
+ 1643 007a 9642     		.uleb128 0x2116
+ 1644 007c 19       		.uleb128 0x19
+ 1645 007d 01       		.uleb128 0x1
+ 1646 007e 13       		.uleb128 0x13
+ 1647 007f 00       		.byte	0
+ 1648 0080 00       		.byte	0
+ 1649 0081 0A       		.uleb128 0xa
+ 1650 0082 34       		.uleb128 0x34
+ 1651 0083 00       		.byte	0
+ 1652 0084 03       		.uleb128 0x3
+ 1653 0085 0E       		.uleb128 0xe
+ 1654 0086 3A       		.uleb128 0x3a
+ 1655 0087 0B       		.uleb128 0xb
+ 1656 0088 3B       		.uleb128 0x3b
+ 1657 0089 0B       		.uleb128 0xb
+ 1658 008a 49       		.uleb128 0x49
+ 1659 008b 13       		.uleb128 0x13
+ 1660 008c 02       		.uleb128 0x2
+ 1661 008d 18       		.uleb128 0x18
+ 1662 008e 00       		.byte	0
+ 1663 008f 00       		.byte	0
+ 1664 0090 0B       		.uleb128 0xb
+ 1665 0091 34       		.uleb128 0x34
+ 1666 0092 00       		.byte	0
+ 1667 0093 03       		.uleb128 0x3
+ 1668 0094 0E       		.uleb128 0xe
+ 1669 0095 3A       		.uleb128 0x3a
+ 1670 0096 0B       		.uleb128 0xb
+ 1671 0097 3B       		.uleb128 0x3b
+ 1672 0098 0B       		.uleb128 0xb
+ 1673 0099 49       		.uleb128 0x49
+ 1674 009a 13       		.uleb128 0x13
+ 1675 009b 02       		.uleb128 0x2
+ 1676 009c 17       		.uleb128 0x17
+ 1677 009d 00       		.byte	0
+ 1678 009e 00       		.byte	0
+ 1679 009f 0C       		.uleb128 0xc
+ 1680 00a0 34       		.uleb128 0x34
+ 1681 00a1 00       		.byte	0
+ 1682 00a2 03       		.uleb128 0x3
+ 1683 00a3 0E       		.uleb128 0xe
+ 1684 00a4 3A       		.uleb128 0x3a
+ 1685 00a5 0B       		.uleb128 0xb
+ 1686 00a6 3B       		.uleb128 0x3b
+ 1687 00a7 05       		.uleb128 0x5
+ 1688 00a8 49       		.uleb128 0x49
+ 1689 00a9 13       		.uleb128 0x13
+ 1690 00aa 1C       		.uleb128 0x1c
+ 1691 00ab 0D       		.uleb128 0xd
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 37
+
+
+ 1692 00ac 00       		.byte	0
+ 1693 00ad 00       		.byte	0
+ 1694 00ae 0D       		.uleb128 0xd
+ 1695 00af 34       		.uleb128 0x34
+ 1696 00b0 00       		.byte	0
+ 1697 00b1 03       		.uleb128 0x3
+ 1698 00b2 0E       		.uleb128 0xe
+ 1699 00b3 3A       		.uleb128 0x3a
+ 1700 00b4 0B       		.uleb128 0xb
+ 1701 00b5 3B       		.uleb128 0x3b
+ 1702 00b6 05       		.uleb128 0x5
+ 1703 00b7 49       		.uleb128 0x49
+ 1704 00b8 13       		.uleb128 0x13
+ 1705 00b9 02       		.uleb128 0x2
+ 1706 00ba 18       		.uleb128 0x18
+ 1707 00bb 00       		.byte	0
+ 1708 00bc 00       		.byte	0
+ 1709 00bd 0E       		.uleb128 0xe
+ 1710 00be 34       		.uleb128 0x34
+ 1711 00bf 00       		.byte	0
+ 1712 00c0 03       		.uleb128 0x3
+ 1713 00c1 0E       		.uleb128 0xe
+ 1714 00c2 3A       		.uleb128 0x3a
+ 1715 00c3 0B       		.uleb128 0xb
+ 1716 00c4 3B       		.uleb128 0x3b
+ 1717 00c5 05       		.uleb128 0x5
+ 1718 00c6 49       		.uleb128 0x49
+ 1719 00c7 13       		.uleb128 0x13
+ 1720 00c8 02       		.uleb128 0x2
+ 1721 00c9 17       		.uleb128 0x17
+ 1722 00ca 00       		.byte	0
+ 1723 00cb 00       		.byte	0
+ 1724 00cc 0F       		.uleb128 0xf
+ 1725 00cd 0B       		.uleb128 0xb
+ 1726 00ce 01       		.byte	0x1
+ 1727 00cf 11       		.uleb128 0x11
+ 1728 00d0 01       		.uleb128 0x1
+ 1729 00d1 12       		.uleb128 0x12
+ 1730 00d2 06       		.uleb128 0x6
+ 1731 00d3 01       		.uleb128 0x1
+ 1732 00d4 13       		.uleb128 0x13
+ 1733 00d5 00       		.byte	0
+ 1734 00d6 00       		.byte	0
+ 1735 00d7 10       		.uleb128 0x10
+ 1736 00d8 34       		.uleb128 0x34
+ 1737 00d9 00       		.byte	0
+ 1738 00da 03       		.uleb128 0x3
+ 1739 00db 08       		.uleb128 0x8
+ 1740 00dc 3A       		.uleb128 0x3a
+ 1741 00dd 0B       		.uleb128 0xb
+ 1742 00de 3B       		.uleb128 0x3b
+ 1743 00df 0B       		.uleb128 0xb
+ 1744 00e0 49       		.uleb128 0x49
+ 1745 00e1 13       		.uleb128 0x13
+ 1746 00e2 02       		.uleb128 0x2
+ 1747 00e3 17       		.uleb128 0x17
+ 1748 00e4 00       		.byte	0
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 38
+
+
+ 1749 00e5 00       		.byte	0
+ 1750 00e6 11       		.uleb128 0x11
+ 1751 00e7 898201   		.uleb128 0x4109
+ 1752 00ea 01       		.byte	0x1
+ 1753 00eb 11       		.uleb128 0x11
+ 1754 00ec 01       		.uleb128 0x1
+ 1755 00ed 31       		.uleb128 0x31
+ 1756 00ee 13       		.uleb128 0x13
+ 1757 00ef 01       		.uleb128 0x1
+ 1758 00f0 13       		.uleb128 0x13
+ 1759 00f1 00       		.byte	0
+ 1760 00f2 00       		.byte	0
+ 1761 00f3 12       		.uleb128 0x12
+ 1762 00f4 8A8201   		.uleb128 0x410a
+ 1763 00f7 00       		.byte	0
+ 1764 00f8 02       		.uleb128 0x2
+ 1765 00f9 18       		.uleb128 0x18
+ 1766 00fa 9142     		.uleb128 0x2111
+ 1767 00fc 18       		.uleb128 0x18
+ 1768 00fd 00       		.byte	0
+ 1769 00fe 00       		.byte	0
+ 1770 00ff 13       		.uleb128 0x13
+ 1771 0100 898201   		.uleb128 0x4109
+ 1772 0103 01       		.byte	0x1
+ 1773 0104 11       		.uleb128 0x11
+ 1774 0105 01       		.uleb128 0x1
+ 1775 0106 31       		.uleb128 0x31
+ 1776 0107 13       		.uleb128 0x13
+ 1777 0108 00       		.byte	0
+ 1778 0109 00       		.byte	0
+ 1779 010a 14       		.uleb128 0x14
+ 1780 010b 898201   		.uleb128 0x4109
+ 1781 010e 00       		.byte	0
+ 1782 010f 11       		.uleb128 0x11
+ 1783 0110 01       		.uleb128 0x1
+ 1784 0111 31       		.uleb128 0x31
+ 1785 0112 13       		.uleb128 0x13
+ 1786 0113 00       		.byte	0
+ 1787 0114 00       		.byte	0
+ 1788 0115 15       		.uleb128 0x15
+ 1789 0116 01       		.uleb128 0x1
+ 1790 0117 01       		.byte	0x1
+ 1791 0118 49       		.uleb128 0x49
+ 1792 0119 13       		.uleb128 0x13
+ 1793 011a 01       		.uleb128 0x1
+ 1794 011b 13       		.uleb128 0x13
+ 1795 011c 00       		.byte	0
+ 1796 011d 00       		.byte	0
+ 1797 011e 16       		.uleb128 0x16
+ 1798 011f 21       		.uleb128 0x21
+ 1799 0120 00       		.byte	0
+ 1800 0121 49       		.uleb128 0x49
+ 1801 0122 13       		.uleb128 0x13
+ 1802 0123 2F       		.uleb128 0x2f
+ 1803 0124 0B       		.uleb128 0xb
+ 1804 0125 00       		.byte	0
+ 1805 0126 00       		.byte	0
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 39
+
+
+ 1806 0127 17       		.uleb128 0x17
+ 1807 0128 34       		.uleb128 0x34
+ 1808 0129 00       		.byte	0
+ 1809 012a 03       		.uleb128 0x3
+ 1810 012b 0E       		.uleb128 0xe
+ 1811 012c 3A       		.uleb128 0x3a
+ 1812 012d 0B       		.uleb128 0xb
+ 1813 012e 3B       		.uleb128 0x3b
+ 1814 012f 05       		.uleb128 0x5
+ 1815 0130 49       		.uleb128 0x49
+ 1816 0131 13       		.uleb128 0x13
+ 1817 0132 3F       		.uleb128 0x3f
+ 1818 0133 19       		.uleb128 0x19
+ 1819 0134 3C       		.uleb128 0x3c
+ 1820 0135 19       		.uleb128 0x19
+ 1821 0136 00       		.byte	0
+ 1822 0137 00       		.byte	0
+ 1823 0138 18       		.uleb128 0x18
+ 1824 0139 34       		.uleb128 0x34
+ 1825 013a 00       		.byte	0
+ 1826 013b 03       		.uleb128 0x3
+ 1827 013c 0E       		.uleb128 0xe
+ 1828 013d 3A       		.uleb128 0x3a
+ 1829 013e 0B       		.uleb128 0xb
+ 1830 013f 3B       		.uleb128 0x3b
+ 1831 0140 0B       		.uleb128 0xb
+ 1832 0141 49       		.uleb128 0x49
+ 1833 0142 13       		.uleb128 0x13
+ 1834 0143 3F       		.uleb128 0x3f
+ 1835 0144 19       		.uleb128 0x19
+ 1836 0145 02       		.uleb128 0x2
+ 1837 0146 18       		.uleb128 0x18
+ 1838 0147 00       		.byte	0
+ 1839 0148 00       		.byte	0
+ 1840 0149 19       		.uleb128 0x19
+ 1841 014a 2E       		.uleb128 0x2e
+ 1842 014b 00       		.byte	0
+ 1843 014c 3F       		.uleb128 0x3f
+ 1844 014d 19       		.uleb128 0x19
+ 1845 014e 3C       		.uleb128 0x3c
+ 1846 014f 19       		.uleb128 0x19
+ 1847 0150 6E       		.uleb128 0x6e
+ 1848 0151 0E       		.uleb128 0xe
+ 1849 0152 03       		.uleb128 0x3
+ 1850 0153 0E       		.uleb128 0xe
+ 1851 0154 3A       		.uleb128 0x3a
+ 1852 0155 0B       		.uleb128 0xb
+ 1853 0156 3B       		.uleb128 0x3b
+ 1854 0157 0B       		.uleb128 0xb
+ 1855 0158 00       		.byte	0
+ 1856 0159 00       		.byte	0
+ 1857 015a 00       		.byte	0
+ 1858              		.section	.debug_loc,"",%progbits
+ 1859              	.Ldebug_loc0:
+ 1860              	.LLST0:
+ 1861 0000 4C000000 		.4byte	.LVL10
+ 1862 0004 56000000 		.4byte	.LVL11
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 40
+
+
+ 1863 0008 0100     		.2byte	0x1
+ 1864 000a 50       		.byte	0x50
+ 1865 000b 62000000 		.4byte	.LVL14
+ 1866 000f 64000000 		.4byte	.LVL15
+ 1867 0013 0100     		.2byte	0x1
+ 1868 0015 50       		.byte	0x50
+ 1869 0016 74000000 		.4byte	.LVL17
+ 1870 001a 7E000000 		.4byte	.LVL18
+ 1871 001e 0100     		.2byte	0x1
+ 1872 0020 50       		.byte	0x50
+ 1873 0021 8A000000 		.4byte	.LVL21
+ 1874 0025 8C000000 		.4byte	.LVL22
+ 1875 0029 0100     		.2byte	0x1
+ 1876 002b 50       		.byte	0x50
+ 1877 002c 9C000000 		.4byte	.LVL24
+ 1878 0030 A6000000 		.4byte	.LVL25
+ 1879 0034 0100     		.2byte	0x1
+ 1880 0036 50       		.byte	0x50
+ 1881 0037 B2000000 		.4byte	.LVL28
+ 1882 003b B4000000 		.4byte	.LVL29
+ 1883 003f 0100     		.2byte	0x1
+ 1884 0041 50       		.byte	0x50
+ 1885 0042 CE000000 		.4byte	.LVL31
+ 1886 0046 D8000000 		.4byte	.LVL32
+ 1887 004a 0100     		.2byte	0x1
+ 1888 004c 50       		.byte	0x50
+ 1889 004d E4000000 		.4byte	.LVL35
+ 1890 0051 E6000000 		.4byte	.LVL36
+ 1891 0055 0100     		.2byte	0x1
+ 1892 0057 50       		.byte	0x50
+ 1893 0058 F6000000 		.4byte	.LVL38
+ 1894 005c 00010000 		.4byte	.LVL39
+ 1895 0060 0100     		.2byte	0x1
+ 1896 0062 50       		.byte	0x50
+ 1897 0063 0C010000 		.4byte	.LVL42
+ 1898 0067 0E010000 		.4byte	.LVL43
+ 1899 006b 0100     		.2byte	0x1
+ 1900 006d 50       		.byte	0x50
+ 1901 006e 1C010000 		.4byte	.LVL45
+ 1902 0072 26010000 		.4byte	.LVL46
+ 1903 0076 0100     		.2byte	0x1
+ 1904 0078 50       		.byte	0x50
+ 1905 0079 32010000 		.4byte	.LVL49
+ 1906 007d 34010000 		.4byte	.LVL50
+ 1907 0081 0100     		.2byte	0x1
+ 1908 0083 50       		.byte	0x50
+ 1909 0084 4E010000 		.4byte	.LVL52
+ 1910 0088 58010000 		.4byte	.LVL53
+ 1911 008c 0100     		.2byte	0x1
+ 1912 008e 50       		.byte	0x50
+ 1913 008f 64010000 		.4byte	.LVL56
+ 1914 0093 66010000 		.4byte	.LVL57
+ 1915 0097 0100     		.2byte	0x1
+ 1916 0099 50       		.byte	0x50
+ 1917 009a 74010000 		.4byte	.LVL59
+ 1918 009e 7E010000 		.4byte	.LVL60
+ 1919 00a2 0100     		.2byte	0x1
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 41
+
+
+ 1920 00a4 50       		.byte	0x50
+ 1921 00a5 8A010000 		.4byte	.LVL63
+ 1922 00a9 8C010000 		.4byte	.LVL64
+ 1923 00ad 0100     		.2byte	0x1
+ 1924 00af 50       		.byte	0x50
+ 1925 00b0 00000000 		.4byte	0
+ 1926 00b4 00000000 		.4byte	0
+ 1927              	.LLST1:
+ 1928 00b8 C0010000 		.4byte	.LVL67
+ 1929 00bc DE010000 		.4byte	.LVL70
+ 1930 00c0 0500     		.2byte	0x5
+ 1931 00c2 70       		.byte	0x70
+ 1932 00c3 00       		.sleb128 0
+ 1933 00c4 31       		.byte	0x31
+ 1934 00c5 24       		.byte	0x24
+ 1935 00c6 9F       		.byte	0x9f
+ 1936 00c7 DE010000 		.4byte	.LVL70
+ 1937 00cb E1010000 		.4byte	.LVL71-1
+ 1938 00cf 2000     		.2byte	0x20
+ 1939 00d1 03       		.byte	0x3
+ 1940 00d2 01000000 		.4byte	AccData+1
+ 1941 00d6 94       		.byte	0x94
+ 1942 00d7 01       		.byte	0x1
+ 1943 00d8 08       		.byte	0x8
+ 1944 00d9 FF       		.byte	0xff
+ 1945 00da 1A       		.byte	0x1a
+ 1946 00db 38       		.byte	0x38
+ 1947 00dc 24       		.byte	0x24
+ 1948 00dd 03       		.byte	0x3
+ 1949 00de 00000000 		.4byte	AccData
+ 1950 00e2 94       		.byte	0x94
+ 1951 00e3 01       		.byte	0x1
+ 1952 00e4 08       		.byte	0x8
+ 1953 00e5 FF       		.byte	0xff
+ 1954 00e6 1A       		.byte	0x1a
+ 1955 00e7 21       		.byte	0x21
+ 1956 00e8 09       		.byte	0x9
+ 1957 00e9 F4       		.byte	0xf4
+ 1958 00ea 24       		.byte	0x24
+ 1959 00eb 09       		.byte	0x9
+ 1960 00ec F8       		.byte	0xf8
+ 1961 00ed 26       		.byte	0x26
+ 1962 00ee 31       		.byte	0x31
+ 1963 00ef 24       		.byte	0x24
+ 1964 00f0 9F       		.byte	0x9f
+ 1965 00f1 00000000 		.4byte	0
+ 1966 00f5 00000000 		.4byte	0
+ 1967              	.LLST2:
+ 1968 00f9 CE010000 		.4byte	.LVL68
+ 1969 00fd 08020000 		.4byte	.LVL79
+ 1970 0101 0100     		.2byte	0x1
+ 1971 0103 55       		.byte	0x55
+ 1972 0104 00000000 		.4byte	0
+ 1973 0108 00000000 		.4byte	0
+ 1974              	.LLST3:
+ 1975 010c DC010000 		.4byte	.LVL69
+ 1976 0110 26020000 		.4byte	.LVL87
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 42
+
+
+ 1977 0114 0100     		.2byte	0x1
+ 1978 0116 54       		.byte	0x54
+ 1979 0117 00000000 		.4byte	0
+ 1980 011b 00000000 		.4byte	0
+ 1981              	.LLST4:
+ 1982 011f F2010000 		.4byte	.LVL74
+ 1983 0123 F4010000 		.4byte	.LVL75
+ 1984 0127 0100     		.2byte	0x1
+ 1985 0129 50       		.byte	0x50
+ 1986 012a F4010000 		.4byte	.LVL75
+ 1987 012e DC020000 		.4byte	.LFE64
+ 1988 0132 0100     		.2byte	0x1
+ 1989 0134 57       		.byte	0x57
+ 1990 0135 00000000 		.4byte	0
+ 1991 0139 00000000 		.4byte	0
+ 1992              	.LLST5:
+ 1993 013d 08020000 		.4byte	.LVL79
+ 1994 0141 0A020000 		.4byte	.LVL80
+ 1995 0145 0100     		.2byte	0x1
+ 1996 0147 50       		.byte	0x50
+ 1997 0148 0A020000 		.4byte	.LVL80
+ 1998 014c 2E020000 		.4byte	.LVL90
+ 1999 0150 0100     		.2byte	0x1
+ 2000 0152 55       		.byte	0x55
+ 2001 0153 00000000 		.4byte	0
+ 2002 0157 00000000 		.4byte	0
+ 2003              	.LLST6:
+ 2004 015b 1E020000 		.4byte	.LVL84
+ 2005 015f 20020000 		.4byte	.LVL85
+ 2006 0163 0100     		.2byte	0x1
+ 2007 0165 50       		.byte	0x50
+ 2008 0166 20020000 		.4byte	.LVL85
+ 2009 016a DC020000 		.4byte	.LFE64
+ 2010 016e 0100     		.2byte	0x1
+ 2011 0170 56       		.byte	0x56
+ 2012 0171 00000000 		.4byte	0
+ 2013 0175 00000000 		.4byte	0
+ 2014              	.LLST7:
+ 2015 0179 26020000 		.4byte	.LVL87
+ 2016 017d 28020000 		.4byte	.LVL88
+ 2017 0181 0100     		.2byte	0x1
+ 2018 0183 50       		.byte	0x50
+ 2019 0184 28020000 		.4byte	.LVL88
+ 2020 0188 4A020000 		.4byte	.LVL93
+ 2021 018c 0100     		.2byte	0x1
+ 2022 018e 54       		.byte	0x54
+ 2023 018f 00000000 		.4byte	0
+ 2024 0193 00000000 		.4byte	0
+ 2025              	.LLST8:
+ 2026 0197 2E020000 		.4byte	.LVL90
+ 2027 019b 30020000 		.4byte	.LVL91
+ 2028 019f 0100     		.2byte	0x1
+ 2029 01a1 50       		.byte	0x50
+ 2030 01a2 30020000 		.4byte	.LVL91
+ 2031 01a6 DC020000 		.4byte	.LFE64
+ 2032 01aa 0100     		.2byte	0x1
+ 2033 01ac 55       		.byte	0x55
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 43
+
+
+ 2034 01ad 00000000 		.4byte	0
+ 2035 01b1 00000000 		.4byte	0
+ 2036              	.LLST9:
+ 2037 01b5 34020000 		.4byte	.LVL92
+ 2038 01b9 7E020000 		.4byte	.LVL94
+ 2039 01bd 0100     		.2byte	0x1
+ 2040 01bf 50       		.byte	0x50
+ 2041 01c0 00000000 		.4byte	0
+ 2042 01c4 00000000 		.4byte	0
+ 2043              	.LLST10:
+ 2044 01c8 1E000000 		.4byte	.LVL4
+ 2045 01cc 22000000 		.4byte	.LVL5
+ 2046 01d0 0200     		.2byte	0x2
+ 2047 01d2 30       		.byte	0x30
+ 2048 01d3 9F       		.byte	0x9f
+ 2049 01d4 22000000 		.4byte	.LVL5
+ 2050 01d8 A2010000 		.4byte	.LVL66
+ 2051 01dc 0100     		.2byte	0x1
+ 2052 01de 54       		.byte	0x54
+ 2053 01df 00000000 		.4byte	0
+ 2054 01e3 00000000 		.4byte	0
+ 2055              		.section	.debug_aranges,"",%progbits
+ 2056 0000 1C000000 		.4byte	0x1c
+ 2057 0004 0200     		.2byte	0x2
+ 2058 0006 00000000 		.4byte	.Ldebug_info0
+ 2059 000a 04       		.byte	0x4
+ 2060 000b 00       		.byte	0
+ 2061 000c 0000     		.2byte	0
+ 2062 000e 0000     		.2byte	0
+ 2063 0010 00000000 		.4byte	.LFB64
+ 2064 0014 DC020000 		.4byte	.LFE64-.LFB64
+ 2065 0018 00000000 		.4byte	0
+ 2066 001c 00000000 		.4byte	0
+ 2067              		.section	.debug_ranges,"",%progbits
+ 2068              	.Ldebug_ranges0:
+ 2069 0000 00000000 		.4byte	.LFB64
+ 2070 0004 DC020000 		.4byte	.LFE64
+ 2071 0008 00000000 		.4byte	0
+ 2072 000c 00000000 		.4byte	0
+ 2073              		.section	.debug_line,"",%progbits
+ 2074              	.Ldebug_line0:
+ 2075 0000 A9020000 		.section	.debug_str,"MS",%progbits,1
+ 2075      02002E02 
+ 2075      00000201 
+ 2075      FB0E0D00 
+ 2075      01010101 
+ 2076              	.LASF31:
+ 2077 0000 6374726C 		.ascii	"ctrl_reg1\000"
+ 2077      5F726567 
+ 2077      3100
+ 2078              	.LASF50:
+ 2079 000a 55415254 		.ascii	"UART_Debug_PutString\000"
+ 2079      5F446562 
+ 2079      75675F50 
+ 2079      75745374 
+ 2079      72696E67 
+ 2080              	.LASF32:
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 44
+
+
+ 2081 001f 6374726C 		.ascii	"ctrl_reg4\000"
+ 2081      5F726567 
+ 2081      3400
+ 2082              	.LASF38:
+ 2083 0029 4F757441 		.ascii	"OutArray\000"
+ 2083      72726179 
+ 2083      00
+ 2084              	.LASF3:
+ 2085 0032 5F5F696E 		.ascii	"__int16_t\000"
+ 2085      7431365F 
+ 2085      7400
+ 2086              	.LASF22:
+ 2087 003c 4E4F5F45 		.ascii	"NO_ERROR\000"
+ 2087      52524F52 
+ 2087      00
+ 2088              	.LASF18:
+ 2089 0045 666C6F61 		.ascii	"float32\000"
+ 2089      74333200 
+ 2090              	.LASF46:
+ 2091 004d 41636344 		.ascii	"AccData\000"
+ 2091      61746100 
+ 2092              	.LASF39:
+ 2093 0055 41636358 		.ascii	"AccXms2f\000"
+ 2093      6D733266 
+ 2093      00
+ 2094              	.LASF56:
+ 2095 005e 4932435F 		.ascii	"I2C_Peripheral_ReadRegister\000"
+ 2095      50657269 
+ 2095      70686572 
+ 2095      616C5F52 
+ 2095      65616452 
+ 2096              	.LASF26:
+ 2097 007a 73697A65 		.ascii	"sizetype\000"
+ 2097      74797065 
+ 2097      00
+ 2098              	.LASF48:
+ 2099 0083 4932435F 		.ascii	"I2C_Peripheral_IsDeviceConnected\000"
+ 2099      50657269 
+ 2099      70686572 
+ 2099      616C5F49 
+ 2099      73446576 
+ 2100              	.LASF62:
+ 2101 00a4 6D61696E 		.ascii	"main\000"
+ 2101      00
+ 2102              	.LASF44:
+ 2103 00a9 4163635A 		.ascii	"AccZms2\000"
+ 2103      6D733200 
+ 2104              	.LASF36:
+ 2105 00b1 68656164 		.ascii	"header\000"
+ 2105      657200
+ 2106              	.LASF4:
+ 2107 00b8 73686F72 		.ascii	"short int\000"
+ 2107      7420696E 
+ 2107      7400
+ 2108              	.LASF12:
+ 2109 00c2 75696E74 		.ascii	"uint8_t\000"
+ 2109      385F7400 
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 45
+
+
+ 2110              	.LASF16:
+ 2111 00ca 696E7431 		.ascii	"int16\000"
+ 2111      3600
+ 2112              	.LASF28:
+ 2113 00d0 77686F5F 		.ascii	"who_am_i_reg\000"
+ 2113      616D5F69 
+ 2113      5F726567 
+ 2113      00
+ 2114              	.LASF30:
+ 2115 00dd 73746174 		.ascii	"status_register\000"
+ 2115      75735F72 
+ 2115      65676973 
+ 2115      74657200 
+ 2116              	.LASF19:
+ 2117 00ed 666C6F61 		.ascii	"float\000"
+ 2117      7400
+ 2118              	.LASF9:
+ 2119 00f3 6C6F6E67 		.ascii	"long long int\000"
+ 2119      206C6F6E 
+ 2119      6720696E 
+ 2119      7400
+ 2120              	.LASF53:
+ 2121 0101 54696D65 		.ascii	"Timer_Start\000"
+ 2121      725F5374 
+ 2121      61727400 
+ 2122              	.LASF7:
+ 2123 010d 6C6F6E67 		.ascii	"long int\000"
+ 2123      20696E74 
+ 2123      00
+ 2124              	.LASF2:
+ 2125 0116 5F5F7569 		.ascii	"__uint8_t\000"
+ 2125      6E74385F 
+ 2125      7400
+ 2126              	.LASF54:
+ 2127 0120 6973725F 		.ascii	"isr_TIMER_StartEx\000"
+ 2127      54494D45 
+ 2127      525F5374 
+ 2127      61727445 
+ 2127      7800
+ 2128              	.LASF23:
+ 2129 0132 4552524F 		.ascii	"ERROR\000"
+ 2129      5200
+ 2130              	.LASF33:
+ 2131 0138 4F757441 		.ascii	"OutAccX\000"
+ 2131      63635800 
+ 2132              	.LASF34:
+ 2133 0140 4F757441 		.ascii	"OutAccY\000"
+ 2133      63635900 
+ 2134              	.LASF35:
+ 2135 0148 4F757441 		.ascii	"OutAccZ\000"
+ 2135      63635A00 
+ 2136              	.LASF47:
+ 2137 0150 5061636B 		.ascii	"PacketReadyFlag\000"
+ 2137      65745265 
+ 2137      61647946 
+ 2137      6C616700 
+ 2138              	.LASF40:
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 46
+
+
+ 2139 0160 41636359 		.ascii	"AccYms2f\000"
+ 2139      6D733266 
+ 2139      00
+ 2140              	.LASF25:
+ 2141 0169 6C6F6E67 		.ascii	"long double\000"
+ 2141      20646F75 
+ 2141      626C6500 
+ 2142              	.LASF1:
+ 2143 0175 756E7369 		.ascii	"unsigned char\000"
+ 2143      676E6564 
+ 2143      20636861 
+ 2143      7200
+ 2144              	.LASF49:
+ 2145 0183 73707269 		.ascii	"sprintf\000"
+ 2145      6E746600 
+ 2146              	.LASF0:
+ 2147 018b 7369676E 		.ascii	"signed char\000"
+ 2147      65642063 
+ 2147      68617200 
+ 2148              	.LASF10:
+ 2149 0197 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2149      206C6F6E 
+ 2149      6720756E 
+ 2149      7369676E 
+ 2149      65642069 
+ 2150              	.LASF57:
+ 2151 01ae 4932435F 		.ascii	"I2C_Peripheral_WriteRegister\000"
+ 2151      50657269 
+ 2151      70686572 
+ 2151      616C5F57 
+ 2151      72697465 
+ 2152              	.LASF11:
+ 2153 01cb 756E7369 		.ascii	"unsigned int\000"
+ 2153      676E6564 
+ 2153      20696E74 
+ 2153      00
+ 2154              	.LASF8:
+ 2155 01d8 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2155      20756E73 
+ 2155      69676E65 
+ 2155      6420696E 
+ 2155      7400
+ 2156              	.LASF61:
+ 2157 01ea 433A5C55 		.ascii	"C:\\Users\\Lorenzo\\Desktop\\PSoC_03_Complete\\PSoC"
+ 2157      73657273 
+ 2157      5C4C6F72 
+ 2157      656E7A6F 
+ 2157      5C446573 
+ 2158 0218 5F30335C 		.ascii	"_03\\AY1920_II_HW_05_PROJ_3.cydsn\000"
+ 2158      41593139 
+ 2158      32305F49 
+ 2158      495F4857 
+ 2158      5F30355F 
+ 2159              	.LASF51:
+ 2160 0239 4932435F 		.ascii	"I2C_Peripheral_Start\000"
+ 2160      50657269 
+ 2160      70686572 
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 47
+
+
+ 2160      616C5F53 
+ 2160      74617274 
+ 2161              	.LASF5:
+ 2162 024e 73686F72 		.ascii	"short unsigned int\000"
+ 2162      7420756E 
+ 2162      7369676E 
+ 2162      65642069 
+ 2162      6E7400
+ 2163              	.LASF21:
+ 2164 0261 63686172 		.ascii	"char\000"
+ 2164      00
+ 2165              	.LASF14:
+ 2166 0266 696E7433 		.ascii	"int32_t\000"
+ 2166      325F7400 
+ 2167              	.LASF43:
+ 2168 026e 41636359 		.ascii	"AccYms2\000"
+ 2168      6D733200 
+ 2169              	.LASF13:
+ 2170 0276 696E7431 		.ascii	"int16_t\000"
+ 2170      365F7400 
+ 2171              	.LASF15:
+ 2172 027e 75696E74 		.ascii	"uint8\000"
+ 2172      3800
+ 2173              	.LASF60:
+ 2174 0284 6D61696E 		.ascii	"main.c\000"
+ 2174      2E6300
+ 2175              	.LASF27:
+ 2176 028b 6D657373 		.ascii	"message\000"
+ 2176      61676500 
+ 2177              	.LASF17:
+ 2178 0293 696E7433 		.ascii	"int32\000"
+ 2178      3200
+ 2179              	.LASF20:
+ 2180 0299 646F7562 		.ascii	"double\000"
+ 2180      6C6500
+ 2181              	.LASF41:
+ 2182 02a0 4163635A 		.ascii	"AccZms2f\000"
+ 2182      6D733266 
+ 2182      00
+ 2183              	.LASF37:
+ 2184 02a9 666F6F74 		.ascii	"footer\000"
+ 2184      657200
+ 2185              	.LASF6:
+ 2186 02b0 5F5F696E 		.ascii	"__int32_t\000"
+ 2186      7433325F 
+ 2186      7400
+ 2187              	.LASF52:
+ 2188 02ba 55415254 		.ascii	"UART_Debug_Start\000"
+ 2188      5F446562 
+ 2188      75675F53 
+ 2188      74617274 
+ 2188      00
+ 2189              	.LASF42:
+ 2190 02cb 41636358 		.ascii	"AccXms2\000"
+ 2190      6D733200 
+ 2191              	.LASF29:
+ 2192 02d3 6572726F 		.ascii	"error\000"
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccbb8Jle.s 			page 48
+
+
+ 2192      7200
+ 2193              	.LASF58:
+ 2194 02d9 55415254 		.ascii	"UART_Debug_PutArray\000"
+ 2194      5F446562 
+ 2194      75675F50 
+ 2194      75744172 
+ 2194      72617900 
+ 2195              	.LASF45:
+ 2196 02ed 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2196      52784275 
+ 2196      66666572 
+ 2196      00
+ 2197              	.LASF59:
+ 2198 02fa 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2198      43313120 
+ 2198      352E342E 
+ 2198      31203230 
+ 2198      31363036 
+ 2199 032d 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2199      20726576 
+ 2199      6973696F 
+ 2199      6E203233 
+ 2199      37373135 
+ 2200 0360 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2200      66756E63 
+ 2200      74696F6E 
+ 2200      2D736563 
+ 2200      74696F6E 
+ 2201              	.LASF55:
+ 2202 0388 43794465 		.ascii	"CyDelay\000"
+ 2202      6C617900 
+ 2203              	.LASF24:
+ 2204 0390 4572726F 		.ascii	"ErrorCode\000"
+ 2204      72436F64 
+ 2204      6500
+ 2205              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

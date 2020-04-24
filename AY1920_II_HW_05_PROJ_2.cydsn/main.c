@@ -83,6 +83,8 @@ int main(void)
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
     I2C_Peripheral_Start();
     UART_Debug_Start();
+    Timer_Start();
+    isr_TIMER_StartEx(Custom_TIMER_ISR);
     
     CyDelay(5); //"The boot procedure is complete about 5 milliseconds after device power-up."
     
@@ -257,16 +259,13 @@ int main(void)
     
     OutArray[0] = header;
     OutArray[7] = footer;
-    
-    Timer_Start();
-    isr_TIMER_StartEx(Custom_TIMER_ISR);
-    
+
     PacketReadyFlag = 0;
     
     for(;;)
     {
   
-        if (PacketReadyFlag)
+        if (PacketReadyFlag == 1)
         {
         
             OutAccX = ((int16)((AccData[0]) | ((AccData[1])<<8))>>6)*4;
