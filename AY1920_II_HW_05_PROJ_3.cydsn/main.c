@@ -5,8 +5,15 @@
 * to understand the I2C protocol and communicate with a
 * a I2C Slave device (LIS3DH Accelerometer).
 *
-* \author Gabriele Belotti
-* \date , 2020
+* In main.c the definition of constants for the registers,
+* the start of the components, the reading and writing of the registers, 
+* the set up of header and tail for the Bridge Control Panel and the variables 
+* declaration and initializations are performed.
+* Moreover, after the required conversion, the data are sent by means of the 
+* UART communication protocol.
+*
+* \author Lorenzo Francioli
+* \date April, 28th 2020
 */
 
 // Include required header files
@@ -75,6 +82,13 @@
 #define LIS3DH_HIGH_MODE_CTRL_REG1_ACC 0x57 //01010111 to set 100 Hz, high resolution mode and enable X-,Y-,Z-axis
 
 #define LIS3DH_CTRL_REG4_HIGH_MODE_4G 0x18  //00011000 to set full scale range +-4g (with FS1 FS0), high resolution mode
+
+
+#define TRANSMIT_BUFFER_SIZE 14 // 1 byte for header, 3 byte for X data, 3 byte for Y data, 3 byte for Z data, 1 byte for footer
+
+#define CONVERSION_FACTOR_DIGIT_MG 2 // from datasheet, convert from digit to mg with a FSR +- 4g
+
+#define g_CONSTANT 9.81
 
 int main(void)
 {
@@ -250,12 +264,13 @@ int main(void)
         }
     }
     
+    // Variables declaration
     int16_t OutAccX;
     int16_t OutAccY;
     int16_t OutAccZ;
     uint8_t header = 0xA0;
     uint8_t footer = 0xC0;
-    uint8_t OutArray[14]; 
+    uint8_t OutArray[TRANSMIT_BUFFER_SIZE]; 
     float32 AccXms2f;
     float32 AccYms2f;
     float32 AccZms2f;
@@ -263,26 +278,40 @@ int main(void)
     int32 AccYms2;
     int32 AccZms2;
     
+    //Header and footer set up
     OutArray[0] = header;
-    OutArray[13] = footer;
+    OutArray[TRANSMIT_BUFFER_SIZE - 1] = footer;
 
-    PacketReadyFlag = 0;
+    PacketReadyFlag = 0; // Initialize send flag
     
     for(;;)
     {
   
-        if (PacketReadyFlag == 1)
+        if (PacketReadyFlag == 1) //if new data are available and read
         {
+            // send flag is reset to 0, new data can be read
             PacketReadyFlag = 0;
-            OutAccX = ((int16)((AccData[0]) | ((AccData[1])<<8))>>4)*2;
-            OutAccY = ((int16)((AccData[2]) | ((AccData[3])<<8))>>4)*2;
-            OutAccZ = ((int16)((AccData[4]) | ((AccData[5])<<8))>>4)*2;
-            AccXms2f = (OutAccX)*9.81;
-            AccYms2f = (OutAccY)*9.81;
-            AccZms2f = (OutAccZ)*9.81;
+            
+            /*  Conversion of the 3 axial outputs of the Accelerometer to 3 
+            right-justified 16-bit integers with the correct scaling (mg).
+            Shift of 6 positions since in normal mode the output data are 10-bit output. */
+            OutAccX = ((int16)((AccData[0]) | ((AccData[1])<<8))>>4)*CONVERSION_FACTOR_DIGIT_MG;
+            OutAccY = ((int16)((AccData[2]) | ((AccData[3])<<8))>>4)*CONVERSION_FACTOR_DIGIT_MG;
+            OutAccZ = ((int16)((AccData[4]) | ((AccData[5])<<8))>>4)*CONVERSION_FACTOR_DIGIT_MG;
+            
+            /* Conversion from mg to m/s^2 (the factor x10^(-3) is omitted since 
+            in the following passages there is the need to multiply x10^3 to mantain 
+            3 decimals, so the operation is reduced). The variables are now float32 */
+            AccXms2f = (OutAccX)*g_CONSTANT;
+            AccYms2f = (OutAccY)*g_CONSTANT;
+            AccZms2f = (OutAccZ)*g_CONSTANT;
+            
+            // Conversion from float32 to int32
             AccXms2 = (int32) AccXms2f;
             AccYms2 = (int32) AccYms2f;
             AccZms2 = (int32) AccZms2f;
+            
+            // data preparing for UART serial Communication
             OutArray[1] = (uint8_t)(AccXms2 & 0xFF); 
             OutArray[2] = (uint8_t)((AccXms2 >> 8) & 0xFF);
             OutArray[3] = (uint8_t)((AccXms2 >> 16) & 0xFF);
@@ -295,7 +324,9 @@ int main(void)
             OutArray[10] = (uint8_t)((AccZms2 >> 8) & 0xFF);
             OutArray[11] = (uint8_t)((AccZms2 >> 16) & 0xFF);
             OutArray[12] = (uint8_t)((AccZms2 >> 24) & 0xFF);
-            UART_Debug_PutArray(OutArray, 14);
+            
+            // Data sending
+            UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE);
             
             
         }

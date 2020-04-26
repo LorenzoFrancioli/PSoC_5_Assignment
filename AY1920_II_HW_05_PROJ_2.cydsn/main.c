@@ -5,8 +5,15 @@
 * to understand the I2C protocol and communicate with a
 * a I2C Slave device (LIS3DH Accelerometer).
 *
-* \author Gabriele Belotti
-* \date , 2020
+* In main.c the definition of constants for the registers,
+* the start of the components, the reading and writing of the registers, 
+* the set up of header and tail for the Bridge Control Panel and the variables 
+* declaration and initializations are performed.
+* Moreover,  after the required conversion, the data are sent by means of the 
+* UART communication protocol.
+*
+* \author Lorenzo Francioli
+* \date April, 28th 2020
 */
 
 // Include required header files
@@ -75,6 +82,11 @@
 #define LIS3DH_NORMAL_MODE_CTRL_REG1_ACC 0x57 //01010111 to set 100 Hz, normal mode and enable X-,Y-,Z-axis
 
 #define LIS3DH_CTRL_REG4_NORMAL_MODE 0x00  //00000000 to set full scale range +-2g (with FS1 FS0)
+
+
+#define TRANSMIT_BUFFER_SIZE 8 // 1 byte for header, 2 byte for X data, 2 byte for Y data, 2 byte for Z data, 1 byte for footer
+
+#define CONVERSION_FACTOR_DIGIT_MG 4 // from datasheet, convert from digit to mg with a FSR +- 2g
 
 int main(void)
 {
@@ -250,36 +262,46 @@ int main(void)
         }
     }
     
+    // Variables declaration
     int16_t OutAccX;
     int16_t OutAccY;
     int16_t OutAccZ;
     uint8_t header = 0xA0;
     uint8_t footer = 0xC0;
-    uint8_t OutArray[8]; 
+    uint8_t OutArray[TRANSMIT_BUFFER_SIZE]; 
     
+    //Header and footer set up
     OutArray[0] = header;
-    OutArray[7] = footer;
+    OutArray[TRANSMIT_BUFFER_SIZE - 1] = footer;
 
-    PacketReadyFlag = 0;
+    PacketReadyFlag = 0; // Initialize send flag
     
     for(;;)
     {
   
-        if (PacketReadyFlag == 1)
+        if (PacketReadyFlag == 1) //if new data are available and read
         {
-        
-            OutAccX = ((int16)((AccData[0]) | ((AccData[1])<<8))>>6)*4;
-            OutAccY = ((int16)((AccData[2]) | ((AccData[3])<<8))>>6)*4;
-            OutAccZ = ((int16)((AccData[4]) | ((AccData[5])<<8))>>6)*4;
+            // send flag is reset to 0, new data can be read
+            PacketReadyFlag = 0;
+            
+            /*  Convert the 3 axial outputs of the Accelerometer to 3 right-justified 
+            16-bit integers with the correct scaling (mg). Shift of 6 positions since 
+            in normal mode the output data are 10-bit output. */
+            OutAccX = ((int16)((AccData[0]) | ((AccData[1])<<8))>>6)*CONVERSION_FACTOR_DIGIT_MG;
+            OutAccY = ((int16)((AccData[2]) | ((AccData[3])<<8))>>6)*CONVERSION_FACTOR_DIGIT_MG;
+            OutAccZ = ((int16)((AccData[4]) | ((AccData[5])<<8))>>6)*CONVERSION_FACTOR_DIGIT_MG;
+            
+            // data preparing for UART serial Communication
             OutArray[1] = (uint8_t)(OutAccX & 0xFF); 
             OutArray[2] = (uint8_t)(OutAccX >> 8);
             OutArray[3] = (uint8_t)(OutAccY & 0xFF);
             OutArray[4] = (uint8_t)(OutAccY >> 8);
             OutArray[5] = (uint8_t)(OutAccZ & 0xFF);
             OutArray[6] = (uint8_t)(OutAccZ >> 8);
-            UART_Debug_PutArray(OutArray, 8);
-            PacketReadyFlag = 0;
             
+            // Data sending
+            UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE);
+             
         }
     }
 }
