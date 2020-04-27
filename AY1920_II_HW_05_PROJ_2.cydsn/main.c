@@ -95,7 +95,6 @@ int main(void)
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
     I2C_Peripheral_Start();
     UART_Debug_Start();
-    Timer_Start();
     isr_TIMER_StartEx(Custom_TIMER_ISR);
     
     CyDelay(5); //"The boot procedure is complete about 5 milliseconds after device power-up."
@@ -261,6 +260,9 @@ int main(void)
             UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
         }
     }
+    
+    //Timer start
+    Timer_Start(); 
     
     // Variables declaration
     int16_t OutAccX;
