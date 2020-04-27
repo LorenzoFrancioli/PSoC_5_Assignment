@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
   29:Generated_Source\PSoC5/cyfitter_cfg.c **** 
   30:Generated_Source\PSoC5/cyfitter_cfg.c **** #if defined(__GNUC__) || defined(__ARMCC_VERSION)
   31:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED 
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 2
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 2
 
 
   32:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED_ATTR __attribute__ ((packed))
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
   86:Generated_Source\PSoC5/cyfitter_cfg.c **** 	(void)memcpy(dest, src, n);
   87:Generated_Source\PSoC5/cyfitter_cfg.c **** }
   88:Generated_Source\PSoC5/cyfitter_cfg.c **** CY_CFG_UNUSED
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 3
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 3
 
 
   89:Generated_Source\PSoC5/cyfitter_cfg.c **** static void CYCONFIGCPYCODE(void *dest, const void *src, size_t n);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
   41              		.thumb
   42              		.thumb_func
   43              		.type	cfg_write_bytes32, %function
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 4
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 4
 
 
   44              	cfg_write_bytes32:
@@ -216,16 +216,16 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  159:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x48000048u)
  160:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  161:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPORT_7 Address: CYDEV_PRTDSI_PRT12_BASE Size (bytes): 6 */
- 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPORT_7_VAL ((const uint8 CYFAR *)0x480002CCu)
+ 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPORT_7_VAL ((const uint8 CYFAR *)0x480002C4u)
  163:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  164:Generated_Source\PSoC5/cyfitter_cfg.c **** /* UDB_0_1_1_CONFIG Address: CYDEV_UCFG_B1_P4_U0_BASE Size (bytes): 128 */
- 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_UDB_0_1_1_CONFIG_VAL ((const uint8 CYFAR *)0x480002D4u)
+ 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_UDB_0_1_1_CONFIG_VAL ((const uint8 CYFAR *)0x480002CCu)
  166:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  167:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_7 Address: CYREG_PRT12_DR Size (bytes): 10 */
- 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x48000354u)
+ 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x4800034Cu)
  169:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  170:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_1 Address: CYREG_PRT1_DM0 Size (bytes): 8 */
- 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x48000360u)
+ 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x48000358u)
  172:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  173:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  174:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  181:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
  182:Generated_Source\PSoC5/cyfitter_cfg.c **** *   void
  183:Generated_Source\PSoC5/cyfitter_cfg.c **** *
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 5
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 5
 
 
  184:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
   83 001c 6D78     		ldrb	r5, [r5, #1]	@ zero_extendqisi2
   84 001e A555     		strb	r5, [r4, r6]
  201:Generated_Source\PSoC5/cyfitter_cfg.c **** 			j++;
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 6
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 6
 
 
   85              		.loc 1 201 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  214:Generated_Source\PSoC5/cyfitter_cfg.c **** *  clocks and setting the necessary dividers to produce the desired frequency. 
  215:Generated_Source\PSoC5/cyfitter_cfg.c **** *
  216:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 7
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 7
 
 
  217:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
@@ -375,7 +375,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  228:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  229:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  230:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure Digital Clocks based on settings from Clock DWR */
- 231:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0), 0x0138u);
+ 231:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0), 0x009Bu);
  232:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0 + 0x2u), 0x18u);
  233:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0), 0x0257u);
  234:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0 + 0x2u), 0x18u);
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  271:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  272:Generated_Source\PSoC5/cyfitter_cfg.c **** /* Analog API Functions */
  273:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 8
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 8
 
 
  274:Generated_Source\PSoC5/cyfitter_cfg.c **** 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  155              	.LFE6:
  156              		.size	AnalogSetDefault, .-AnalogSetDefault
  157              		.section	.text.CYMEMZERO,"ax",%progbits
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 9
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 9
 
 
  158              		.align	2
@@ -528,157 +528,157 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  199              		.cfi_offset 14, -4
  231:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0 + 0x2u), 0x18u);
  200              		.loc 1 231 0
- 201 0002 4FF49C72 		mov	r2, #312
- 202 0006 274B     		ldr	r3, .L20
- 203 0008 1A80     		strh	r2, [r3]	@ movhi
+ 201 0002 9B22     		movs	r2, #155
+ 202 0004 264B     		ldr	r3, .L20
+ 203 0006 1A80     		strh	r2, [r3]	@ movhi
  232:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0), 0x0257u);
  204              		.loc 1 232 0
- 205 000a 1823     		movs	r3, #24
- 206 000c 264A     		ldr	r2, .L20+4
- 207 000e 1370     		strb	r3, [r2]
+ 205 0008 1823     		movs	r3, #24
+ 206 000a 264A     		ldr	r2, .L20+4
+ 207 000c 1370     		strb	r3, [r2]
  233:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0 + 0x2u), 0x18u);
  208              		.loc 1 233 0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 10
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 10
 
 
- 209 0010 40F25721 		movw	r1, #599
- 210 0014 0232     		adds	r2, r2, #2
- 211 0016 1180     		strh	r1, [r2]	@ movhi
+ 209 000e 40F25721 		movw	r1, #599
+ 210 0012 0232     		adds	r2, r2, #2
+ 211 0014 1180     		strh	r1, [r2]	@ movhi
  234:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  212              		.loc 1 234 0
- 213 0018 0232     		adds	r2, r2, #2
- 214 001a 1370     		strb	r3, [r2]
+ 213 0016 0232     		adds	r2, r2, #2
+ 214 0018 1370     		strb	r3, [r2]
  237:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_CR), 0x08u);
  215              		.loc 1 237 0
- 216 001c 0222     		movs	r2, #2
- 217 001e 234B     		ldr	r3, .L20+8
- 218 0020 1A70     		strb	r2, [r3]
+ 216 001a 0222     		movs	r2, #2
+ 217 001c 224B     		ldr	r3, .L20+8
+ 218 001e 1A70     		strb	r2, [r3]
  238:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  219              		.loc 1 238 0
- 220 0022 0822     		movs	r2, #8
- 221 0024 4FF04023 		mov	r3, #1073758208
- 222 0028 1A70     		strb	r2, [r3]
+ 220 0020 0822     		movs	r2, #8
+ 221 0022 4FF04023 		mov	r3, #1073758208
+ 222 0026 1A70     		strb	r2, [r3]
  241:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_IMO_TR1), (CY_GET_XTND_REG8((void CYFAR *)CYREG_FLSHID_CUST_
  223              		.loc 1 241 0
- 224 002a 0321     		movs	r1, #3
- 225 002c 03F50073 		add	r3, r3, #512
- 226 0030 1970     		strb	r1, [r3]
+ 224 0028 0321     		movs	r1, #3
+ 225 002a 03F50073 		add	r3, r3, #512
+ 226 002e 1970     		strb	r1, [r3]
  242:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  227              		.loc 1 242 0
- 228 0032 1F4B     		ldr	r3, .L20+12
- 229 0034 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 230 0036 DBB2     		uxtb	r3, r3
- 231 0038 1E49     		ldr	r1, .L20+16
- 232 003a 0B70     		strb	r3, [r1]
+ 228 0030 1E4B     		ldr	r3, .L20+12
+ 229 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 230 0034 DBB2     		uxtb	r3, r3
+ 231 0036 1E49     		ldr	r1, .L20+16
+ 232 0038 0B70     		strb	r3, [r1]
  245:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_FASTCLK_PLL_CFG0), 0x1251u);
  233              		.loc 1 245 0
- 234 003c 1E4B     		ldr	r3, .L20+20
- 235 003e 1A80     		strh	r2, [r3]	@ movhi
+ 234 003a 1E4B     		ldr	r3, .L20+20
+ 235 003c 1A80     		strh	r2, [r3]	@ movhi
  246:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Wait up to 250us for the PLL to lock */
  236              		.loc 1 246 0
- 237 0040 41F25122 		movw	r2, #4689
- 238 0044 023B     		subs	r3, r3, #2
- 239 0046 1A80     		strh	r2, [r3]	@ movhi
+ 237 003e 41F25122 		movw	r2, #4689
+ 238 0042 023B     		subs	r3, r3, #2
+ 239 0044 1A80     		strh	r2, [r3]	@ movhi
  240              	.LVL17:
  248:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
  241              		.loc 1 248 0
- 242 0048 0024     		movs	r4, #0
+ 242 0046 0024     		movs	r4, #0
  249:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{ 
  243              		.loc 1 249 0
- 244 004a 1925     		movs	r5, #25
- 245 004c 0CE0     		b	.L15
+ 244 0048 1925     		movs	r5, #25
+ 245 004a 0CE0     		b	.L15
  246              	.LVL18:
  247              	.L17:
  251:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CyDelayCycles(10u * 48u); /* Delay 10us based on 48MHz clock */
  248              		.loc 1 251 0 discriminator 4
- 249 004e 1B4B     		ldr	r3, .L20+24
- 250 0050 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 251 0052 03F00103 		and	r3, r3, #1
- 252 0056 43EA4404 		orr	r4, r3, r4, lsl #1
+ 249 004c 1A4B     		ldr	r3, .L20+24
+ 250 004e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 251 0050 03F00103 		and	r3, r3, #1
+ 252 0054 43EA4404 		orr	r4, r3, r4, lsl #1
  253              	.LVL19:
- 254 005a 04F00304 		and	r4, r4, #3
+ 254 0058 04F00304 		and	r4, r4, #3
  255              	.LVL20:
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 11
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 11
 
 
  252:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
  256              		.loc 1 252 0 discriminator 4
- 257 005e 4FF4F070 		mov	r0, #480
- 258 0062 FFF7FEFF 		bl	CyDelayCycles
+ 257 005c 4FF4F070 		mov	r0, #480
+ 258 0060 FFF7FEFF 		bl	CyDelayCycles
  259              	.LVL21:
  249:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{ 
  260              		.loc 1 249 0 discriminator 4
- 261 0066 013D     		subs	r5, r5, #1
+ 261 0064 013D     		subs	r5, r5, #1
  262              	.LVL22:
  263              	.L15:
  249:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{ 
  264              		.loc 1 249 0 is_stmt 0 discriminator 1
- 265 0068 0DB1     		cbz	r5, .L16
+ 265 0066 0DB1     		cbz	r5, .L16
  249:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{ 
  266              		.loc 1 249 0 discriminator 3
- 267 006a 032C     		cmp	r4, #3
- 268 006c EFD1     		bne	.L17
+ 267 0068 032C     		cmp	r4, #3
+ 268 006a EFD1     		bne	.L17
  269              	.L16:
  255:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
  270              		.loc 1 255 0 is_stmt 1
- 271 006e 15B9     		cbnz	r5, .L18
+ 271 006c 15B9     		cbnz	r5, .L18
  257:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
  272              		.loc 1 257 0
- 273 0070 0320     		movs	r0, #3
- 274 0072 FFF7FEFF 		bl	CyClockStartupError
+ 273 006e 0320     		movs	r0, #3
+ 274 0070 FFF7FEFF 		bl	CyClockStartupError
  275              	.LVL23:
  276              	.L18:
  261:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x07u);
  277              		.loc 1 261 0
- 278 0076 124B     		ldr	r3, .L20+28
- 279 0078 4FF48072 		mov	r2, #256
- 280 007c 1A80     		strh	r2, [r3]	@ movhi
+ 278 0074 114B     		ldr	r3, .L20+28
+ 279 0076 4FF48072 		mov	r2, #256
+ 280 007a 1A80     		strh	r2, [r3]	@ movhi
  262:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_BCFG0), 0x00u);
  281              		.loc 1 262 0
- 282 007e 0722     		movs	r2, #7
- 283 0080 1A70     		strb	r2, [r3]
+ 282 007c 0722     		movs	r2, #7
+ 283 007e 1A70     		strb	r2, [r3]
  263:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_BCFG2), 0x48u);
  284              		.loc 1 263 0
- 285 0082 0022     		movs	r2, #0
- 286 0084 0F49     		ldr	r1, .L20+32
- 287 0086 0A70     		strb	r2, [r1]
+ 285 0080 0022     		movs	r2, #0
+ 286 0082 0F49     		ldr	r1, .L20+32
+ 287 0084 0A70     		strb	r2, [r1]
  264:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x00u);
  288              		.loc 1 264 0
- 289 0088 4820     		movs	r0, #72
- 290 008a 0231     		adds	r1, r1, #2
- 291 008c 0870     		strb	r0, [r1]
+ 289 0086 4820     		movs	r0, #72
+ 290 0088 0231     		adds	r1, r1, #2
+ 291 008a 0870     		strb	r0, [r1]
  265:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_LD), 0x02u);
  292              		.loc 1 265 0
- 293 008e 1A70     		strb	r2, [r3]
+ 293 008c 1A70     		strb	r2, [r3]
  266:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  294              		.loc 1 266 0
- 295 0090 0222     		movs	r2, #2
- 296 0092 033B     		subs	r3, r3, #3
- 297 0094 1A70     		strb	r2, [r3]
+ 295 008e 0222     		movs	r2, #2
+ 296 0090 033B     		subs	r3, r3, #3
+ 297 0092 1A70     		strb	r2, [r3]
  268:Generated_Source\PSoC5/cyfitter_cfg.c **** }
  298              		.loc 1 268 0
- 299 0096 0C4A     		ldr	r2, .L20+36
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 12
+ 299 0094 0B4A     		ldr	r2, .L20+36
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 12
 
 
- 300 0098 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 301 009a 43F00303 		orr	r3, r3, #3
- 302 009e 1370     		strb	r3, [r2]
- 303 00a0 38BD     		pop	{r3, r4, r5, pc}
+ 300 0096 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 301 0098 43F00303 		orr	r3, r3, #3
+ 302 009c 1370     		strb	r3, [r2]
+ 303 009e 38BD     		pop	{r3, r4, r5, pc}
  304              	.LVL24:
  305              	.L21:
- 306 00a2 00BF     		.align	2
+ 306              		.align	2
  307              	.L20:
- 308 00a4 80400040 		.word	1073758336
- 309 00a8 82400040 		.word	1073758338
- 310 00ac 00430040 		.word	1073758976
- 311 00b0 08010049 		.word	1224737032
- 312 00b4 A1460040 		.word	1073759905
- 313 00b8 22420040 		.word	1073758754
- 314 00bc 25420040 		.word	1073758757
- 315 00c0 04400040 		.word	1073758212
- 316 00c4 06400040 		.word	1073758214
- 317 00c8 A2430040 		.word	1073759138
+ 308 00a0 80400040 		.word	1073758336
+ 309 00a4 82400040 		.word	1073758338
+ 310 00a8 00430040 		.word	1073758976
+ 311 00ac 08010049 		.word	1224737032
+ 312 00b0 A1460040 		.word	1073759905
+ 313 00b4 22420040 		.word	1073758754
+ 314 00b8 25420040 		.word	1073758757
+ 315 00bc 04400040 		.word	1073758212
+ 316 00c0 06400040 		.word	1073758214
+ 317 00c4 A2430040 		.word	1073759138
  318              		.cfi_endproc
  319              	.LFE5:
  320              		.size	ClockSetup, .-ClockSetup
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  297:Generated_Source\PSoC5/cyfitter_cfg.c **** }
  298:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  299:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 13
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 13
 
 
  300:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  377              		.thumb_func
  378              		.type	cyfitter_cfg, %function
  379              	cyfitter_cfg:
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 14
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 14
 
 
  380              	.LFB8:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  403              	.LVL29:
  404              	.LBB3:
  360:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 15
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 15
 
 
  361:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  417 001c 2A44     		add	r2, r2, r5
  418 001e 0846     		mov	r0, r1
  419 0020 9188     		ldrh	r1, [r2, #4]
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 16
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 16
 
 
  420 0022 2858     		ldr	r0, [r5, r0]	@ unaligned
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  406:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
  461              		.loc 1 406 0 is_stmt 0 discriminator 1
  462 004e 012C     		cmp	r4, #1
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 17
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 17
 
 
  463 0050 F0D9     		bls	.L31
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  500 0094 1449     		ldr	r1, .L33+28
  501 0096 1548     		ldr	r0, .L33+32
  502 0098 FFF7FEFF 		bl	CYCONFIGCPY
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 18
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 18
 
 
  503              	.LVL45:
@@ -1075,10 +1075,10 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  538 00d4 48000048 		.word	1207959624
  539 00d8 03500140 		.word	1073827843
  540 00dc A0430040 		.word	1073759136
- 541 00e0 54030048 		.word	1207960404
+ 541 00e0 4C030048 		.word	1207960396
  542 00e4 C0510040 		.word	1073762752
- 543 00e8 60030048 		.word	1207960416
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 19
+ 543 00e8 58030048 		.word	1207960408
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 19
 
 
  544 00ec 12510040 		.word	1073762578
@@ -1122,10 +1122,10 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  582              		.size	cfg_memcpy_list.5019, 20
  583              	cfg_memcpy_list.5019:
  584 0044 60520040 		.word	1073762912
- 585 0048 CC020048 		.word	1207960268
+ 585 0048 C4020048 		.word	1207960260
  586 004c 0600     		.short	6
  587 004e 00180140 		.4byte	1073813504
- 588 0052 D4020048 		.4byte	1207960276
+ 588 0052 CC020048 		.4byte	1207960268
  589 0056 8000     		.short	128
  590              		.text
  591              	.Letext0:
@@ -1138,14 +1138,14 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  598 0004 0400     		.2byte	0x4
  599 0006 00000000 		.4byte	.Ldebug_abbrev0
  600 000a 04       		.byte	0x4
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 20
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 20
 
 
  601 000b 01       		.uleb128 0x1
- 602 000c 19020000 		.4byte	.LASF52
+ 602 000c 33020000 		.4byte	.LASF52
  603 0010 0C       		.byte	0xc
- 604 0011 06030000 		.4byte	.LASF53
- 605 0015 9B000000 		.4byte	.LASF54
+ 604 0011 20030000 		.4byte	.LASF53
+ 605 0015 D3000000 		.4byte	.LASF54
  606 0019 00000000 		.4byte	.Ldebug_ranges0+0
  607 001d 00000000 		.4byte	0
  608 0021 00000000 		.4byte	.Ldebug_line0
@@ -1161,7 +1161,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  618 0037 04       		.uleb128 0x4
  619 0038 04       		.byte	0x4
  620 0039 07       		.byte	0x7
- 621 003a 42010000 		.4byte	.LASF0
+ 621 003a 5C010000 		.4byte	.LASF0
  622 003e 04       		.uleb128 0x4
  623 003f 08       		.byte	0x8
  624 0040 05       		.byte	0x5
@@ -1169,7 +1169,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  626 0045 04       		.uleb128 0x4
  627 0046 08       		.byte	0x8
  628 0047 04       		.byte	0x4
- 629 0048 A0010000 		.4byte	.LASF2
+ 629 0048 BA010000 		.4byte	.LASF2
  630 004c 04       		.uleb128 0x4
  631 004d 01       		.byte	0x1
  632 004e 06       		.byte	0x6
@@ -1177,42 +1177,42 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  634 0053 04       		.uleb128 0x4
  635 0054 01       		.byte	0x1
  636 0055 08       		.byte	0x8
- 637 0056 01020000 		.4byte	.LASF4
+ 637 0056 1B020000 		.4byte	.LASF4
  638 005a 04       		.uleb128 0x4
  639 005b 02       		.byte	0x2
  640 005c 05       		.byte	0x5
- 641 005d 0F020000 		.4byte	.LASF5
+ 641 005d 29020000 		.4byte	.LASF5
  642 0061 04       		.uleb128 0x4
  643 0062 02       		.byte	0x2
  644 0063 07       		.byte	0x7
- 645 0064 84010000 		.4byte	.LASF6
+ 645 0064 9E010000 		.4byte	.LASF6
  646 0068 04       		.uleb128 0x4
  647 0069 04       		.byte	0x4
  648 006a 05       		.byte	0x5
- 649 006b FF000000 		.4byte	.LASF7
+ 649 006b B0000000 		.4byte	.LASF7
  650 006f 04       		.uleb128 0x4
  651 0070 04       		.byte	0x4
  652 0071 07       		.byte	0x7
- 653 0072 58010000 		.4byte	.LASF8
+ 653 0072 72010000 		.4byte	.LASF8
  654 0076 04       		.uleb128 0x4
  655 0077 08       		.byte	0x8
  656 0078 07       		.byte	0x7
  657 0079 3C000000 		.4byte	.LASF9
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 21
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 21
 
 
  658 007d 04       		.uleb128 0x4
  659 007e 04       		.byte	0x4
  660 007f 07       		.byte	0x7
- 661 0080 97010000 		.4byte	.LASF10
+ 661 0080 B1010000 		.4byte	.LASF10
  662 0084 05       		.uleb128 0x5
  663 0085 04       		.byte	0x4
  664 0086 04       		.uleb128 0x4
  665 0087 01       		.byte	0x1
  666 0088 08       		.byte	0x8
- 667 0089 C2020000 		.4byte	.LASF11
+ 667 0089 DC020000 		.4byte	.LASF11
  668 008d 06       		.uleb128 0x6
- 669 008e 15010000 		.4byte	.LASF13
+ 669 008e C6000000 		.4byte	.LASF13
  670 0092 03       		.byte	0x3
  671 0093 E401     		.2byte	0x1e4
  672 0095 53000000 		.4byte	0x53
@@ -1222,27 +1222,27 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  676 009f E501     		.2byte	0x1e5
  677 00a1 61000000 		.4byte	0x61
  678 00a5 06       		.uleb128 0x6
- 679 00a6 2C010000 		.4byte	.LASF15
+ 679 00a6 46010000 		.4byte	.LASF15
  680 00aa 03       		.byte	0x3
  681 00ab E601     		.2byte	0x1e6
  682 00ad 6F000000 		.4byte	0x6f
  683 00b1 04       		.uleb128 0x4
  684 00b2 04       		.byte	0x4
  685 00b3 04       		.byte	0x4
- 686 00b4 E0010000 		.4byte	.LASF16
+ 686 00b4 FA010000 		.4byte	.LASF16
  687 00b8 04       		.uleb128 0x4
  688 00b9 08       		.byte	0x8
  689 00ba 04       		.byte	0x4
- 690 00bb 1B010000 		.4byte	.LASF17
+ 690 00bb CC000000 		.4byte	.LASF17
  691 00bf 06       		.uleb128 0x6
- 692 00c0 FC010000 		.4byte	.LASF18
+ 692 00c0 16020000 		.4byte	.LASF18
  693 00c4 03       		.byte	0x3
  694 00c5 8E02     		.2byte	0x28e
  695 00c7 CB000000 		.4byte	0xcb
  696 00cb 07       		.uleb128 0x7
  697 00cc 8D000000 		.4byte	0x8d
  698 00d0 06       		.uleb128 0x6
- 699 00d1 08010000 		.4byte	.LASF19
+ 699 00d1 B9000000 		.4byte	.LASF19
  700 00d5 03       		.byte	0x3
  701 00d6 8F02     		.2byte	0x28f
  702 00d8 DC000000 		.4byte	0xdc
@@ -1254,23 +1254,23 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  708 00e4 98       		.byte	0x98
  709 00e5 02010000 		.4byte	0x102
  710 00e9 09       		.uleb128 0x9
- 711 00ea E4020000 		.4byte	.LASF20
+ 711 00ea FE020000 		.4byte	.LASF20
  712 00ee 01       		.byte	0x1
  713 00ef 9A       		.byte	0x9a
  714 00f0 8D000000 		.4byte	0x8d
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 22
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 22
 
 
  715 00f4 00       		.byte	0
  716 00f5 09       		.uleb128 0x9
- 717 00f6 3C010000 		.4byte	.LASF21
+ 717 00f6 56010000 		.4byte	.LASF21
  718 00fa 01       		.byte	0x1
  719 00fb 9B       		.byte	0x9b
  720 00fc 8D000000 		.4byte	0x8d
  721 0100 01       		.byte	0x1
  722 0101 00       		.byte	0
  723 0102 03       		.uleb128 0x3
- 724 0103 AF020000 		.4byte	.LASF22
+ 724 0103 C9020000 		.4byte	.LASF22
  725 0107 01       		.byte	0x1
  726 0108 9C       		.byte	0x9c
  727 0109 E1000000 		.4byte	0xe1
@@ -1284,7 +1284,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  735 011d 9C       		.byte	0x9c
  736 011e 30010000 		.4byte	0x130
  737 0122 0B       		.uleb128 0xb
- 738 0123 F5000000 		.4byte	.LASF23
+ 738 0123 A6000000 		.4byte	.LASF23
  739 0127 01       		.byte	0x1
  740 0128 7F       		.byte	0x7f
  741 0129 8D000000 		.4byte	0x8d
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  769 0160 6900     		.ascii	"i\000"
  770 0162 01       		.byte	0x1
  771 0163 C0       		.byte	0xc0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 23
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 23
 
 
  772 0164 A5000000 		.4byte	0xa5
@@ -1366,19 +1366,19 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  814 01c9 9C       		.byte	0x9c
  815 01ca DF010000 		.4byte	0x1df
  816 01ce 13       		.uleb128 0x13
- 817 01cf AC010000 		.4byte	.LASF30
+ 817 01cf C6010000 		.4byte	.LASF30
  818 01d3 01       		.byte	0x1
  819 01d4 2501     		.2byte	0x125
  820 01d6 8D000000 		.4byte	0x8d
  821 01da 6F000000 		.4byte	.LLST4
  822 01de 00       		.byte	0
  823 01df 0C       		.uleb128 0xc
- 824 01e0 22010000 		.4byte	.LASF31
+ 824 01e0 3C010000 		.4byte	.LASF31
  825 01e4 01       		.byte	0x1
  826 01e5 4D       		.byte	0x4d
  827 01e6 00000000 		.4byte	.LFB0
  828 01ea 0C000000 		.4byte	.LFE0-.LFB0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 24
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 24
 
 
  829 01ee 01       		.uleb128 0x1
@@ -1421,31 +1421,31 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  866 022a 00       		.byte	0
  867 022b 00       		.byte	0
  868 022c 0C       		.uleb128 0xc
- 869 022d EA000000 		.4byte	.LASF32
+ 869 022d 9B000000 		.4byte	.LASF32
  870 0231 01       		.byte	0x1
  871 0232 E0       		.byte	0xe0
  872 0233 00000000 		.4byte	.LFB5
- 873 0237 CC000000 		.4byte	.LFE5-.LFB5
+ 873 0237 C8000000 		.4byte	.LFE5-.LFB5
  874 023b 01       		.uleb128 0x1
  875 023c 9C       		.byte	0x9c
  876 023d 84020000 		.4byte	0x284
  877 0241 0F       		.uleb128 0xf
- 878 0242 6A010000 		.4byte	.LASF33
+ 878 0242 84010000 		.4byte	.LASF33
  879 0246 01       		.byte	0x1
  880 0247 E2       		.byte	0xe2
  881 0248 A5000000 		.4byte	0xa5
  882 024c CF000000 		.4byte	.LLST7
  883 0250 0F       		.uleb128 0xf
- 884 0251 A7020000 		.4byte	.LASF34
+ 884 0251 C1020000 		.4byte	.LASF34
  885 0255 01       		.byte	0x1
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 25
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 25
 
 
  886 0256 E3       		.byte	0xe3
  887 0257 8D000000 		.4byte	0x8d
  888 025b EE000000 		.4byte	.LLST8
  889 025f 17       		.uleb128 0x17
- 890 0260 66000000 		.4byte	.LVL21
+ 890 0260 64000000 		.4byte	.LVL21
  891 0264 6E050000 		.4byte	0x56e
  892 0268 74020000 		.4byte	0x274
  893 026c 16       		.uleb128 0x16
@@ -1456,7 +1456,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  898 0271 E001     		.2byte	0x1e0
  899 0273 00       		.byte	0
  900 0274 15       		.uleb128 0x15
- 901 0275 76000000 		.4byte	.LVL23
+ 901 0275 74000000 		.4byte	.LVL23
  902 0279 0D010000 		.4byte	0x10d
  903 027d 16       		.uleb128 0x16
  904 027e 01       		.uleb128 0x1
@@ -1466,7 +1466,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  908 0282 00       		.byte	0
  909 0283 00       		.byte	0
  910 0284 0C       		.uleb128 0xc
- 911 0285 FA020000 		.4byte	.LASF35
+ 911 0285 14030000 		.4byte	.LASF35
  912 0289 01       		.byte	0x1
  913 028a 54       		.byte	0x54
  914 028b 00000000 		.4byte	.LFB1
@@ -1475,7 +1475,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  917 0294 9C       		.byte	0x9c
  918 0295 E4020000 		.4byte	0x2e4
  919 0299 18       		.uleb128 0x18
- 920 029a DB010000 		.4byte	.LASF36
+ 920 029a F5010000 		.4byte	.LASF36
  921 029e 01       		.byte	0x1
  922 029f 54       		.byte	0x54
  923 02a0 84000000 		.4byte	0x84
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  940 02cd 16       		.uleb128 0x16
  941 02ce 01       		.uleb128 0x1
  942 02cf 50       		.byte	0x50
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 26
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 26
 
 
  943 02d0 03       		.uleb128 0x3
@@ -1526,7 +1526,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  965 02e6 EA020000 		.4byte	0x2ea
  966 02ea 19       		.uleb128 0x19
  967 02eb 1A       		.uleb128 0x1a
- 968 02ec CE020000 		.4byte	.LASF39
+ 968 02ec E8020000 		.4byte	.LASF39
  969 02f0 01       		.byte	0x1
  970 02f1 3D01     		.2byte	0x13d
  971 02f3 00000000 		.4byte	.LFB7
@@ -1535,14 +1535,14 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  974 02fc 9C       		.byte	0x9c
  975 02fd 1E030000 		.4byte	0x31e
  976 0301 1B       		.uleb128 0x1b
- 977 0302 EB020000 		.4byte	.LASF37
+ 977 0302 05030000 		.4byte	.LASF37
  978 0306 01       		.byte	0x1
  979 0307 3D01     		.2byte	0x13d
  980 0309 8D000000 		.4byte	0x8d
  981 030d 01       		.uleb128 0x1
  982 030e 50       		.byte	0x50
  983 030f 1C       		.uleb128 0x1c
- 984 0310 33010000 		.4byte	.LASF38
+ 984 0310 4D010000 		.4byte	.LASF38
  985 0314 01       		.byte	0x1
  986 0315 3F01     		.2byte	0x13f
  987 0317 8D000000 		.4byte	0x8d
@@ -1550,7 +1550,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  989 031c 53       		.byte	0x53
  990 031d 00       		.byte	0
  991 031e 1A       		.uleb128 0x1a
- 992 031f 44030000 		.4byte	.LASF40
+ 992 031f 5E030000 		.4byte	.LASF40
  993 0323 01       		.byte	0x1
  994 0324 5F01     		.2byte	0x15f
  995 0326 00000000 		.4byte	.LFB8
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  997 032e 01       		.uleb128 0x1
  998 032f 9C       		.byte	0x9c
  999 0330 65050000 		.4byte	0x565
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 27
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 27
 
 
  1000 0334 1D       		.uleb128 0x1d
@@ -1571,20 +1571,20 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1007 0344 6B01     		.2byte	0x16b
  1008 0346 65030000 		.4byte	0x365
  1009 034a 1F       		.uleb128 0x1f
- 1010 034b 2C030000 		.4byte	.LASF41
+ 1010 034b 46030000 		.4byte	.LASF41
  1011 034f 01       		.byte	0x1
  1012 0350 6C01     		.2byte	0x16c
  1013 0352 84000000 		.4byte	0x84
  1014 0356 00       		.byte	0
  1015 0357 1F       		.uleb128 0x1f
- 1016 0358 7F010000 		.4byte	.LASF42
+ 1016 0358 99010000 		.4byte	.LASF42
  1017 035c 01       		.byte	0x1
  1018 035d 6D01     		.2byte	0x16d
  1019 035f 99000000 		.4byte	0x99
  1020 0363 04       		.byte	0x4
  1021 0364 00       		.byte	0
  1022 0365 06       		.uleb128 0x6
- 1023 0366 BE010000 		.4byte	.LASF43
+ 1023 0366 D8010000 		.4byte	.LASF43
  1024 036a 01       		.byte	0x1
  1025 036b 6E01     		.2byte	0x16e
  1026 036d 41030000 		.4byte	0x341
@@ -1594,7 +1594,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1030 0374 7101     		.2byte	0x171
  1031 0376 A2030000 		.4byte	0x3a2
  1032 037a 1F       		.uleb128 0x1f
- 1033 037b DB010000 		.4byte	.LASF36
+ 1033 037b F5010000 		.4byte	.LASF36
  1034 037f 01       		.byte	0x1
  1035 0380 7201     		.2byte	0x172
  1036 0382 84000000 		.4byte	0x84
@@ -1606,19 +1606,19 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1042 038f E4020000 		.4byte	0x2e4
  1043 0393 04       		.byte	0x4
  1044 0394 1F       		.uleb128 0x1f
- 1045 0395 7F010000 		.4byte	.LASF42
+ 1045 0395 99010000 		.4byte	.LASF42
  1046 0399 01       		.byte	0x1
  1047 039a 7401     		.2byte	0x174
  1048 039c 99000000 		.4byte	0x99
  1049 03a0 08       		.byte	0x8
  1050 03a1 00       		.byte	0
  1051 03a2 06       		.uleb128 0x6
- 1052 03a3 72010000 		.4byte	.LASF44
+ 1052 03a3 8C010000 		.4byte	.LASF44
  1053 03a7 01       		.byte	0x1
  1054 03a8 7501     		.2byte	0x175
  1055 03aa 71030000 		.4byte	0x371
  1056 03ae 21       		.uleb128 0x21
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 28
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 28
 
 
  1057 03af BE030000 		.4byte	0x3be
@@ -1630,7 +1630,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1063 03be 11       		.uleb128 0x11
  1064 03bf 65030000 		.4byte	0x365
  1065 03c3 1C       		.uleb128 0x1c
- 1066 03c4 CB010000 		.4byte	.LASF45
+ 1066 03c4 E5010000 		.4byte	.LASF45
  1067 03c8 01       		.byte	0x1
  1068 03c9 7701     		.2byte	0x177
  1069 03cb D5030000 		.4byte	0x3d5
@@ -1649,7 +1649,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1082 03ea 11       		.uleb128 0x11
  1083 03eb A2030000 		.4byte	0x3a2
  1084 03ef 1C       		.uleb128 0x1c
- 1085 03f0 34030000 		.4byte	.LASF46
+ 1085 03f0 4E030000 		.4byte	.LASF46
  1086 03f4 01       		.byte	0x1
  1087 03f5 8601     		.2byte	0x186
  1088 03f7 01040000 		.4byte	0x401
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1111 0431 04       		.byte	0x4
  1112 0432 BE030000 		.4byte	0x3be
  1113 0436 15       		.uleb128 0x15
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 29
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 29
 
 
  1114 0437 28000000 		.4byte	.LVL31
@@ -1722,23 +1722,23 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1152 0476 04       		.byte	0x4
  1153 0477 EA030000 		.4byte	0x3ea
  1154 047b 13       		.uleb128 0x13
- 1155 047c F4010000 		.4byte	.LASF47
+ 1155 047c 0E020000 		.4byte	.LASF47
  1156 0480 01       		.byte	0x1
  1157 0481 9901     		.2byte	0x199
  1158 0483 84000000 		.4byte	0x84
  1159 0487 1F020000 		.4byte	.LLST15
  1160 048b 13       		.uleb128 0x13
- 1161 048c C7020000 		.4byte	.LASF48
+ 1161 048c E1020000 		.4byte	.LASF48
  1162 0490 01       		.byte	0x1
  1163 0491 9A01     		.2byte	0x19a
  1164 0493 E4020000 		.4byte	0x2e4
  1165 0497 32020000 		.4byte	.LLST16
  1166 049b 13       		.uleb128 0x13
- 1167 049c 4F010000 		.4byte	.LASF49
+ 1167 049c 69010000 		.4byte	.LASF49
  1168 04a0 01       		.byte	0x1
  1169 04a1 9B01     		.2byte	0x19b
  1170 04a3 99000000 		.4byte	0x99
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 30
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 30
 
 
  1171 04a7 45020000 		.4byte	.LLST17
@@ -1798,13 +1798,13 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1225 04fc C0510040 		.4byte	0x400051c0
  1226 0500 16       		.uleb128 0x16
  1227 0501 01       		.uleb128 0x1
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 31
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 31
 
 
  1228 0502 51       		.byte	0x51
  1229 0503 05       		.uleb128 0x5
  1230 0504 0C       		.byte	0xc
- 1231 0505 54030048 		.4byte	0x48000354
+ 1231 0505 4C030048 		.4byte	0x4800034c
  1232 0509 16       		.uleb128 0x16
  1233 050a 01       		.uleb128 0x1
  1234 050b 52       		.byte	0x52
@@ -1826,7 +1826,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1250 0527 51       		.byte	0x51
  1251 0528 05       		.uleb128 0x5
  1252 0529 0C       		.byte	0xc
- 1253 052a 60030048 		.4byte	0x48000360
+ 1253 052a 58030048 		.4byte	0x48000358
  1254 052e 16       		.uleb128 0x16
  1255 052f 01       		.uleb128 0x1
  1256 0530 52       		.byte	0x52
@@ -1858,23 +1858,23 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1282 055f 01       		.uleb128 0x1
  1283 0560 52       		.byte	0x52
  1284 0561 01       		.uleb128 0x1
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 32
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 32
 
 
  1285 0562 3E       		.byte	0x3e
  1286 0563 00       		.byte	0
  1287 0564 00       		.byte	0
  1288 0565 25       		.uleb128 0x25
- 1289 0566 F3020000 		.4byte	.LASF50
- 1290 056a F3020000 		.4byte	.LASF50
+ 1289 0566 0D030000 		.4byte	.LASF50
+ 1290 056a 0D030000 		.4byte	.LASF50
  1291 056e 26       		.uleb128 0x26
- 1292 056f E6010000 		.4byte	.LASF56
- 1293 0573 E6010000 		.4byte	.LASF56
+ 1292 056f 00020000 		.4byte	.LASF56
+ 1293 0573 00020000 		.4byte	.LASF56
  1294 0577 04       		.byte	0x4
  1295 0578 79       		.byte	0x79
  1296 0579 25       		.uleb128 0x25
- 1297 057a 0E010000 		.4byte	.LASF51
- 1298 057e 0E010000 		.4byte	.LASF51
+ 1297 057a BF000000 		.4byte	.LASF51
+ 1298 057e BF000000 		.4byte	.LASF51
  1299 0582 00       		.byte	0
  1300              		.section	.debug_abbrev,"",%progbits
  1301              	.Ldebug_abbrev0:
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1339 0025 3B       		.uleb128 0x3b
  1340 0026 0B       		.uleb128 0xb
  1341 0027 49       		.uleb128 0x49
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 33
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 33
 
 
  1342 0028 13       		.uleb128 0x13
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1396 005e 09       		.uleb128 0x9
  1397 005f 0D       		.uleb128 0xd
  1398 0060 00       		.byte	0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 34
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 34
 
 
  1399 0061 03       		.uleb128 0x3
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1453 0099 01       		.byte	0x1
  1454 009a 03       		.uleb128 0x3
  1455 009b 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 35
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 35
 
 
  1456 009c 3A       		.uleb128 0x3a
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1510 00d3 17       		.uleb128 0x17
  1511 00d4 00       		.byte	0
  1512 00d5 00       		.byte	0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 36
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 36
 
 
  1513 00d6 10       		.uleb128 0x10
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1567 010d 14       		.uleb128 0x14
  1568 010e 05       		.uleb128 0x5
  1569 010f 00       		.byte	0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 37
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 37
 
 
  1570 0110 03       		.uleb128 0x3
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1624 014d 00       		.byte	0
  1625 014e 00       		.byte	0
  1626 014f 19       		.uleb128 0x19
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 38
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 38
 
 
  1627 0150 26       		.uleb128 0x26
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1681 0187 13       		.uleb128 0x13
  1682 0188 02       		.uleb128 0x2
  1683 0189 18       		.uleb128 0x18
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 39
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 39
 
 
  1684 018a 00       		.byte	0
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1738 01c0 00       		.byte	0
  1739 01c1 00       		.byte	0
  1740 01c2 21       		.uleb128 0x21
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 40
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 40
 
 
  1741 01c3 01       		.uleb128 0x1
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1795 01fb 26       		.uleb128 0x26
  1796 01fc 2E       		.uleb128 0x2e
  1797 01fd 00       		.byte	0
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 41
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 41
 
 
  1798 01fe 3F       		.uleb128 0x3f
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1852 0060 2C000000 		.4byte	.LVL10
  1853 0064 0100     		.2byte	0x1
  1854 0066 53       		.byte	0x53
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 42
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 42
 
 
  1855 0067 00000000 		.4byte	0
@@ -2503,32 +2503,32 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1894 00c7 00000000 		.4byte	0
  1895 00cb 00000000 		.4byte	0
  1896              	.LLST7:
- 1897 00cf 48000000 		.4byte	.LVL17
- 1898 00d3 4E000000 		.4byte	.LVL18
+ 1897 00cf 46000000 		.4byte	.LVL17
+ 1898 00d3 4C000000 		.4byte	.LVL18
  1899 00d7 0200     		.2byte	0x2
  1900 00d9 49       		.byte	0x49
  1901 00da 9F       		.byte	0x9f
- 1902 00db 4E000000 		.4byte	.LVL18
- 1903 00df A2000000 		.4byte	.LVL24
+ 1902 00db 4C000000 		.4byte	.LVL18
+ 1903 00df A0000000 		.4byte	.LVL24
  1904 00e3 0100     		.2byte	0x1
  1905 00e5 55       		.byte	0x55
  1906 00e6 00000000 		.4byte	0
  1907 00ea 00000000 		.4byte	0
  1908              	.LLST8:
- 1909 00ee 48000000 		.4byte	.LVL17
- 1910 00f2 4E000000 		.4byte	.LVL18
+ 1909 00ee 46000000 		.4byte	.LVL17
+ 1910 00f2 4C000000 		.4byte	.LVL18
  1911 00f6 0200     		.2byte	0x2
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 43
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 43
 
 
  1912 00f8 30       		.byte	0x30
  1913 00f9 9F       		.byte	0x9f
- 1914 00fa 4E000000 		.4byte	.LVL18
- 1915 00fe 5A000000 		.4byte	.LVL19
+ 1914 00fa 4C000000 		.4byte	.LVL18
+ 1915 00fe 58000000 		.4byte	.LVL19
  1916 0102 0100     		.2byte	0x1
  1917 0104 54       		.byte	0x54
- 1918 0105 5E000000 		.4byte	.LVL20
- 1919 0109 A2000000 		.4byte	.LVL24
+ 1918 0105 5C000000 		.4byte	.LVL20
+ 1919 0109 A0000000 		.4byte	.LVL24
  1920 010d 0100     		.2byte	0x1
  1921 010f 54       		.byte	0x54
  1922 0110 00000000 		.4byte	0
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  1966              	.LLST12:
  1967 017b 0E000000 		.4byte	.LVL29
  1968 017f 12000000 		.4byte	.LVL30
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 44
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 44
 
 
  1969 0183 0200     		.2byte	0x2
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  2023 01fb 03       		.byte	0x3
  2024 01fc 44000000 		.4byte	cfg_memcpy_list.5019
  2025 0200 22       		.byte	0x22
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 45
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 45
 
 
  2026 0201 9F       		.byte	0x9f
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  2080 0277 35       		.byte	0x35
  2081 0278 1E       		.byte	0x1e
  2082 0279 31       		.byte	0x31
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 46
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 46
 
 
  2083 027a 24       		.byte	0x24
@@ -2724,7 +2724,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  2103 0028 00000000 		.4byte	.LFB0
  2104 002c 0C000000 		.4byte	.LFE0-.LFB0
  2105 0030 00000000 		.4byte	.LFB5
- 2106 0034 CC000000 		.4byte	.LFE5-.LFB5
+ 2106 0034 C8000000 		.4byte	.LFE5-.LFB5
  2107 0038 00000000 		.4byte	.LFB1
  2108 003c 08000000 		.4byte	.LFE1-.LFB1
  2109 0040 00000000 		.4byte	.LFB7
@@ -2744,7 +2744,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  2123 0018 00000000 		.4byte	.LFB0
  2124 001c 0C000000 		.4byte	.LFE0
  2125 0020 00000000 		.4byte	.LFB5
- 2126 0024 CC000000 		.4byte	.LFE5
+ 2126 0024 C8000000 		.4byte	.LFE5
  2127 0028 00000000 		.4byte	.LFB1
  2128 002c 08000000 		.4byte	.LFE1
  2129 0030 00000000 		.4byte	.LFB7
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  2137 0000 F0010000 		.section	.debug_str,"MS",%progbits,1
  2137      0200D600 
  2137      00000201 
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 47
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 47
 
 
  2137      FB0E0D00 
@@ -2817,216 +2817,219 @@ ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 1
  2161      655F6279 
  2161      74657333 
  2161      3200
- 2162              	.LASF54:
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 48
+ 2162              	.LASF32:
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 48
 
 
- 2163 009b 433A5C55 		.ascii	"C:\\Users\\Lorenzo\\Desktop\\PSoC_03_Complete\\PSoC"
- 2163      73657273 
- 2163      5C4C6F72 
- 2163      656E7A6F 
- 2163      5C446573 
- 2164 00c9 5F30335C 		.ascii	"_03\\AY1920_II_HW_05_PROJ_2.cydsn\000"
- 2164      41593139 
- 2164      32305F49 
- 2164      495F4857 
- 2164      5F30355F 
- 2165              	.LASF32:
- 2166 00ea 436C6F63 		.ascii	"ClockSetup\000"
- 2166      6B536574 
- 2166      757000
- 2167              	.LASF23:
- 2168 00f5 6572726F 		.ascii	"errorCode\000"
- 2168      72436F64 
- 2168      6500
- 2169              	.LASF7:
- 2170 00ff 6C6F6E67 		.ascii	"long int\000"
- 2170      20696E74 
- 2170      00
- 2171              	.LASF19:
- 2172 0108 72656731 		.ascii	"reg16\000"
- 2172      3600
- 2173              	.LASF51:
- 2174 010e 6D656D63 		.ascii	"memcpy\000"
- 2174      707900
- 2175              	.LASF13:
- 2176 0115 75696E74 		.ascii	"uint8\000"
- 2176      3800
- 2177              	.LASF17:
- 2178 011b 646F7562 		.ascii	"double\000"
- 2178      6C6500
- 2179              	.LASF31:
- 2180 0122 43594D45 		.ascii	"CYMEMZERO\000"
- 2180      4D5A4552 
- 2180      4F00
- 2181              	.LASF15:
- 2182 012c 75696E74 		.ascii	"uint32\000"
- 2182      333200
- 2183              	.LASF38:
- 2184 0133 72656756 		.ascii	"regValue\000"
- 2184      616C7565 
- 2184      00
- 2185              	.LASF21:
- 2186 013c 76616C75 		.ascii	"value\000"
- 2186      6500
- 2187              	.LASF0:
- 2188 0142 756E7369 		.ascii	"unsigned int\000"
- 2188      676E6564 
- 2188      20696E74 
- 2188      00
- 2189              	.LASF49:
- 2190 014f 6E756D42 		.ascii	"numBytes\000"
- 2190      79746573 
- 2190      00
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 49
+ 2163 009b 436C6F63 		.ascii	"ClockSetup\000"
+ 2163      6B536574 
+ 2163      757000
+ 2164              	.LASF23:
+ 2165 00a6 6572726F 		.ascii	"errorCode\000"
+ 2165      72436F64 
+ 2165      6500
+ 2166              	.LASF7:
+ 2167 00b0 6C6F6E67 		.ascii	"long int\000"
+ 2167      20696E74 
+ 2167      00
+ 2168              	.LASF19:
+ 2169 00b9 72656731 		.ascii	"reg16\000"
+ 2169      3600
+ 2170              	.LASF51:
+ 2171 00bf 6D656D63 		.ascii	"memcpy\000"
+ 2171      707900
+ 2172              	.LASF13:
+ 2173 00c6 75696E74 		.ascii	"uint8\000"
+ 2173      3800
+ 2174              	.LASF17:
+ 2175 00cc 646F7562 		.ascii	"double\000"
+ 2175      6C6500
+ 2176              	.LASF54:
+ 2177 00d3 433A5C55 		.ascii	"C:\\Users\\Lorenzo\\Desktop\\PSoC_03_Complete\\AY19"
+ 2177      73657273 
+ 2177      5C4C6F72 
+ 2177      656E7A6F 
+ 2177      5C446573 
+ 2178 0101 32305F49 		.ascii	"20_II_HW_05_FRANCIOLI_LORENZO\\AY1920_II_HW_05_PROJ"
+ 2178      495F4857 
+ 2178      5F30355F 
+ 2178      4652414E 
+ 2178      43494F4C 
+ 2179 0133 5F322E63 		.ascii	"_2.cydsn\000"
+ 2179      7964736E 
+ 2179      00
+ 2180              	.LASF31:
+ 2181 013c 43594D45 		.ascii	"CYMEMZERO\000"
+ 2181      4D5A4552 
+ 2181      4F00
+ 2182              	.LASF15:
+ 2183 0146 75696E74 		.ascii	"uint32\000"
+ 2183      333200
+ 2184              	.LASF38:
+ 2185 014d 72656756 		.ascii	"regValue\000"
+ 2185      616C7565 
+ 2185      00
+ 2186              	.LASF21:
+ 2187 0156 76616C75 		.ascii	"value\000"
+ 2187      6500
+ 2188              	.LASF0:
+ 2189 015c 756E7369 		.ascii	"unsigned int\000"
+ 2189      676E6564 
+ 2189      20696E74 
+ 2189      00
+ 2190              	.LASF49:
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 49
 
 
- 2191              	.LASF8:
- 2192 0158 6C6F6E67 		.ascii	"long unsigned int\000"
- 2192      20756E73 
- 2192      69676E65 
- 2192      6420696E 
- 2192      7400
- 2193              	.LASF33:
- 2194 016a 74696D65 		.ascii	"timeout\000"
- 2194      6F757400 
- 2195              	.LASF44:
- 2196 0172 6366675F 		.ascii	"cfg_memcpy_t\000"
- 2196      6D656D63 
- 2196      70795F74 
- 2196      00
- 2197              	.LASF42:
- 2198 017f 73697A65 		.ascii	"size\000"
- 2198      00
- 2199              	.LASF6:
- 2200 0184 73686F72 		.ascii	"short unsigned int\000"
- 2200      7420756E 
- 2200      7369676E 
- 2200      65642069 
- 2200      6E7400
- 2201              	.LASF10:
- 2202 0197 73697A65 		.ascii	"sizetype\000"
- 2202      74797065 
- 2202      00
- 2203              	.LASF2:
- 2204 01a0 6C6F6E67 		.ascii	"long double\000"
- 2204      20646F75 
- 2204      626C6500 
- 2205              	.LASF30:
- 2206 01ac 62675F78 		.ascii	"bg_xover_inl_trim\000"
- 2206      6F766572 
- 2206      5F696E6C 
- 2206      5F747269 
- 2206      6D00
- 2207              	.LASF43:
- 2208 01be 6366675F 		.ascii	"cfg_memset_t\000"
- 2208      6D656D73 
- 2208      65745F74 
- 2208      00
- 2209              	.LASF45:
- 2210 01cb 6366675F 		.ascii	"cfg_memset_list\000"
- 2210      6D656D73 
- 2210      65745F6C 
- 2210      69737400 
- 2211              	.LASF36:
- 2212 01db 64657374 		.ascii	"dest\000"
- 2212      00
- 2213              	.LASF16:
- 2214 01e0 666C6F61 		.ascii	"float\000"
- 2214      7400
- 2215              	.LASF56:
- 2216 01e6 43794465 		.ascii	"CyDelayCycles\000"
- 2216      6C617943 
- 2216      79636C65 
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 50
+ 2191 0169 6E756D42 		.ascii	"numBytes\000"
+ 2191      79746573 
+ 2191      00
+ 2192              	.LASF8:
+ 2193 0172 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2193      20756E73 
+ 2193      69676E65 
+ 2193      6420696E 
+ 2193      7400
+ 2194              	.LASF33:
+ 2195 0184 74696D65 		.ascii	"timeout\000"
+ 2195      6F757400 
+ 2196              	.LASF44:
+ 2197 018c 6366675F 		.ascii	"cfg_memcpy_t\000"
+ 2197      6D656D63 
+ 2197      70795F74 
+ 2197      00
+ 2198              	.LASF42:
+ 2199 0199 73697A65 		.ascii	"size\000"
+ 2199      00
+ 2200              	.LASF6:
+ 2201 019e 73686F72 		.ascii	"short unsigned int\000"
+ 2201      7420756E 
+ 2201      7369676E 
+ 2201      65642069 
+ 2201      6E7400
+ 2202              	.LASF10:
+ 2203 01b1 73697A65 		.ascii	"sizetype\000"
+ 2203      74797065 
+ 2203      00
+ 2204              	.LASF2:
+ 2205 01ba 6C6F6E67 		.ascii	"long double\000"
+ 2205      20646F75 
+ 2205      626C6500 
+ 2206              	.LASF30:
+ 2207 01c6 62675F78 		.ascii	"bg_xover_inl_trim\000"
+ 2207      6F766572 
+ 2207      5F696E6C 
+ 2207      5F747269 
+ 2207      6D00
+ 2208              	.LASF43:
+ 2209 01d8 6366675F 		.ascii	"cfg_memset_t\000"
+ 2209      6D656D73 
+ 2209      65745F74 
+ 2209      00
+ 2210              	.LASF45:
+ 2211 01e5 6366675F 		.ascii	"cfg_memset_list\000"
+ 2211      6D656D73 
+ 2211      65745F6C 
+ 2211      69737400 
+ 2212              	.LASF36:
+ 2213 01f5 64657374 		.ascii	"dest\000"
+ 2213      00
+ 2214              	.LASF16:
+ 2215 01fa 666C6F61 		.ascii	"float\000"
+ 2215      7400
+ 2216              	.LASF56:
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 50
 
 
- 2216      7300
- 2217              	.LASF47:
- 2218 01f4 64657374 		.ascii	"destPtr\000"
- 2218      50747200 
- 2219              	.LASF18:
- 2220 01fc 72656738 		.ascii	"reg8\000"
- 2220      00
- 2221              	.LASF4:
- 2222 0201 756E7369 		.ascii	"unsigned char\000"
- 2222      676E6564 
- 2222      20636861 
- 2222      7200
- 2223              	.LASF5:
- 2224 020f 73686F72 		.ascii	"short int\000"
- 2224      7420696E 
- 2224      7400
- 2225              	.LASF52:
- 2226 0219 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 2226      43313120 
- 2226      352E342E 
- 2226      31203230 
- 2226      31363036 
- 2227 024c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 2227      20726576 
- 2227      6973696F 
- 2227      6E203233 
- 2227      37373135 
- 2228 027f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 2228      66756E63 
- 2228      74696F6E 
- 2228      2D736563 
- 2228      74696F6E 
- 2229              	.LASF34:
- 2230 02a7 706C6C4C 		.ascii	"pllLock\000"
- 2230      6F636B00 
- 2231              	.LASF22:
- 2232 02af 63795F63 		.ascii	"cy_cfg_addrvalue_t\000"
- 2232      66675F61 
- 2232      64647276 
- 2232      616C7565 
- 2232      5F7400
- 2233              	.LASF11:
- 2234 02c2 63686172 		.ascii	"char\000"
- 2234      00
- 2235              	.LASF48:
- 2236 02c7 73726350 		.ascii	"srcPtr\000"
- 2236      747200
- 2237              	.LASF39:
- 2238 02ce 53657441 		.ascii	"SetAnalogRoutingPumps\000"
- 2238      6E616C6F 
- 2238      67526F75 
- 2238      74696E67 
- 2238      50756D70 
- 2239              	.LASF20:
- 2240 02e4 6F666673 		.ascii	"offset\000"
- 2240      657400
- 2241              	.LASF37:
-ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccYiuR6P.s 			page 51
+ 2217 0200 43794465 		.ascii	"CyDelayCycles\000"
+ 2217      6C617943 
+ 2217      79636C65 
+ 2217      7300
+ 2218              	.LASF47:
+ 2219 020e 64657374 		.ascii	"destPtr\000"
+ 2219      50747200 
+ 2220              	.LASF18:
+ 2221 0216 72656738 		.ascii	"reg8\000"
+ 2221      00
+ 2222              	.LASF4:
+ 2223 021b 756E7369 		.ascii	"unsigned char\000"
+ 2223      676E6564 
+ 2223      20636861 
+ 2223      7200
+ 2224              	.LASF5:
+ 2225 0229 73686F72 		.ascii	"short int\000"
+ 2225      7420696E 
+ 2225      7400
+ 2226              	.LASF52:
+ 2227 0233 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2227      43313120 
+ 2227      352E342E 
+ 2227      31203230 
+ 2227      31363036 
+ 2228 0266 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2228      20726576 
+ 2228      6973696F 
+ 2228      6E203233 
+ 2228      37373135 
+ 2229 0299 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2229      66756E63 
+ 2229      74696F6E 
+ 2229      2D736563 
+ 2229      74696F6E 
+ 2230              	.LASF34:
+ 2231 02c1 706C6C4C 		.ascii	"pllLock\000"
+ 2231      6F636B00 
+ 2232              	.LASF22:
+ 2233 02c9 63795F63 		.ascii	"cy_cfg_addrvalue_t\000"
+ 2233      66675F61 
+ 2233      64647276 
+ 2233      616C7565 
+ 2233      5F7400
+ 2234              	.LASF11:
+ 2235 02dc 63686172 		.ascii	"char\000"
+ 2235      00
+ 2236              	.LASF48:
+ 2237 02e1 73726350 		.ascii	"srcPtr\000"
+ 2237      747200
+ 2238              	.LASF39:
+ 2239 02e8 53657441 		.ascii	"SetAnalogRoutingPumps\000"
+ 2239      6E616C6F 
+ 2239      67526F75 
+ 2239      74696E67 
+ 2239      50756D70 
+ 2240              	.LASF20:
+ARM GAS  C:\Users\Lorenzo\AppData\Local\Temp\ccjK291h.s 			page 51
 
 
- 2242 02eb 656E6162 		.ascii	"enabled\000"
- 2242      6C656400 
- 2243              	.LASF50:
- 2244 02f3 6D656D73 		.ascii	"memset\000"
- 2244      657400
- 2245              	.LASF35:
- 2246 02fa 4359434F 		.ascii	"CYCONFIGCPY\000"
- 2246      4E464947 
- 2246      43505900 
- 2247              	.LASF53:
- 2248 0306 47656E65 		.ascii	"Generated_Source\\PSoC5\\cyfitter_cfg.c\000"
- 2248      72617465 
- 2248      645F536F 
- 2248      75726365 
- 2248      5C50536F 
- 2249              	.LASF41:
- 2250 032c 61646472 		.ascii	"address\000"
- 2250      65737300 
- 2251              	.LASF46:
- 2252 0334 6366675F 		.ascii	"cfg_memcpy_list\000"
- 2252      6D656D63 
- 2252      70795F6C 
- 2252      69737400 
- 2253              	.LASF40:
- 2254 0344 63796669 		.ascii	"cyfitter_cfg\000"
- 2254      74746572 
- 2254      5F636667 
- 2254      00
- 2255              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 2241 02fe 6F666673 		.ascii	"offset\000"
+ 2241      657400
+ 2242              	.LASF37:
+ 2243 0305 656E6162 		.ascii	"enabled\000"
+ 2243      6C656400 
+ 2244              	.LASF50:
+ 2245 030d 6D656D73 		.ascii	"memset\000"
+ 2245      657400
+ 2246              	.LASF35:
+ 2247 0314 4359434F 		.ascii	"CYCONFIGCPY\000"
+ 2247      4E464947 
+ 2247      43505900 
+ 2248              	.LASF53:
+ 2249 0320 47656E65 		.ascii	"Generated_Source\\PSoC5\\cyfitter_cfg.c\000"
+ 2249      72617465 
+ 2249      645F536F 
+ 2249      75726365 
+ 2249      5C50536F 
+ 2250              	.LASF41:
+ 2251 0346 61646472 		.ascii	"address\000"
+ 2251      65737300 
+ 2252              	.LASF46:
+ 2253 034e 6366675F 		.ascii	"cfg_memcpy_list\000"
+ 2253      6D656D63 
+ 2253      70795F6C 
+ 2253      69737400 
+ 2254              	.LASF40:
+ 2255 035e 63796669 		.ascii	"cyfitter_cfg\000"
+ 2255      74746572 
+ 2255      5F636667 
+ 2255      00
+ 2256              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
